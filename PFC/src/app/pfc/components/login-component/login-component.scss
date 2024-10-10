@@ -1,0 +1,80 @@
+@font-face {
+  font-family: Hudson;
+  src: url(../../../../assets/fonts/Hudson-NY/Hudson\ NY.otf);
+}
+
+@font-face {
+  font-family: Hudson_2;
+  src: url(../../../../assets/fonts/Hudson-NY/Hudson\ NY\ Slab.otf);
+}
+
+
+
+
+
+.container {
+  height: 100%;
+  width: auto;
+  display: grid;
+  grid-template-columns: 1.5fr 4fr;
+
+  .login{
+
+    background-color: rgba(1,1,39,255);
+    h1{
+      margin:3.5%;
+      color:white;
+      font-family: Hudson;
+      font-size: 100px ;
+    }
+    span{
+      margin-left:6.5%;
+    }
+    h2{
+
+      margin-top:10%;
+      color:white;
+      text-align: center;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    h3{
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      color:rgba(254,33,88,255);
+    }
+
+     .campos {
+      box-sizing: border-box;
+
+    }
+
+    .box{
+
+
+      margin-top:6%;
+      margin-left:15.5%;
+      border:1px solid white;
+      padding: 3%;
+      background-color:rgb(228, 226, 226);
+    }
+    .campos{
+      width: 100%;
+    }
+
+    mat-label{
+      text-align: center;
+    }
+
+  }
+
+
+
+
+  .fondo {
+    background-image: url(../../../../assets/images/wallpapers/space.jpeg);
+    width: auto;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
