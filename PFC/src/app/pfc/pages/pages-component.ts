@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
-import { PfcModule } from "../pfc.module";
+import {  RouterOutlet } from '@angular/router';
+import { LoginComponent } from '../components/login-component/login-component';
+
 
 
 @Component({
@@ -9,8 +10,8 @@ import { PfcModule } from "../pfc.module";
   styleUrls: ['pages-component.scss'],
   standalone: true,
   imports: [
-    RouterOutlet,
-    PfcModule
+    RouterOutlet
+
 ]
 
 })
