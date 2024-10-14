@@ -1,1 +1,31 @@
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi reiciendis, fuga, perferendis dolorem esse atque deserunt inventore, beatae hic illo vel eveniet. Officiis distinctio sit, vel nisi corrupti ipsam delectus?</p>
+<div class="container">
+
+  <form class="formulario_registro" [formGroup]="cuenta">
+    <div class="box">
+      <h3>Nombre de Usuario </h3>
+      <mat-form-field class="campos" >
+        <mat-label>Usuario</mat-label>
+        <input matInput placeholder="Usuario" required formControlName="usuario">
+      </mat-form-field>
+
+
+      <h3>Correo Electrónico</h3>
+      <mat-form-field class="campos">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Email" required formControlName="correo">
+      </mat-form-field>
+
+      <h3>Contraseña</h3>
+      <mat-form-field class="campos">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" placeholder="Contraseña" required formControlName="contrasenia">
+      </mat-form-field>
+    </div>
+    <mat-checkbox required formControlName="politicas" id="politicas">Aceptar políticas de privacidad</mat-checkbox>
+
+
+    <button (click)="registroDatos()">Registrarse</button>
+    <a href="#" [routerLink]="['/login']"> ¿Ya tienes cuenta? Inicia sesión</a>
+  </form>
+
+</div>

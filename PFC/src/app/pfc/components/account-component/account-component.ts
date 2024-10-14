@@ -33,22 +33,28 @@ export class AccountComponent {
 
   hide = true; //para ver la contraseña
   isChecked: boolean = false; //para saber si esta marcado el checkbox de las politicas
-  cuenta: FormGroup; // crear un formulario 
+  cuenta: FormGroup; // crear un formulario
   constructor(private datos: FormBuilder, private router: Router) {
     this.cuenta = this.datos.group({
       usuario: ['', Validators.required],
       contrasenia: ['', Validators.required],
-      edad: ['', Validators.required],
       correo: ['', Validators.required],
-      // genero:['', Validators.required],
       politicas: [false, Validators.requiredTrue]
     })
 
 
   }
+  registroDatos(): void {
+    if(this.cuenta.valid){
+      console.log('cuenta creada', this.cuenta.value);
+      this.router.navigate(['/login']);
+    }else{
+      console.log('Error');
+    }
+  }
 
 
-  irLogin(){
+  irLogin(): void {
     this.router.navigate(['/login']);
   }
 

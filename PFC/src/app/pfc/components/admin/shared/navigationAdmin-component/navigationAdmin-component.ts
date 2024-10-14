@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'navBarUser',
-  templateUrl: 'navigation-component.html',
-  styleUrl: 'navigation-component.scss',
+  selector: 'navBarAdmin',
+  templateUrl: 'navigationAdmin-component.html',
+  styleUrl: 'navigationAdmin-component.scss',
   standalone: true,
   imports:[
     RouterLink
@@ -12,7 +12,7 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 })
 
-export class navigationComponent {
+export class navigationAdminComponent {
 
   constructor(private router:Router) { }
 

@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component  } from '@angular/core';
 import { NgFor } from '@angular/common';
 @Component({
   selector: 'home-user',
@@ -11,8 +11,8 @@ import { NgFor } from '@angular/common';
   ]
 })
 
-export class HomeUserComponent  {
- 
+export class homeUserComponent  {
+
 
 
 }

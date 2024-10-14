@@ -20,6 +20,7 @@
   width: auto;
   display: grid;
   grid-template-columns: 1.5fr 4fr;
+  background-color:rgba(1, 1, 39, 255) ;
 
   .login {
 
@@ -126,4 +127,21 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
+
+  p{
+    align-items: center;
+
+    color:white;
+    font-size: 15px;
+    position:absolute;
+    bottom: 0;
+    left:50%;
+    background-color: rgba(1, 1, 39, 255);
+    border-radius: 10px;
+    a{
+      color:yellow;
+    }
+
+  }
+
 }

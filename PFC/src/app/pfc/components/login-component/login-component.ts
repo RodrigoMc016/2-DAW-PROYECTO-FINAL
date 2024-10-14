@@ -7,6 +7,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatCardActions } from '@angular/material/card';
 import { MatButton, MatIconButton } from '@angular/material/button';
+import { AuthService } from '../../services/auth.service';
 
 
 
@@ -38,7 +39,7 @@ export class LoginComponent {
 
   login: FormGroup;
   /*router:any */
-  constructor(private datos: FormBuilder,  private router:Router ) {
+  constructor(private datos: FormBuilder,  private router:Router, private authService:AuthService ) {
     this.login = this.datos.group({
       email: ['', Validators.required],
       contrasenia: ['', Validators.required],
@@ -56,15 +57,23 @@ export class LoginComponent {
 
   enviar() {
     if (this.login.valid) {
-      console.log(this.login.value);
-      // this.router.navigate(['/RiotFlash/inicio']);
-
-    } else {
-      console.log('Por favor, rellena todos los campos');
-
+      const { email, contrasenia } = this.login.value;
+      this.authService.login(email, contrasenia).subscribe(response => {
+        if (response.status === 'success') {
+          // Redirigir según si es administrador
+          if (response.is_admin) {
+            this.router.navigate(['/TimelessFlavour-admin/home']); // Ruta para administradores
+          } else {
+            this.router.navigate(['/TimelessFlavour-admin/home']); // Ruta para usuarios normales
+          }
+        } else {
+          console.error(response.message);
+        }
+      });
     }
   }
 }
+
 
 
 
