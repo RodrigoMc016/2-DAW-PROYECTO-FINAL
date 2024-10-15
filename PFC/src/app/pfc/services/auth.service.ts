@@ -10,7 +10,7 @@ import { Observable } from "rxjs";
 })
 
 export class AuthService {
-  private mysqlUrl = 'http://localhost/backend/conexion.php'; //enlace al backend en htdocs en php de xampp
+  private mysqlUrl = 'http://localhost/backend/'; //enlace al backend en htdocs en php de xampp
 
   constructor(private conexiones: HttpClient) { }
   registro(username: string, email: string, password: string): Observable<any> {

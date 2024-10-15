@@ -1,13 +1,14 @@
 <div class="container">
   <div class="login">
     <h1>TIMELESS <span>FLAVOUR</span></h1>
-    <form [formGroup]="login" id="login_form">
+    
+    <form [formGroup]="login" id="login_form" (ngSubmit)="enviar()">
       <h2>Inicia sesión</h2>
       <div class="box">
         <h3>Correo Electrónico</h3>
-        <mat-form-field class="campos" hintLabel="Max 20 caracteres">
+        <mat-form-field class="campos" hintLabel="Max 50 caracteres">
           <mat-label>Dirección email</mat-label>
-          <input matInput #input maxlength="20" formControlName="email" required>
+          <input matInput #input maxlength="50" formControlName="email" required>
           <mat-hint align="end">{{input.value.length}}/20</mat-hint>
         </mat-form-field>
 
@@ -23,9 +24,9 @@
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
-        <mat-checkbox required formControlName="politicas" id="politicas">Aceptar políticas de privacidad</mat-checkbox>
 
-        <button class="inicio">Iniciar sesión</button>
+
+        <button class="inicio" >Iniciar sesión</button>
         <br>
         <a href="#" [routerLink]="['/crea-tu-cuenta']">¿No tienes cuenta? Regístrate</a>
 

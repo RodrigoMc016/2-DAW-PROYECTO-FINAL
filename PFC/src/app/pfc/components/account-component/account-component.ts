@@ -7,6 +7,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatIconButton, MatButton } from '@angular/material/button';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatHint, MatSuffix } from '@angular/material/form-field';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'account',
@@ -34,7 +35,7 @@ export class AccountComponent {
   hide = true; //para ver la contraseña
   isChecked: boolean = false; //para saber si esta marcado el checkbox de las politicas
   cuenta: FormGroup; // crear un formulario
-  constructor(private datos: FormBuilder, private router: Router) {
+  constructor(private datos: FormBuilder, private router: Router, private authService: AuthService) {
     this.cuenta = this.datos.group({
       usuario: ['', Validators.required],
       contrasenia: ['', Validators.required],
@@ -45,15 +46,21 @@ export class AccountComponent {
 
   }
   registroDatos(): void {
-    if(this.cuenta.valid){
-      console.log('cuenta creada', this.cuenta.value);
-      this.router.navigate(['/login']);
-    }else{
-      console.log('Error');
+    if (this.cuenta.valid) {
+      console.log('Enviando datos:', this.cuenta.value);  // Verifica los datos que se envían
+      this.authService.registro(this.cuenta.value.usuario, this.cuenta.value.correo, this.cuenta.value.contrasenia).subscribe(
+        (response) => {
+          console.log('Registro exitoso', response);
+          this.router.navigate(['/login']);
+        },
+        (error) => {
+          console.log('Error en el registro:', error);
+        }
+      );
+    } else {
+      console.log('Error: El formulario no es válido');
     }
   }
-
-
   irLogin(): void {
     this.router.navigate(['/login']);
   }

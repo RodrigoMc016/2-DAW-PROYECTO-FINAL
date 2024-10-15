@@ -38,38 +38,50 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
 
   login: FormGroup;
-  /*router:any */
+  //el formBuilder es un metodo que engloba al formGroup y hace mas sencilla la sintaxis y longitud del codigo mas corto
   constructor(private datos: FormBuilder,  private router:Router, private authService:AuthService ) {
     this.login = this.datos.group({
       email: ['', Validators.required],
       contrasenia: ['', Validators.required],
-      politicas: [false, Validators.requiredTrue]
+
     })
 
 
   }
 
 
-  hide = true;
+  hide = true; //para ver o no la contraseña en principio oculta
   isChecked: boolean = false;
 
 
 
   enviar() {
     if (this.login.valid) {
-      const { email, contrasenia } = this.login.value;
-      this.authService.login(email, contrasenia).subscribe(response => {
-        if (response.status === 'success') {
-          // Redirigir según si es administrador
-          if (response.is_admin) {
-            this.router.navigate(['/TimelessFlavour-admin/home']); // Ruta para administradores
+      const { email, contrasenia } = this.login.value; //validacion de parametros 
+      console.log("hola", email, contrasenia);
+      this.authService.login(email, contrasenia).subscribe(
+        response => {
+          if (response.status === 'success') {
+            console.log("logeado");
+            console.log('Respuesta del servidor:', response);
+            console.log('is_admin:', response.is_admin);
+            // Redirigir según si es administrador
+            if (response.is_admin) {
+
+              this.router.navigateByUrl('TimelessFlavour-admin/home-admin'); // Ruta para administradores
+            } else {
+              this.router.navigateByUrl('TimelessFlavour/home'); // Ruta para usuarios normales
+            }
           } else {
-            this.router.navigate(['/TimelessFlavour-admin/home']); // Ruta para usuarios normales
+            console.error(response.message);
           }
-        } else {
-          console.error(response.message);
+        },
+        error => {
+          console.error('Error de autenticación:', error);
         }
-      });
+      );
+    } else {
+      console.error('Formulario no válido');
     }
   }
 }

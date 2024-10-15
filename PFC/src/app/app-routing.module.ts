@@ -11,10 +11,10 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'crea-tu-cuenta', component: AccountComponent },
-  { path: '**', redirectTo: 'login' },
+
 
   {path:'TimelessFlavour-admin', component: adminComponent, children:[
-    {path:'home', component: homeAdminComponent}
+    {path:'home-admin', component: homeAdminComponent}
   ]},
 
   {path:'TimelessFlavour', component:UserComponent, children:[
