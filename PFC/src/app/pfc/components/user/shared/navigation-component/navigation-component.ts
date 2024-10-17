@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatToolbar } from '@angular/material/toolbar';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -7,7 +8,8 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: 'navigation-component.scss',
   standalone: true,
   imports:[
-    RouterLink
+    RouterLink,
+    MatToolbar
   ]
 
 })

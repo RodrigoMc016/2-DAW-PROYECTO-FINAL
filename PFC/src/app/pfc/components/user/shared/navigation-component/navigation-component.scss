@@ -1,0 +1,56 @@
+@font-face {
+  font-family: Hudson;
+  src: url(../../../../assets/fonts/Hudson-NY/Hudson\ NY.otf);
+}
+
+@font-face {
+  font-family: Hudson_2;
+  src: url(../../../../assets/fonts/Hudson-NY/Hudson\ NY\ Slab.otf);
+}
+
+
+
+.container {
+  display: grid;
+  grid-template-columns: 0.5fr 5fr;
+
+  #titulo {
+    position: absolute;
+    top:132 px;
+    left:30px;
+    transform: rotate(-90deg);
+    color:white;
+    font-family:Hudson;
+  }
+}
+
+
+
+nav ul {
+
+
+  margin: 2.5%;
+
+
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  justify-content: center;
+
+  li {
+
+    list-style-type: none;
+    padding: 2%;
+    border: white 4px solid;
+
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+
+
+  }
+
+
+}
