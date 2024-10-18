@@ -7,7 +7,7 @@ import { NgFor } from '@angular/common';
   styleUrls : ['home-user-component.scss'],
   standalone: true,
   imports:[
-    NgFor
+    NgFor 
   ]
 })
 

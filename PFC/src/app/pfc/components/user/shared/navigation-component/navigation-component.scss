@@ -1,56 +1,103 @@
 @font-face {
   font-family: Hudson;
-  src: url(../../../../assets/fonts/Hudson-NY/Hudson\ NY.otf);
+  src: url(../../../../../../assets/fonts/Hudson-NY/Hudson\ NY.otf);
 }
 
 @font-face {
   font-family: Hudson_2;
-  src: url(../../../../assets/fonts/Hudson-NY/Hudson\ NY\ Slab.otf);
+  src: url(../../../../../../assets/fonts/Hudson-NY/Hudson\ NY\ Slab.otf);
 }
 
 
 
 .container {
-  display: grid;
-  grid-template-columns: 0.5fr 5fr;
+  height: 100vh;
 
   #titulo {
     position: absolute;
-    top:132 px;
-    left:30px;
+
     transform: rotate(-90deg);
-    color:white;
-    font-family:Hudson;
-  }
-}
 
+    bottom: 435px;
+    left: 70px;
 
-
-nav ul {
-
-
-  margin: 2.5%;
-
-
-  display: flex;
-  flex-direction: row;
-  gap: 50px;
-  justify-content: center;
-
-  li {
-
-    list-style-type: none;
-    padding: 2%;
-    border: white 4px solid;
-
-  }
-
-  a {
-    text-decoration: none;
-    color: white;
-
+    h1 {
+      color: white;
+      font-family: Hudson;
+      font-size: 50px;
+    }
 
   }
 
 
+
+  nav {
+    position: relative;
+  }
+
+
+  nav ul {
+
+
+    margin: 2.5%;
+
+
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: center;
+
+    li {
+
+      list-style-type: none;
+
+
+    }
+
+    li:not(#usuario):not(#carrito) a:hover {
+      background-color: white;
+      color: darkmagenta;
+      font-weight: bold;
+      border: 4px solid rgb(163, 3, 163);
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+      padding: 20px;
+      border: white 4px solid;
+
+
+    }
+
+
+
+
+
+    #usuario {
+      margin-left: 6%;
+      font-family: Hudson;
+
+
+    }
+
+    #carrito {
+      font-family: Hudson;
+
+      font-size: 18px;
+      line-height: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+
+      color: #fff;
+      display: block;
+      position: relative;
+
+
+    }
+
+
+
+
+  }
 }
