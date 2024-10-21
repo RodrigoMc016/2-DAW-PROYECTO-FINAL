@@ -1,18 +1,24 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
+//control de errores
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+
+//para que acepte cosas del CORS
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
 header("Access-Control-Allow-Methods: GET,POST");
 header("Content-Type: application/json; charset=UTF-8");
 
+
+//datos sobre la base de datos de mysql workbench
 $host = 'localhost';
 $dbname = 'timeless_flavour';
 $username = 'root';
 $password = 'admin1';
 
+//conexion con la base de datos mediante PDO
 try {
     $conexionBD = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $conexionBD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

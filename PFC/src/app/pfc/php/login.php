@@ -38,8 +38,6 @@ if ($user && password_verify($password, $user['password'])) {
     $isAdmin = ($user['role_id'] === 1); // Verifica si el usuario es admin dependiendo del role_id (1 para admins, 2 para usuarios)
 
     echo json_encode([
-        'status' => 'success',
-        'message' => 'Inicio de sesión exitoso.',
         'is_admin' => $isAdmin // Devuelve si es admin
     ]);
 } else {

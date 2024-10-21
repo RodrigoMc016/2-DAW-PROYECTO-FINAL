@@ -4,7 +4,7 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-require 'conexion.php'; 
+require 'conexion.php';
 
 header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: *");
@@ -18,6 +18,8 @@ $username = $inputData['username'] ?? null;
 $email = $inputData['email'] ?? null;
 $password = $inputData['password'] ?? null;
 
+
+//Comprobar que todos los campos estan rellenos
 if (!$username || !$email || !$password) {
     echo json_encode(['status' => 'error', 'message' => 'Todos los campos son obligatorios.']);
     exit;

@@ -1,0 +1,108 @@
+.container{
+
+  width: 59%;
+  margin:-45% 20%;
+  box-sizing: border-box;
+
+
+
+  h2{
+
+    font-family:Hudson;
+  }
+
+  #novedades{
+    border:1px solid white;
+
+  }
+
+  #noticias{
+    border:1px solid white;
+
+    #imagen{
+      margin-left:-2%;
+      margin-top:-0.2%;
+    }
+
+  }
+
+
+
+  .caja{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    #imagen{
+      padding: 1%;
+    }
+
+    #texto{
+      padding: 1%;
+
+
+
+      h2 {
+        background-color: rgb(246, 202, 235);
+        box-sizing: border-box;
+        color: rgb(97, 31, 88);
+        text-align: center;
+        margin: -0.5px auto;
+        height: 130px;
+        border-bottom: 7px rgb(183, 34, 34) solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      p{
+        background-color: white;
+        padding: 2%;
+        height: 301px;
+        margin-top:-0.5px;
+      }
+    }
+  }
+
+  #carta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5%;
+    background-color: rgb(246, 202, 235);
+    // background-color: rgb(247, 242, 210);
+    border:2px solid white;
+    button{
+      border: 4px solid #8a1538;
+      background-color: white;
+      color: #8a1538;
+      font-size: 30px;
+      font-family:Hudson;
+      font-weight: 400;
+      width: 300px;
+      height: 80px;
+    }
+
+    button:hover{
+      cursor: pointer;
+      background-color: #8a1538;
+      color:white;
+    }
+  }
+
+  #trio{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0 auto;
+    text-align: center;
+    gap:20px;
+
+    #introduccion, #reserva, #pedido{
+      border:1px solid white;
+      background-color: white;
+
+    }
+
+
+  }
+
+}

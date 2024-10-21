@@ -11,15 +11,16 @@
 
 
 .container {
+
   height: 100vh;
 
   #titulo {
-    position: absolute;
+    position:fixed;
 
     transform: rotate(-90deg);
 
     bottom: 435px;
-    left: 70px;
+    left: 59px;
 
     h1 {
       color: white;
@@ -33,6 +34,8 @@
 
   nav {
     position: relative;
+    margin-left:-60px;
+
   }
 
 
@@ -41,10 +44,10 @@
 
     margin: 2.5%;
 
-
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    gap: 50px;
+    gap: 76px;
     justify-content: center;
 
     li {
@@ -56,15 +59,16 @@
 
     li:not(#usuario):not(#carrito) a:hover {
       background-color: white;
-      color: darkmagenta;
+      color: rgb(97, 31, 88);
       font-weight: bold;
-      border: 4px solid rgb(163, 3, 163);
+
     }
 
     a {
+      font-family: Hudson;
       text-decoration: none;
       color: white;
-      padding: 20px;
+      padding: 18px;
       border: white 4px solid;
 
 
