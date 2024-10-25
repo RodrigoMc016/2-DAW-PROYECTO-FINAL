@@ -1,0 +1,46 @@
+.container {
+
+  width: 59%;
+  margin: -45% 20%;
+  box-sizing: border-box;
+
+  #submenu ul {
+
+    background-color: hsla(0, 0%, 100%, .07);
+    padding: 20px 25px;
+
+    margin-left: 2.5%;
+    margin-right: 5.5%;
+
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+
+    li {
+
+      list-style-type: none;
+      padding: 1.5%;
+
+
+    }
+
+    li a {
+      font-family: "Gotham", sans-serif;
+      color: white;
+      text-decoration: none;
+
+
+
+
+
+    }
+    li:hover {
+      cursor: pointer;
+      background-color: hsla(0, 0%, 100%, 0.256);
+    }
+  }
+
+}

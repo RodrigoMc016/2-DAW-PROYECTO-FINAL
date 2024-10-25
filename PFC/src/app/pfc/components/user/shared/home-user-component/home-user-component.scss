@@ -90,6 +90,7 @@
   }
 
   #trio{
+
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin: 0 auto;
@@ -100,9 +101,44 @@
       border:1px solid white;
       background-color: white;
 
+      button{
+        border-color:#8a1538;
+        background-color: rgb(246, 202, 235);
+        padding: 3px 13px 8px ;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        font-family: Hudson;
+      }
+
+      button:hover{
+        background-color: #8a1538;
+        color:white;
+        cursor: pointer;
+      }
+
     }
 
 
+  }
+  footer{
+    color:white;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    h3{
+      font-family:Hudson;
+
+    }
+
+    #nets{
+      display: flex;
+      flex-direction: row;
+      margin-left:20%;
+    }
+    img {
+      margin-left:40%;
+    }
   }
 
 }
