@@ -2,8 +2,9 @@
 
   <form class="formulario_registro" [formGroup]="cuenta">
     <div class="box">
+      <h2>REGÍSTRATE YA</h2>
       <h3>Nombre de Usuario </h3>
-      <mat-form-field class="campos" >
+      <mat-form-field class="campos">
         <mat-label>Usuario</mat-label>
         <input matInput placeholder="Usuario" required formControlName="usuario">
       </mat-form-field>
@@ -20,12 +21,28 @@
         <mat-label>Contraseña</mat-label>
         <input matInput type="password" placeholder="Contraseña" required formControlName="contrasenia">
       </mat-form-field>
+      <mat-checkbox required formControlName="politicas" id="politicas">Aceptar políticas de privacidad</mat-checkbox>
     </div>
-    <mat-checkbox required formControlName="politicas" id="politicas">Aceptar políticas de privacidad</mat-checkbox>
 
 
-    <button (click)="registroDatos()">Registrarse</button>
-    <a href="#" [routerLink]="['/login']"> ¿Ya tienes cuenta? Inicia sesión</a>
+
+    <div id="final">
+
+      <button (click)="registroDatos()">Registrarse</button>
+      <br>
+      <br>
+      <a href="#" [routerLink]="['/login']"> ¿Ya tienes cuenta? Inicia sesión</a>
+    </div>
+
   </form>
-
+  <div class="fondo"></div>
+  <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">Timeless
+    Flavour</span> by <span property="cc:attributionName">Rodrigo Monterrubio Castro</span> is licensed under <a
+    href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank"
+    rel="license noopener noreferrer" style="display:inline-block;">CC BY 4.0<img
+      style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+      src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img
+      style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+      src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""></a></p>
 </div>
+

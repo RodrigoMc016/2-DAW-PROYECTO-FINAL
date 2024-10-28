@@ -1,0 +1,105 @@
+*{
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: Hudson;
+  src: url(../../../../assets/fonts/Hudson-NY/Hudson\ NY.otf);
+}
+
+@font-face {
+  font-family: Hudson_2;
+  src: url(../../../../assets/fonts/Hudson-NY/Hudson\ NY\ Slab.otf);
+}
+
+
+
+.container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  background-color: rgba(66, 66, 226, 0.246);
+
+  p {
+    position: absolute;
+    bottom: 0;
+    left: 52%;
+    color:white;
+    a{
+      color:yellow;
+    }
+    // background-color: white;
+    // padding: 0.5%;
+    // border-radius:5px 5px 0px 0px;
+  }
+
+}
+
+.fondo {
+  background-image: url(../../../../assets/images/wallpapers/account.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+
+}
+
+  form {
+    overflow: hidden;
+    position: relative;
+    margin:2%;
+    height: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+
+    .box{
+      margin: 0 auto;
+      border: 10px outset rgb(199, 36, 177);
+      border-radius: 10px;
+      padding: 8%;
+      background: linear-gradient(to left, rgb(228, 226, 226), rgb(181, 181, 190));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      h2{
+        font-family:Hudson;
+      }
+      h3 {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: darkmagenta;
+        text-align: center;
+      }
+    }
+
+    a{
+      color:white;
+    }
+
+    button  {
+      display: block;
+      margin: 0 auto;
+      padding: 2.5%;
+      font-weight: bold;
+      border: 2px outset rgb(199, 36, 177);
+      color: white;
+      background-color: rgba(1, 1, 39, 255);
+      cursor: pointer;
+    }
+    button:hover{
+      color:rgb(199, 36, 177);
+      font-weight: bold;
+      border:2px solid rgb(210, 39, 48);
+
+      transition: all 1s ease;
+      background-color: antiquewhite;
+    }
+
+
+
+  }
+
+
