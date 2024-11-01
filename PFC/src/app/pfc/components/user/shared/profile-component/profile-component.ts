@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'profile',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrl:'profile-component.scss',
   standalone:true,
   imports:[
+    RouterOutlet
 
   ]
 })

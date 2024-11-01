@@ -25,7 +25,9 @@ const routes: Routes = [
     {path:'home', component:homeUserComponent},
     {path:'menu', component:MenuComponent},
     {path:'contacto', component:ContactComponent},
-    {path:'mi-perfil', component:ProfileComponent},
+    {path:'mi-perfil', component:ProfileComponent, children:[
+      
+    ]},
     {path:'mi-pedido', component:OrderComponent}
   ]},
 ];

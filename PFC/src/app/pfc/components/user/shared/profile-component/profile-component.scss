@@ -1,0 +1,39 @@
+.container {
+
+  width: 59%;
+  margin: -45% 20%;
+  box-sizing: border-box;
+
+  .cajas{
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr;
+    section{
+      border:1px black solid;
+      background-color: white;
+    }
+    h2{
+      background-color:rgb(246, 202, 235) ;
+      padding: 2%;
+      text-align: center;
+      color:rgb(97, 31, 88);
+      font-family:Hudson;
+    }
+    ul {
+
+      list-style-type: none;
+
+    }
+    li {
+      margin-bottom: 40px;
+    }
+    a {
+      color:#8a1538;
+      text-decoration: none;
+      display: inline-block;
+      margin:2.5%;
+    }
+  }
+
+
+
+}
