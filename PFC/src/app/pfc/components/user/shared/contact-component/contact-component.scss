@@ -112,6 +112,7 @@
     align-items: center;
     justify-content: center;
     font-family: Hudson;
+    font-size: 30px;
   }
 
 
@@ -139,41 +140,74 @@
     a {
       color: rgb(208, 218, 14);
     }
+
+
   }
 
   .caja3 {
+
+    h3 {
+      font-family: Hudson;
+      text-align: center;
+      font-size: 22px;
+    }
+
     padding: 3%;
 
     background-color: white;
 
     label {
       font-family: Hudson;
+      font-size: 18px;
     }
 
     form {
+      margin-left: 20%;
+
       input[type=email] {
         width: 50%;
         border-bottom: 2px solid rgb(183, 34, 34);
         border-top: none;
         border-right: none;
         border-left: none;
+        font-size: 18px;
       }
 
       textarea {
+        font-size: 18px;
         border: 2px solid rgb(183, 34, 34);
       }
 
-      input::placeholder, textarea::placeholder {
+      input::placeholder,
+      textarea::placeholder {
         font-family: "Gotham", sans-serif;
 
       }
-      input:focus{
+
+      input:focus {
 
         outline: none;
       }
 
-      textarea:focus{
-        outline:none;
+      textarea:focus {
+        outline: none;
+      }
+
+      button {
+        margin-left: 30%;
+        font-size: 13px;
+        padding: 1%;
+        border: 3px solid rgb(183, 34, 34);
+        font-family:"Gotham", sans-serif;
+        color: black;
+        font-weight: bolder;
+      }
+
+      button:hover{
+        cursor: pointer;
+        background-color: rgb(183, 34, 34);
+        color:white;
+        border:3px solid white;
       }
     }
   }

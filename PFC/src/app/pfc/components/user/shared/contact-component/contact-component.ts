@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Form, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'contact',
@@ -6,12 +7,14 @@ import { Component } from '@angular/core';
   styleUrl: 'contact-component.scss',
   standalone: true,
   imports:[
-
+    ReactiveFormsModule,
   ]
 })
 
 export class ContactComponent  {
-  constructor() { }
 
- 
+  // formularioFeedback: FormGroup;
+  // constructor(private datos2: FormBuilder, private feedbackService: FeedbackService) { }
+
+
 }

@@ -45,7 +45,9 @@
     <h2>FEEDBACK</h2>
     <div class="caja3">
       <h3>VALÓRANOS</h3>
-      <form action="../../../../php/feedback.php" method="post">
+
+      <form>
+        <!-- <form (ngSubmit)="enviarFeedback()"  [formGroup]="formularioFeedback"> -->
 
         <label for="email">Tu correo </label>
         <br>
@@ -57,11 +59,11 @@
 
         <label>Calificación:</label>
         <div class="rating">
-            <label><input type="radio" name="rating" value="1"> ⭐</label>
-            <label><input type="radio" name="rating" value="2"> ⭐⭐</label>
-            <label><input type="radio" name="rating" value="3"> ⭐⭐⭐</label>
-            <label><input type="radio" name="rating" value="4"> ⭐⭐⭐⭐</label>
-            <label><input type="radio" name="rating" value="5"> ⭐⭐⭐⭐⭐</label>
+          <label><input type="radio" name="rating" value="1"> ⭐</label>
+          <label><input type="radio" name="rating" value="2"> ⭐⭐</label>
+          <label><input type="radio" name="rating" value="3"> ⭐⭐⭐</label>
+          <label><input type="radio" name="rating" value="4"> ⭐⭐⭐⭐</label>
+          <label><input type="radio" name="rating" value="5"> ⭐⭐⭐⭐⭐</label>
         </div>
 
         <br>
@@ -69,7 +71,9 @@
         <label for="comments">Comentarios:</label>
         <br>
         <br>
-        <textarea name="comments"  id="comments" rows="4" placeholder="Envíanos tu opinión" required ></textarea>
+        <textarea name="comments" id="comments" rows="4" placeholder="Envíanos tu opinión" required></textarea>
+        <button type="submit">Enviar</button>
+
       </form>
     </div>
 
@@ -90,7 +94,7 @@
 
     <div id="nets">
       <img src="../../../../../../assets/images/icons/instagram.png" width="34px" height="34px" alt="instagram_png">
-      <img src="../../../../../../assets/images/icons/github.png" width="32px" height="30px" alt="github_png">
+      <img src="../../../../../../assets/images/icons/github.png" width="31px" height="32px" alt="github_png">
     </div>
 
   </footer>
