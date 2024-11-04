@@ -1,1 +1,30 @@
-<p>ADMIN</p>
+<div class="container">
+  <div id= "titulo" style="display: flex; flex-direction: column; align-items: flex-start; transform: rotate(-90deg); ">
+
+
+    <h1 [routerLink]="['/TimelessFlavour-admin/home-admin']">Timeless Flavour</h1>
+  </div>
+  <nav>
+    <ul>
+      <li>
+        <a [routerLink]="['/TimelessFlavour-admin/home-admin']">HOME</a>
+
+      </li>
+      <li> <a [routerLink]="['/TimelessFlavour-admin/menu-admin']">CARTA</a>
+      </li>
+
+      <li>
+        <a [routerLink]="['/TimelessFlavour-admin/mail']">BUZÓN</a>
+      </li>
+      <li>
+        <a [routerLink]="['/TimelessFlavour-admin/promos']">PROMOCIONES</a>
+      </li>
+      <li id="usuario">
+        <a [routerLink]="['/TimelessFlavour-admin/mi-perfil-admin']"> <img src="../../../../../../assets/images/icons/user-solid.svg" width="20px" height="20px"  alt="user_solid_icon"></a>
+
+      </li>
+
+    </ul>
+  </nav>
+
+</div>

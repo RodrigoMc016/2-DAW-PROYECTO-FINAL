@@ -31,7 +31,7 @@ if (!$email || !$password) {
 $sql = "SELECT * FROM users WHERE email = ?";
 $stmt = $conexionBD->prepare($sql);  //uso la variable global conexionDB de conexion php en vez de pdo
 $stmt->execute([$email]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC); //array asociativo que da verdadero si hay datos o falso si no
+$user = $stmt->fetch(PDO::FETCH_ASSOC); //array asociativo que da verdadero si hay datos o falso si no, smt es una consulta preparada para mayor seguridad
 
 if ($user && password_verify($password, $user['password'])) {
 

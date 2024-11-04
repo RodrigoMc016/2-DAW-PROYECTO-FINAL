@@ -10,6 +10,10 @@ import { MenuComponent } from './pfc/components/user/shared/menu-component/menu-
 import { ContactComponent } from './pfc/components/user/shared/contact-component/contact-component';
 import { ProfileComponent } from './pfc/components/user/shared/profile-component/profile-component';
 import { OrderComponent } from './pfc/components/user/shared/order-component/order-component';
+import { mailComponent } from './pfc/components/admin/shared/mail-component/mail-component';
+import { promoComponent } from './pfc/components/admin/shared/promo-component/promo-component';
+import { adminProfileComponent } from './pfc/components/admin/shared/admin-profile-component/admin-profile-component';
+import { adminMenuComponent } from './pfc/components/admin/shared/admin-menu-component/admin-menu-component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -18,7 +22,12 @@ const routes: Routes = [
 
 
   {path:'TimelessFlavour-admin', component: adminComponent, children:[
-    {path:'home-admin', component: homeAdminComponent}
+    {path:'home-admin', component: homeAdminComponent},
+    {path:'menu-admin', component:adminMenuComponent},
+    {path:'mail', component: mailComponent},
+    {path:'promos', component:promoComponent},
+    {path:'mi-perfil-admin', component:adminProfileComponent},
+
   ]},
 
   {path:'TimelessFlavour', component:UserComponent, children:[

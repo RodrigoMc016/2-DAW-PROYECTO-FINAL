@@ -1,0 +1,99 @@
+@font-face {
+  font-family: Hudson;
+  src: url(../../../../../../assets/fonts/Hudson-NY/Hudson\ NY.otf);
+}
+
+@font-face {
+  font-family: Hudson_2;
+  src: url(../../../../../../assets/fonts/Hudson-NY/Hudson\ NY\ Slab.otf);
+}
+
+
+
+.container {
+
+  height: 100vh;
+
+  #titulo {
+    position:fixed;
+
+    transform: rotate(-90deg);
+
+    bottom: 435px;
+    left: 59px;
+
+    h1 {
+      color: white;
+      font-family: Hudson;
+      font-size: 50px;
+    }
+
+    h1:hover{
+      cursor: pointer;
+
+    }
+
+  }
+
+
+
+  nav {
+    position: relative;
+    margin-left:-60px;
+
+  }
+
+
+  nav ul {
+
+
+    margin: 2.5%;
+
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 76px;
+    justify-content: center;
+
+    li {
+
+      list-style-type: none;
+
+
+    }
+
+    li:not(#usuario):not(#carrito) a:hover {
+      background-color: white;
+      color: rgb(97, 31, 88);
+      font-weight: bold;
+
+    }
+
+    a {
+      font-family: Hudson;
+      text-decoration: none;
+      color: white;
+      padding: 18px;
+      border: white 4px solid;
+
+
+    }
+
+
+
+
+
+    #usuario {
+      margin-left: 6%;
+      font-family: Hudson;
+
+
+    }
+
+ 
+
+
+
+
+  }
+}

@@ -2,18 +2,16 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'home-Admin',
-  templateUrl: 'admin-home-component.html',
-  styleUrl:'admin-home-component.scss',
+  selector: 'mail',
+  templateUrl: 'mail-component.html',
+  styleUrl:'mail-component.scss',
   standalone:true,
   imports:[
     RouterLink
-
   ]
-
 })
 
-export class homeAdminComponent  {
+export class mailComponent  {
   constructor() { }
 
 
