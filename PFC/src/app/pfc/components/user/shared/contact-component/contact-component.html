@@ -52,7 +52,7 @@
         <label for="email">Tu correo </label>
         <br>
         <br>
-        <input type="email" id="email" name="email" formControlName="email" required placeholder="Escribe tu correo">
+        <input type="email" id="email" name="email" formControlName="email" required placeholder="Escribe tu correo de la cuenta">
 
         <br>
         <br>
@@ -74,6 +74,9 @@
         <textarea name="comments"  id="comments" rows="4" placeholder="Envíanos tu opinión" formControlName="comments" required></textarea>
         <button type="submit">Enviar</button>
 
+        <div *ngIf="mensaje" id="respuesta" class="mensaje">
+          {{mensaje}}
+        </div>
       </form>
     </div>
 

@@ -163,6 +163,12 @@
 
     form {
       margin-left: 20%;
+      #respuesta{
+        font-family: Hudson;
+        color:green;
+        margin-top:10px;
+
+      }
 
       input[type=email] {
         width: 50%;
@@ -171,6 +177,8 @@
         border-right: none;
         border-left: none;
         font-size: 18px;
+
+
       }
 
       textarea {
@@ -210,6 +218,7 @@
         border:3px solid white;
       }
     }
+
   }
 
 }
