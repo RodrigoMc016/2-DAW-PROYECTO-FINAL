@@ -25,31 +25,20 @@
 
  <section>
   <div class="cajas">
-    <h2>BURGERS</h2>
-    <div class="caja">
-
+    <!-- Usar *ngFor para iterar las categorías -->
+    <div *ngFor="let category of productsResult | keyvalue" class="categoria" [id]="category.key"> <!--Uso del pipe keyvalue para iterar sobre un objeto y convertirlo en un array "asociativo"-->
+      <h2>{{ category.key}}</h2> <!-- Nombre de la categoría usando el .key que es la clave-->
+      <div class="caja">
+        <!-- Usar *ngFor para iterar los productos dentro de cada categoría -->
+        <div *ngFor="let product of category.value" id="producto"> <!--sacar el valor con .value-->
+          <img [src]="product.image_url" alt="{{ product.name }}" class="product-image" />
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <p>💰 {{ product.price_real  }} $</p>
+          <p>🎯 {{ product.price_points }} puntos</p>
+        </div>
+      </div>
     </div>
-    <h2>COMPLEMENTOS</h2>
-    <div class="caja">
-
-    </div>
-    <h2>VEGANOS</h2>
-    <div class="caja">
-
-    </div>
-    <h2>PARA NIÑOS</h2>
-    <div class="caja">
-
-    </div>
-    <h2>BEBIDAS</h2>
-    <div class="caja">
-
-    </div>
-    <h2>POSTRES</h2>
-    <div class="caja">
-
-    </div>
-
   </div>
- </section>
+</section>
 </div>

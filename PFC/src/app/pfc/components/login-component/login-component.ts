@@ -38,7 +38,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
 
   login: FormGroup;
-  //el formBuilder es un metodo que engloba al formGroup y hace mas sencilla la sintaxis y longitud del codigo mas corto
+  //el formBuilder es un metodo que engloba al formGroup y hace mas sencilla la sintaxis y la longitud del código mas corta
   constructor(private datos: FormBuilder,  private router:Router, private authService:AuthService ) {
     this.login = this.datos.group({
       email: ['', Validators.required],
@@ -57,7 +57,7 @@ export class LoginComponent {
 
   enviar() {
     if (this.login.valid) {
-      const { email, contrasenia } = this.login.value; //validacion de parametros 
+      const { email, contrasenia } = this.login.value; //validacion de parametros
       console.log("hola", email, contrasenia);
       this.authService.login(email, contrasenia).subscribe(
         response => {
@@ -73,15 +73,15 @@ export class LoginComponent {
               this.router.navigateByUrl('TimelessFlavour/home'); // Ruta para usuarios normales
             }
           } else {
-            console.error(response.message);
+            console.log(response.message);
           }
         },
         error => {
-          console.error('Error de autenticación:', error);
+          console.log('Error de autenticación:', error);
         }
       );
     } else {
-      console.error('Formulario no válido');
+      console.log('Formulario no válido');
     }
   }
 }

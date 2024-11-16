@@ -11,10 +11,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Content-Type: application/json; charset=UTF-8");
 
-//  Manejo de solicitudes OPTIONS
-// if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-//     exit; // Terminar aquí, no necesitas hacer nada más para las solicitudes OPTIONS
-// }
+
 
 $inputData = json_decode(file_get_contents('php://input'), true); //convierte de un json a un array php asociativo
 $email = $inputData['email'] ?? null;

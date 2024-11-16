@@ -49,5 +49,5 @@ if (isset($datos["email"]) && isset($datos["rating"]) && isset($datos["comments"
     echo json_encode(["message" => "Faltan datos"]);
 }
 
-$conexionBD = null;
+$conexionBD = null; //Cerrado de conexión
 ?>

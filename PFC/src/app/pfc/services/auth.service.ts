@@ -26,6 +26,12 @@
       return this.conexiones.post(`${this.mysqlUrl}/feedback.php`, datos);
     }
 
+
+    mostrarMenu() : Observable <any>{
+       return this.conexiones.get<any>(`${this.mysqlUrl}/menu.php`);
+    }
+
+
   }
 
 

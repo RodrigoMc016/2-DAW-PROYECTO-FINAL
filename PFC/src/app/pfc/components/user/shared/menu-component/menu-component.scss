@@ -59,6 +59,21 @@
         font-weight: lighter;
       }
     }
+
+    .caja{
+      margin:0 7.5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    #producto{
+      background-color: white;
+      max-width: 200px;
+      border:1px solid white;
+      margin-bottom:40px;
+
+    }
+
   }
 
 }
