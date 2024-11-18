@@ -1,3 +1,15 @@
+@font-face {
+  font-family: Hudson;
+  src: url(../../../../../../assets/fonts/Hudson-NY/Hudson\ NY.otf);
+}
+
+@font-face {
+  font-family: Hudson_2;
+  src: url(../../../../../../assets/fonts/Hudson-NY/Hudson\ NY\ Slab.otf);
+}
+
+
+
 .container {
 
   width: 59%;
@@ -46,7 +58,9 @@
   section {
 
     .cajas{
+      text-align: center;
       h2{
+
         width: 86%;
         border: 4px solid #fff;
         background-color: #f8f4f1;
@@ -61,17 +75,27 @@
     }
 
     .caja{
+      padding: 0.5%;
       margin:0 7.5%;
       display: grid;
+      gap:20px;
       grid-template-columns: 1fr 1fr 1fr;
     }
 
     #producto{
       background-color: white;
-      max-width: 200px;
+      max-width: 300px;
       border:1px solid white;
       margin-bottom:40px;
+      padding: 0.5%;
+      p{
+        font-size:14px;
+      }
 
+      img{
+        width: 220px;
+        height: 230px;
+      }
     }
 
   }

@@ -44,6 +44,23 @@ export class MenuComponent {
     this.loadProducts();
   }
 
+  goToCategory(category: string): void {
+    // Asegúrate de que el id de la categoría esté en mayúsculas
+    const categoryId = category.toUpperCase();
+
+    // Buscar el elemento correspondiente al id de la categoría en la página
+    const element = document.getElementById(categoryId);
+
+    // Si el elemento existe, desplazarse suavemente a esa sección
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.log(`No se encontró la categoría ${categoryId}`);
+    }
+  }
+
+
+
 
 
 

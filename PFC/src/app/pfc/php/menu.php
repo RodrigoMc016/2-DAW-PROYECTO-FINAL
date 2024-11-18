@@ -9,7 +9,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 // SELECT PARA SACAR TODOS LOS DATOS RELACIONANDO LAS TABLAS DE CATEGORÍAS Y PRODUCTOS Y ORDENANDO POR NOMBRES
 $sql = "
-    SELECT
+    SELECT DISTINCT
         c.name as category_name,
         p.id as product_id,
         p.name as product_name,
@@ -19,7 +19,7 @@ $sql = "
         p.image_url
     FROM products as p
     JOIN categories as c ON p.category_id = c.id
-    ORDER BY c.name, p.name
+    ORDER BY p.id
 ";
 
 try {
