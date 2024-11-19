@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
 import {Product} from '../../../../interfaces/products.interface';
 import { CommonModule, NgFor } from '@angular/common';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { cookingPoint } from '../dialogs/cooking-point/cooking-component';
 
 @Component({
   selector: 'menu',
@@ -10,7 +13,9 @@ import { CommonModule, NgFor } from '@angular/common';
   standalone: true,
   imports: [
     NgFor,
-    CommonModule
+    CommonModule,
+    MatDialogModule,
+
 
   ]
 
@@ -20,7 +25,8 @@ export class MenuComponent {
 
   productsResult: { [category: string]: Product[] } = {}; //array de productos por categoría con clave categoria, usando el modelo de la interfaz para guardar los datos
 
-  constructor(private authService: AuthService) {}
+
+  constructor(private authService: AuthService, private dialog:MatDialog) {}
 
 
 
@@ -57,6 +63,23 @@ export class MenuComponent {
     } else {
       console.log(`No se encontró la categoría ${categoryId}`);
     }
+  }
+
+  openCookingPointDialog(product: Product): void{
+    const dialogRef =  this.dialog.open(cookingPoint,{
+      width:'300px',
+      data:{product}
+    });
+
+
+    dialogRef.afterClosed().subscribe((result)=> {
+      if(result){
+        console.log(`Producto: ${product.name}, Punto de cocción: ${result}`);
+      }
+    })
+
+
+
   }
 
 
