@@ -4,7 +4,7 @@ import {Product} from '../../../../interfaces/products.interface';
 import { CommonModule, NgFor } from '@angular/common';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
-import { cookingPoint } from '../dialogs/cooking-point/cooking-component';
+import { cookingPointComponent } from '../dialogs/cooking-point/cooking-component';
 
 @Component({
   selector: 'menu',
@@ -66,7 +66,7 @@ export class MenuComponent {
   }
 
   openCookingPointDialog(product: Product): void{
-    const dialogRef =  this.dialog.open(cookingPoint,{
+    const dialogRef =  this.dialog.open(cookingPointComponent,{
       width:'300px',
       data:{product}
     });

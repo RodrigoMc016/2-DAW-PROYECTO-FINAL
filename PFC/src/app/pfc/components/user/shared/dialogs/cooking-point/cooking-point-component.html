@@ -1,0 +1,53 @@
+<div class="modal-mask">
+  <div class="modal-wrapper">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header product-image" [ngStyle]="{ 'background-image': 'url(../../../../../../../assets/' + data.product.image_url + ')' }">
+
+
+        </div>
+        <div class="modal-body">
+          <h4 class="modal-title">{{data.product.name}}</h4>
+          <p class="modal-description">
+            {{data.product.description}}
+          </p>
+          <div class="container-text">
+            <div class="text-content">
+
+
+              <form [formGroup]="cookingForm" (ngSubmit)="onSubmit()">
+                <div class="form">
+                  <label>Selecciona tu punto de cocción</label>
+                  <div class="options">
+                    <!-- Opciones manuales sin usar ngFor -->
+                    <mat-radio-group formControlName="cookingPoint">
+                      <mat-radio-button value="Poco hecho">Poco hecho</mat-radio-button>
+                      <br>
+                      <mat-radio-button value="Al punto">Al punto</mat-radio-button>
+                      <br>
+                      <mat-radio-button value="Muy hecho">Muy hecho</mat-radio-button>
+                      <br>
+                    </mat-radio-group>
+                    <br>
+
+                    <div
+                      *ngIf="cookingForm.controls['cookingPoint'].invalid && cookingForm.controls['cookingPoint'].touched">
+                      <p class="error-message">¡Por favor selecciona un punto de cocción!</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <button mat-button color="warn" (click)="cancel()">Cancelar</button>
+                  <button mat-raised-button color="primary" [disabled]="cookingForm.invalid">Confirmar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

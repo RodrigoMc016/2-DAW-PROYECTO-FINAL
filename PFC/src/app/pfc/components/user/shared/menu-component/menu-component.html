@@ -39,7 +39,7 @@
               <p id="price">{{ product.price_real }} €  <span> {{ product.price_points }} puntos</span>   </p>
 
             </div>
-            <button *ngIf="category.key === 'BURGERS' || 'VEGANOS' " mat-raised-button color="primary" (click)="openCookingPointDialog(product)">
+            <button *ngIf="category.key === 'BURGERS' || category.key === 'VEGANOS' || category.key === 'PARA NIÑOS' " mat-raised-button color="primary" (click)="openCookingPointDialog(product)">
               Añadir
             </button>
 

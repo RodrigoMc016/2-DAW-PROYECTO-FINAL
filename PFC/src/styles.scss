@@ -12,6 +12,13 @@ html {
 --mat-checkbox-label-text-color: black;
 }
 
+::ng-deep .mat-dialog-content {
+  width: 100%; /* Asegura que el contenido ocupe todo el ancho disponible */
+  overflow: hidden; /* Evita el scroll horizontal */
+  padding: 20px; /* Ajusta el padding según necesites */
+}
+
+
 
 body{
   background-color: rgb(97, 31, 88);
