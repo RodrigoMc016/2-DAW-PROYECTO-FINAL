@@ -1,0 +1,35 @@
+<div class="modal-mask">
+  <div class="modal-wrapper">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header product-image"
+          [ngStyle]="{ 'background-image': 'url(../../../../../../../assets/' + data.product.image_url + ')' }">
+
+
+        </div>
+        <div class="modal-body">
+          <h4 class="modal-title">{{data.product.name}}</h4>
+          <p class="modal-description">
+            {{data.product.description}}
+          </p>
+          <div class="container-text">
+            <div class="text-content">
+
+
+
+
+            </div>
+          </div>
+
+          <div class="actions">
+            <button mat-button color="warn" (click)="cancel()">Cancelar</button>
+            <button mat-raised-button color="primary" (click)="send()">Confirmar</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

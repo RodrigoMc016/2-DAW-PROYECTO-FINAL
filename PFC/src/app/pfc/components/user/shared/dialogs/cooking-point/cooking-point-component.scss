@@ -11,6 +11,9 @@
   transition: opacity .3s ease;
   letter-spacing: .5px;
 
+
+
+
 }
 
 .modal-wrapper {
@@ -35,7 +38,7 @@
     .modal-content {
       height: 100%;
       max-height: 100%;
-     
+
       position: relative;
       display: flex;
       flex-direction: column;
@@ -63,8 +66,22 @@
         background-size: cover;
         background-position: 50%;
         height: 400px;
+
+
       }
+
+
+      .actions {
+        margin-bottom: 10px;
+      }
+
+
+
+
     }
+
+    
+
 
 
   }

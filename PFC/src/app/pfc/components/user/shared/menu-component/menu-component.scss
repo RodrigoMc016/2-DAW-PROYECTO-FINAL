@@ -88,6 +88,15 @@
       display: grid;
       gap:40px;
       grid-template-columns: 1fr 1fr 1fr;
+
+      #boton{
+        padding: 2.5%;
+      }
+
+      #boton:hover{
+        cursor: pointer;
+
+      }
     }
 
     #producto{
@@ -123,6 +132,8 @@
       transform:scale(1.07);
       transition:0.23s;
     }
+
+
 
   }
 

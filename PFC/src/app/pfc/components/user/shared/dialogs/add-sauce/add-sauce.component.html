@@ -1,0 +1,61 @@
+<div class="modal-mask">
+  <div class="modal-wrapper">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header product-image" [ngStyle]="{ 'background-image': 'url(../../../../../../../assets/' + data.product.image_url + ')' }">
+
+
+        </div>
+        <div class="modal-body">
+          <h4 class="modal-title">{{data.product.name}}</h4>
+          <p class="modal-description">
+            {{data.product.description}}
+          </p>
+          <div class="container-text">
+            <div class="text-content">
+
+
+              <form [formGroup]="sauceForm" (ngSubmit)="onSubmit()">
+                <div class="form">
+                  <label>Selecciona la salsa para acompañar:</label>
+                  <div class="options">
+
+                    <mat-radio-group formControlName="addSauce">
+                      <mat-radio-button value="BBQ">BBQ</mat-radio-button>
+                      <br>
+                      <mat-radio-button value="Bourbon">Bourbon</mat-radio-button>
+                      <br>
+                      <mat-radio-button value="Cheddar y bacon">Cheddar y Bacon</mat-radio-button>
+                      <br>
+                      <mat-radio-button value="Ranchera">Ranchera</mat-radio-button>
+                      <br>
+                      <mat-radio-button value="Ketchup">Ketchup</mat-radio-button>
+                      <br>
+                      <mat-radio-button value="Mostaza">Mostaza</mat-radio-button>
+                      <br>
+                      <mat-radio-button value="Miel y Mostaza">Miel y Mostaza</mat-radio-button>
+                      <br>
+                    </mat-radio-group>
+                    <br>
+
+                    <div id="button"
+                      *ngIf="sauceForm.controls['addSauce'].invalid && sauceForm.controls['addSauce'].touched">
+                      <p class="error-message">¡Por favor selecciona una salsa para acompañar!</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <button mat-button color="warn" (click)="cancel()">Cancelar</button>
+                  <button mat-raised-button color="primary" [disabled]="sauceForm.invalid">Confirmar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
-import {Product} from '../../../../interfaces/products.interface';
+import { Product } from '../../../../interfaces/products.interface';
 import { CommonModule, NgFor } from '@angular/common';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { cookingPointComponent } from '../dialogs/cooking-point/cooking-component';
+import { addSauceComponent } from '../dialogs/add-sauce/add-sauce.component';
+import { normalDialogComponent } from '../dialogs/normal-dialog/normal-dialog.component';
 
 @Component({
   selector: 'menu',
@@ -26,19 +28,19 @@ export class MenuComponent {
   productsResult: { [category: string]: Product[] } = {}; //array de productos por categoría con clave categoria, usando el modelo de la interfaz para guardar los datos
 
 
-  constructor(private authService: AuthService, private dialog:MatDialog) {}
+  constructor(private authService: AuthService, private dialog: MatDialog) { }
 
 
 
 
 
-  loadProducts(): void{
+  loadProducts(): void {
     this.authService.mostrarMenu().subscribe(
-      (data) =>{
+      (data) => {
         console.log(data);
         this.productsResult = data; //asigna lo que de el json a productsResult
       },
-      (error) =>{
+      (error) => {
         console.log("Error");
       }
     )
@@ -65,32 +67,63 @@ export class MenuComponent {
     }
   }
 
-  openCookingPointDialog(product: Product): void{
-    const dialogRef =  this.dialog.open(cookingPointComponent,{
-      width:'300px',
-      data:{product}
+  openCookingPointDialog(product: Product): void {
+    const dialogRef = this.dialog.open(cookingPointComponent, {
+      width: '300px',
+      data: { product }
+
     });
+   
 
 
-    dialogRef.afterClosed().subscribe((result)=> {
-      if(result){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
         console.log(`Producto: ${product.name}, Punto de cocción: ${result}`);
       }
     })
 
 
 
+
+
+
+  }
+  openAddSauceDialog(product: Product): void {
+    const dialogRef = this.dialog.open(addSauceComponent, {
+      width: '300px',
+      data: { product }
+    });
+
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log(`Producto: ${product.name}, Salsa a elegir: ${result}`);
+      }
+    })
+
+
+
+
+
+
+  }
+
+  openNormalDialog(product:Product): void{
+    const dialogRef = this.dialog.open(normalDialogComponent, {
+      width: '300px',
+      data:{product}
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log(`Producto: ${product.name}`);
+      }
+    })
+
   }
 
 
-
-
-
-
 }
-
-
-
 
 
 

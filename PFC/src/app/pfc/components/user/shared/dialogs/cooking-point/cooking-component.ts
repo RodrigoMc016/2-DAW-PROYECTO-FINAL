@@ -37,10 +37,11 @@ export class cookingPointComponent  {
 
    // Método que se llama cuando el formulario se envía
   onSubmit(): void {
+ 
     if (this.cookingForm.valid) {
       const selectedValue = this.cookingForm.value.cookingPoint;
-      console.log('Punto de cocción seleccionado:', selectedValue);
-      // Aquí puedes agregar la lógica para hacer algo con el punto de cocción seleccionado
+
+
       this.dialogRef.close(selectedValue); // Cierra el modal y pasa el valor
     }
   }
