@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { cookingPointComponent } from '../dialogs/cooking-point/cooking-component';
 import { addSauceComponent } from '../dialogs/add-sauce/add-sauce.component';
 import { normalDialogComponent } from '../dialogs/normal-dialog/normal-dialog.component';
+import { CartService } from '../../../../services/cart.service';
 
 @Component({
   selector: 'menu',
@@ -26,9 +27,9 @@ import { normalDialogComponent } from '../dialogs/normal-dialog/normal-dialog.co
 export class MenuComponent {
 
   productsResult: { [category: string]: Product[] } = {}; //array de productos por categoría con clave categoria, usando el modelo de la interfaz para guardar los datos
+  cartItemsTotal:number = 0;
 
-
-  constructor(private authService: AuthService, private dialog: MatDialog) { }
+  constructor(private authService: AuthService, private dialog: MatDialog, private cartService:CartService) { }
 
 
 
@@ -50,6 +51,8 @@ export class MenuComponent {
   ngOnInit(): void {
 
     this.loadProducts();
+    this.cartItemsTotal = this.cartService.getItemsNumber();
+
   }
 
   goToCategory(category: string): void {
@@ -73,7 +76,7 @@ export class MenuComponent {
       data: { product }
 
     });
-   
+
 
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -117,9 +120,16 @@ export class MenuComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log(`Producto: ${product.name}`);
+        this.updateCartCount();
       }
     })
 
+  }
+ // Actualizar el número de productos en el carrito después de añadir un producto
+  updateCartCount(): void {
+
+    this.cartItemsTotal = this.cartService.getItemsNumber();
+    console.log('Número de productos en el carrito:', this.cartItemsTotal);
   }
 
 

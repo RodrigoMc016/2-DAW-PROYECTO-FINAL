@@ -1,0 +1,53 @@
+<div class="container">
+  <nav id="submenu">
+    <ul>
+      <li>
+        <a href="javascript:void(0);" (click)="goToCategory('BEBIDAS')"> Bebidas</a>
+      </li>
+      <li>
+        <a href="javascript:void(0);" (click)="goToCategory('BURGERS')"> Burgers</a>
+      </li>
+      <li>
+        <a href="javascript:void(0);" (click)="goToCategory('COMPLEMENTOS')"> Complementos</a>
+      </li>
+      <li>
+        <a href="javascript:void(0);" (click)="goToCategory('PARA NIÑOS')"> Para niños</a>
+      </li>
+      <li>
+        <a href="javascript:void(0);" (click)="goToCategory('POSTRES')"> Postres</a>
+      </li>
+      <li>
+        <a href="javascript:void(0); " (click)="goToCategory('VEGANOS')"> Veganos</a>
+      </li>
+    </ul>
+  </nav>
+  <section>
+    <div class="cajas">
+
+      <div *ngFor="let category of productsResult | keyvalue" class="categoria" [id]="category.key">
+        <!--Uso del pipe keyvalue para iterar sobre un objeto y convertirlo en un array "asociativo"-->
+        <h2>{{ category.key}}</h2> <!-- Nombre de la categoría usando el .key que es la clave-->
+        <div class="caja">
+
+          <div *ngFor="let product of category.value" id="producto"> <!--sacar el valor con .value-->
+
+            <img [src]="'../../../../../../assets/' + product.image_url" alt="{{ product.name }}"
+              class="product-image" />
+            <div class="text">
+              <h3>{{ product.name }}</h3>
+              <p>{{ product.description }}</p>
+              <p id="price">{{ product.price_real }} €  <span> {{ product.price_points }} puntos</span>   </p>
+
+            </div>
+        
+
+          </div>
+        </div>
+      </div>
+      <div id="inicio">
+        <button>^</button>
+      </div>
+
+    </div>
+  </section>
+</div>

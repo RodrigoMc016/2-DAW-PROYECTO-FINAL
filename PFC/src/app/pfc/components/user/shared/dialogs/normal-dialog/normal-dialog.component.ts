@@ -5,6 +5,7 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatButton } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { NgIf, NgStyle } from '@angular/common';
+import { CartService } from '../../../../../services/cart.service';
 
 @Component({
   selector: 'normal-dialog',
@@ -24,14 +25,17 @@ import { NgIf, NgStyle } from '@angular/common';
 
 export class normalDialogComponent  {
 
-  constructor( private dialogRef:MatDialogRef<normalDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor( private cartService:CartService, private dialogRef:MatDialogRef<normalDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
 
 
    }
 
    send():void{
     console.log("hola");
+
     const selectedProduct = this.data.product;
+    console.log(selectedProduct);
+    this.cartService.addItem(selectedProduct); // Añadir al carrito
     this.dialogRef.close(selectedProduct);
    }
 

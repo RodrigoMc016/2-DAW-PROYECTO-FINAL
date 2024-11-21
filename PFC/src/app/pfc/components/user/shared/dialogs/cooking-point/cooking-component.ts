@@ -5,6 +5,7 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatButton } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { NgIf, NgStyle } from '@angular/common';
+import { CartService } from '../../../../../services/cart.service';
 
 @Component({
   selector: 'cooking-point',
@@ -28,7 +29,7 @@ import { NgIf, NgStyle } from '@angular/common';
 export class cookingPointComponent  {
 
   cookingForm: FormGroup;
-  constructor(private fb:FormBuilder, private dialogRef:MatDialogRef<cookingPointComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private cartService:CartService,private fb:FormBuilder, private dialogRef:MatDialogRef<cookingPointComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.cookingForm = this.fb.group({
       cookingPoint: ['', Validators.required]
@@ -37,12 +38,16 @@ export class cookingPointComponent  {
 
    // Método que se llama cuando el formulario se envía
   onSubmit(): void {
- 
+    const selectedProduct = this.data.product;
     if (this.cookingForm.valid) {
+
       const selectedValue = this.cookingForm.value.cookingPoint;
+      this.dialogRef.close(selectedValue);  // Cierra el modal y pasa el valor
 
+      const productId = this.data.productId;
+      this.cartService.addItem(selectedProduct);
+      this.cartService.updateCookingPoint(productId, selectedValue);  // Actualiza el punto de cocción en el carrito
 
-      this.dialogRef.close(selectedValue); // Cierra el modal y pasa el valor
     }
   }
 

@@ -3,8 +3,8 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'profile',
-  templateUrl: 'profile-component.html',
-  styleUrl:'profile-component.scss',
+  templateUrl: 'profileNav-component.html',
+  styleUrl:'profileNav-component.scss',
   standalone:true,
   imports:[
     RouterOutlet
@@ -12,7 +12,7 @@ import { RouterOutlet } from '@angular/router';
   ]
 })
 
-export class ProfileComponent  {
+export class ProfileNavComponent  {
   constructor() { }
 
 

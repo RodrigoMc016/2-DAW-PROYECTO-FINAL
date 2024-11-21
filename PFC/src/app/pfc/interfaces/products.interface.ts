@@ -5,4 +5,7 @@ export interface Product {
   price_real: number;
   price_points: number;
   image_url: string;
+  sauce?: string;
+  cookingPoint?:string;
+
 }

@@ -1,0 +1,25 @@
+<div class="cart-modal">
+  <h2>Carrito</h2>
+
+  <div *ngIf="cartItems.length > 0; else emptyCart">
+    <div *ngFor="let item of cartItems">
+      <p>{{ item.product.name }} <span *ngIf="item.product.sauce">y Salsa: {{ item.product.sauce }}></span><span
+          *ngIf="item.product.cookingPoint">Punto: {{item.product.cookingPoint}}</span></p>
+      <p>Cantidad: {{ item.ammount }}</p>
+      <p>Precio total: {{ item.product.price_real * item.ammount }} €</p>
+      <p>Puntos: {{ item.product.price_points * item.ammount }}</p>
+      <button (click)="decrementQuantity(item.product.id)">-</button>
+      <button (click)="incrementQuantity(item.product.id)">+</button>
+    </div>
+
+    <div class="totals">
+      <p>Total en €: {{ totalPrice }}</p>
+      <p>Total en puntos: {{ totalPoints }}</p>
+      <p>Puntos ganados: {{ pointsEarned }}</p>
+    </div>
+  </div>
+
+  <ng-template #emptyCart>
+    <p>El carrito está vacío.</p>
+  </ng-template>
+</div>

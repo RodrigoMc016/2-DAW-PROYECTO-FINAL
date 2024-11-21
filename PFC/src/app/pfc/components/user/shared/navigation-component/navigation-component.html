@@ -1,5 +1,5 @@
 <div class="container">
-  <div id= "titulo" style="display: flex; flex-direction: column; align-items: flex-start; transform: rotate(-90deg); ">
+  <div id="titulo" style="display: flex; flex-direction: column; align-items: flex-start; transform: rotate(-90deg); ">
 
 
     <h1 [routerLink]="['/TimelessFlavour/home']">Timeless Flavour</h1>
@@ -17,14 +17,18 @@
         <a [routerLink]="['/TimelessFlavour/contacto']">CONTACTO</a>
       </li>
       <li id="usuario">
-        <a [routerLink]="['/TimelessFlavour/mi-perfil']"> <img src="../../../../../../assets/images/icons/user-solid.svg" width="20px" height="20px"  alt="user_solid_icon"></a>
+        <a [routerLink]="['/TimelessFlavour/mi-perfil']"> <img
+            src="../../../../../../assets/images/icons/user-solid.svg" width="20px" height="20px"
+            alt="user_solid_icon"></a>
 
       </li>
       <li id="carrito">
-        <a [routerLink]="['/TimelessFlavour/mi-pedido']"> <img src="../../../../../../assets/images/icons/cart-shopping-solid.svg" width="20px" height="20px" alt="shopping_cart_solid_icon"> <span>    * 0</span></a>
+        <a (click)="openCartModal()"> <img src="../../../../../../assets/images/icons/cart-shopping-solid.svg"
+            width="20px" height="20px" alt="shopping_cart_solid_icon"> <span *ngIf="totalCartItems > 0"> *
+            {{totalCartItems}}</span><span *ngIf="totalCartItems==0"> * 0</span></a>
 
 
-      </li>  
+      </li>
     </ul>
   </nav>
 
