@@ -17,9 +17,13 @@
       <p>Total en puntos: {{ totalPoints }}</p>
       <p>Puntos ganados: {{ pointsEarned }}</p>
     </div>
+    <div class="buttons">
+      <button mat-raised-button color="primary" (click)="checkout()" >Pagar con Dinero</button>
+      <button mat-raised-button color="accent" >Pagar con Puntos</button>
+    </div>
 
 
-    
+
   </div>
 
   <ng-template #emptyCart>

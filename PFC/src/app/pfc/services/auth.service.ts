@@ -30,6 +30,13 @@ export class AuthService {
   mostrarMenu(): Observable<any> {
     return this.conexiones.get<any>(`${this.mysqlUrl}/menu.php`);
   }
+
+
+  // Método para crear una sesión de pago en el backend
+  createCheckoutSession(cartItems: any[], totalPrice: number): Observable<any> {
+    return this.conexiones.post<any>(`${this.mysqlUrl}/checkout.php`, { cartItems, totalPrice });
+  }
+
  // Método para almacenar los datos del usuario en sessionStorage
  setUserData(userData: any): void {
   sessionStorage.setItem('user', JSON.stringify(userData)); // Guarda los datos como JSON en sessionStorage
