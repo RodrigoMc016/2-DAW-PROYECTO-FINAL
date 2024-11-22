@@ -19,9 +19,16 @@
       <li id="usuario">
         <a [routerLink]="['/TimelessFlavour/mi-perfil']"> <img
             src="../../../../../../assets/images/icons/user-solid.svg" width="20px" height="20px"
-            alt="user_solid_icon"></a>
+            alt="user_solid_icon">  </a>
+            <br>
+            
+            <p *ngIf="saldo!== undefined"  class="saldo">Saldo: {{ saldo }} puntos</p>
+
+
+
 
       </li>
+
       <li id="carrito">
         <a (click)="openCartModal()"> <img src="../../../../../../assets/images/icons/cart-shopping-solid.svg"
             width="20px" height="20px" alt="shopping_cart_solid_icon"> <span *ngIf="totalCartItems > 0"> *

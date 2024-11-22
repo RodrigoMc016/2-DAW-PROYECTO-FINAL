@@ -54,7 +54,6 @@ export class LoginComponent {
   isChecked: boolean = false;
 
 
-
   enviar() {
     if (this.login.valid) {
       const { email, contrasenia } = this.login.value; //validacion de parametros
@@ -65,9 +64,17 @@ export class LoginComponent {
             console.log("logeado");
             console.log('Respuesta del servidor:', response);
             console.log('is_admin:', response.is_admin);
+
+            // Almacenar los datos del usuario en sessionStorage
+            const userData = {
+              email: email,
+              balance: response.balance, // Asegúrate de que el balance esté en la respuesta
+              role_id: response.role_id,
+            };
+            this.authService.setUserData(userData); // Guarda los datos del usuario en el servicio
+
             // Redirigir según si es administrador
             if (response.is_admin) {
-
               this.router.navigateByUrl('TimelessFlavour-admin/home-admin'); // Ruta para administradores
             } else {
               this.router.navigateByUrl('TimelessFlavour/home'); // Ruta para usuarios normales

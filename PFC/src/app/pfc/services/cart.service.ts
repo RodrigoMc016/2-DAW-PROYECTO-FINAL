@@ -15,19 +15,20 @@ export class CartService {
   private items: { product: Product; ammount: number }[] = [];
 
   // Método para añadir un producto
-  addItem(product: Product): void {
-    //Busca el producto mediante su id y comprueba si son iguales
+  addItem(product: Product, options?: { cookingPoint?: string; sauce?: string }): void {
     const repeatedItem = this.items.find((item) => item.product.id === product.id);
 
-    //Si lo son incrementa su cantidad sin duplicarlo
     if (repeatedItem) {
-
       repeatedItem.ammount++;
-      console.log('Producto repetido, incrementando cantidad:', repeatedItem);
+      // Actualiza las opciones si ya existe el producto
+      if (options) {
+        repeatedItem.product.cookingPoint = options.cookingPoint || repeatedItem.product.cookingPoint;
+        repeatedItem.product.sauce = options.sauce || repeatedItem.product.sauce;
+      }
     } else {
-      //Y si no lo añade a la lista del carrito
-      this.items.push({ product, ammount: 1 });
-      console.log('Producto añadido al carrito:', product);
+      // Agrega un nuevo producto al carrito con las opciones especificadas
+      const newProduct = { ...product, ...options }; //operador rest para sacar tanto el valor de los productos como las posibles opciones seleccionadas
+      this.items.push({ product: newProduct, ammount: 1 });
     }
   }
 

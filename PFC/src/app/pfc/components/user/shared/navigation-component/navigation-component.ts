@@ -6,6 +6,7 @@ import { NgIf } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { shoppingCartComponent } from '../dialogs/shopping-cart/shopping-cart.component';
 import { Product } from '../../../../interfaces/products.interface';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'navBarUser',
@@ -22,9 +23,11 @@ import { Product } from '../../../../interfaces/products.interface';
 
 export class navigationComponent {
 
+  saldo:number=0;
+  usuario:string ="";
   //Inicializar el total de items que tendrá el carrito
   totalCartItems :number= 0;
-  constructor(private router:Router, private cartService:CartService, private dialog:MatDialog) { }
+  constructor(private router:Router, private cartService:CartService, private dialog:MatDialog, private authService:AuthService) { }
 
   openCartModal(): void {
     this.dialog.open(shoppingCartComponent, {
@@ -40,6 +43,13 @@ export class navigationComponent {
 
   //Hacer que se ejecute al iniciar la página
   ngOnInit():void {
+    const userData = this.authService.getUserData(); // Asumiendo que el servicio de autenticación tiene esta función
+    console.log('Datos del usuario en el componente:', userData);
+    if (userData) {
+      this.saldo = userData.balance;  // Obtener saldo
+      this.usuario = userData.email;
+      console.log('Saldo:', this.saldo); // Obtener email o nombre
+    }
     console.log('ngOnInit ejecutado');
     this.updateCartNumber();
 

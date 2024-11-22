@@ -39,13 +39,14 @@ export class cookingPointComponent  {
    // Método que se llama cuando el formulario se envía
   onSubmit(): void {
     const selectedProduct = this.data.product;
+
     if (this.cookingForm.valid) {
 
       const selectedValue = this.cookingForm.value.cookingPoint;
       this.dialogRef.close(selectedValue);  // Cierra el modal y pasa el valor
 
       const productId = this.data.productId;
-      this.cartService.addItem(selectedProduct);
+      this.cartService.addItem(selectedProduct, { cookingPoint: selectedValue });
       this.cartService.updateCookingPoint(productId, selectedValue);  // Actualiza el punto de cocción en el carrito
 
     }

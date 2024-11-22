@@ -1,41 +1,41 @@
 <?php
 require 'conexion.php'; // Conexión a la base de datos
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-
-// Encabezados para CORS
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Content-Type: application/json; charset=UTF-8");
 
+session_start();
 
-
-$inputData = json_decode(file_get_contents('php://input'), true); //convierte de un json a un array php asociativo
+$inputData = json_decode(file_get_contents('php://input'), true);
 $email = $inputData['email'] ?? null;
 $password = $inputData['password'] ?? null;
 
-
-//Validación de todos los campos required
 if (!$email || !$password) {
     echo json_encode(['status' => 'error', 'message' => 'Email y contraseña son obligatorios.']);
     exit;
 }
 
-// Consulta para obtener el usuario
 $sql = "SELECT * FROM users WHERE email = ?";
-$stmt = $conexionBD->prepare($sql);  //uso la variable global conexionDB de conexion php en vez de pdo
+$stmt = $conexionBD->prepare($sql);
 $stmt->execute([$email]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC); //array asociativo que da verdadero si hay datos o falso si no, smt es una consulta preparada para mayor seguridad
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($user && password_verify($password, $user['password'])) {
 
-    $isAdmin = ($user['role_id'] === 1); // Verifica si el usuario es admin dependiendo del role_id (1 para admins, 2 para usuarios)
+    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['balance'] = $user['balance']; 
+    $_SESSION['role_id'] = $user['role_id'];
 
+    // Incluir saldo en la respuesta JSON
     echo json_encode([
-        'is_admin' => $isAdmin // Devuelve si es admin
+        'status' => 'success',
+        'message' => 'Login exitoso',
+        'is_admin' => ($user['role_id'] === 1),
+        'balance' => $user['balance'], // Aquí se incluye el saldo
+        'role_id' => $user['role_id']
     ]);
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Credenciales incorrectas.']);
