@@ -56,7 +56,7 @@ export class CartService {
   }
 
   getPointsEarned(): number {
-    return this.getTotalPoints() * 0.5; // El 50% del precio en puntos
+    return this.getTotalPoints() * 0.5; // El 50% del total de puntos de ganancia para el saldo
   }
 
   // Eliminar un producto o disminuir su cantidad, usando findIndex para buscar el primer elemento
@@ -94,5 +94,7 @@ export class CartService {
       console.log(`Punto de cocción actualizado para el producto ${productId}: ${cookingPoint}`);
     }
   }
+
+  
 }
 

@@ -17,9 +17,19 @@
       <p>Total en puntos: {{ totalPoints }}</p>
       <p>Puntos ganados: {{ pointsEarned }}</p>
     </div>
+
+    <!-- Campo de dirección con validación -->
+    <mat-form-field appearance="fill">
+      <mat-label>Dirección de envío</mat-label>
+      <input matInput placeholder="Ingresa tu dirección" [(ngModel)]="address" name="address" required>
+      <mat-error *ngIf="!address ">La dirección es obligatoria.</mat-error>
+    </mat-form-field>
+
+
+
     <div class="buttons">
-      <button mat-raised-button color="primary" (click)="checkout()" >Pagar con Dinero</button>
-      <button mat-raised-button color="accent" >Pagar con Puntos</button>
+      <button mat-raised-button color="primary" (click)="checkout()">Pagar con Dinero</button>
+      <button mat-raised-button color="accent">Pagar con Puntos</button>
     </div>
 
 

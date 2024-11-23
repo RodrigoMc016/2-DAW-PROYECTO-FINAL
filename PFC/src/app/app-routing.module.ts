@@ -14,6 +14,7 @@ import { mailComponent } from './pfc/components/admin/shared/mail-component/mail
 import { promoComponent } from './pfc/components/admin/shared/promo-component/promo-component';
 import { adminProfileComponent } from './pfc/components/admin/shared/admin-profile-component/admin-profile-component';
 import { adminMenuComponent } from './pfc/components/admin/shared/admin-menu-component/admin-menu-component';
+import { paymentConfirmedComponent } from './pfc/components/user/shared/payment-confirmed/payment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -32,13 +33,16 @@ const routes: Routes = [
 
   {path:'TimelessFlavour', component:UserComponent, children:[
     {path:'home', component:homeUserComponent},
-    {path:'menu', component:MenuComponent},
+    {path:'menu', component:MenuComponent },
+
     {path:'contacto', component:ContactComponent},
     {path:'mi-perfil', component:ProfileNavComponent, children:[
 
     ]},
 
+
   ]},
+  {path:'pago-realizado', component:paymentConfirmedComponent},
 ];
 
 @NgModule({

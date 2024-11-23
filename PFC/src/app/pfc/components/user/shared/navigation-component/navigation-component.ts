@@ -13,7 +13,7 @@ import { AuthService } from '../../../../services/auth.service';
   templateUrl: 'navigation-component.html',
   styleUrl: 'navigation-component.scss',
   standalone: true,
-  imports:[
+  imports: [
     RouterLink,
     MatToolbar,
     NgIf
@@ -23,11 +23,16 @@ import { AuthService } from '../../../../services/auth.service';
 
 export class navigationComponent {
 
-  saldo:number=0;
-  usuario:string ="";
+  //Inicializar variables usuario y saldo
+  saldo: number = 0;
+  email: string = "";
+
+
   //Inicializar el total de items que tendrá el carrito
-  totalCartItems :number= 0;
-  constructor(private router:Router, private cartService:CartService, private dialog:MatDialog, private authService:AuthService) { }
+  totalCartItems: number = 0;
+
+
+  constructor(private router: Router, private cartService: CartService, private dialog: MatDialog, private authService: AuthService) { }
 
   openCartModal(): void {
     this.dialog.open(shoppingCartComponent, {
@@ -36,19 +41,20 @@ export class navigationComponent {
   }
 
   //Método para volver a la página del login
-  volverALogin(){
+  volverALogin() {
     this.router.navigate(['/login']);
   }
 
 
-  //Hacer que se ejecute al iniciar la página
-  ngOnInit():void {
-    const userData = this.authService.getUserData(); // Asumiendo que el servicio de autenticación tiene esta función
-    console.log('Datos del usuario en el componente:', userData);
+  //Obtener los datos del usuario logueado en la sesión
+  ngOnInit(): void {
+    const userData = this.authService.getUserData();
+    // console.log('Datos del usuario en el componente:', userData);
     if (userData) {
       this.saldo = userData.balance;  // Obtener saldo
-      this.usuario = userData.email;
-      console.log('Saldo:', this.saldo); // Obtener email o nombre
+      this.email = userData.email;  // Obtener email
+      this.getSaldo();
+      console.log('Saldo:', this.saldo);
     }
     console.log('ngOnInit ejecutado');
     this.updateCartNumber();
@@ -58,35 +64,61 @@ export class navigationComponent {
 
   }
 
+  // Verifica y actualiza el carrito cada vez que Angular verifica el componente y que han habido cambios en el componente
   ngDoCheck(): void {
-    this.updateCartNumber();  // Verifica y actualiza cada vez que Angular verifica el componente
+    this.updateCartNumber();
   }
 
   //Método para actualizar el número de items del carrito
-    updateCartNumber():void{
-      const newCartItems = this.cartService.getItemsNumber();
-      if (newCartItems !== this.totalCartItems) {  // Solo actualizar si ha cambiado el número
-        this.totalCartItems = newCartItems;
-        console.log('Actualizando totalCartItems:', this.totalCartItems);
-      }
-      console.log('Actualizando totalCartItems:', this.totalCartItems);
+  updateCartNumber(): void {
+    const newCartItems = this.cartService.getItemsNumber();
+    if (newCartItems !== this.totalCartItems) {  // Solo actualizar si ha cambiado el número
+      this.totalCartItems = newCartItems;
+      // console.log('Actualizando totalCartItems:', this.totalCartItems);
     }
+    // console.log('Actualizando totalCartItems:', this.totalCartItems);
+  }
 
 
   //Incrementar el número de elementos en el carrito y por tanto, al lado del icono propio
-  addToCart(product:Product):void{
+  addToCart(product: Product): void {
     console.log('Añadiendo producto al carrito:', product);
     this.cartService.addItem(product);
     this.updateCartNumber();
   }
 
   //Eliminar un elemento del carrito por medio de la id y por tanto disminuir el número anterior
-  removeFromCart(productId:number):void{
-     console.log('Eliminando producto del carrito con ID:', productId);
+  removeFromCart(productId: number): void {
+    console.log('Eliminando producto del carrito con ID:', productId);
     this.cartService.removeItem(productId);
     this.updateCartNumber();
   }
 
+  getSaldo(): void {
+    console.log('Email del usuario:', this.email);
+    // Aseguramos que el email no sea vacío o undefined
+    if (!this.email) {
+      console.error('Email no encontrado en los datos del usuario');
+      return; // Si no hay email, salimos de la función sin hacer la solicitud
+    } else {
+      // Usamos el método getSaldo de AuthService
+      this.authService.getSaldo(this.email).subscribe(
+        (response) => {
+          if (response.success) {
+            this.saldo = response.saldo;  // Si la respuesta es exitosa, asignamos el saldo
+          } else {
+            console.error('Error al obtener el saldo:', response.error);
+          }
+        },
+        (error) => {
+          console.error('Error en la solicitud HTTP:', error);
+        }
+      );
+    }
+  }
 
 
 }
+
+
+
