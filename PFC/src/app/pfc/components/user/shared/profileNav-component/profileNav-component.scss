@@ -1,12 +1,13 @@
 .container {
 
   width: 59%;
-  margin: -42% 20%;
+  margin: -42% 24%;
   box-sizing: border-box;
 
   .cajas{
     display: grid;
     grid-template-columns: 0.5fr 1.5fr;
+
     section{
       border:1px black solid;
       background-color: white;
@@ -39,6 +40,30 @@
     }
 
 
+  }
+
+  footer{
+    color:white;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    h3{
+      font-family:Hudson;
+
+    }
+
+    #nets{
+      display: flex;
+      flex-direction: row;
+      margin-left:20%;
+    }
+    img {
+      margin-left:40%;
+    }
+    a{
+      color:rgb(208, 218, 14);
+    }
   }
 
 

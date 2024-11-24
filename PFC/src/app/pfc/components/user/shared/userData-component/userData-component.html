@@ -1,10 +1,20 @@
 <div class="container">
   <h2>MIS DATOS</h2>
+  <br>
+  <br>
+  <br>
+  <br>
   <div *ngIf="userData; else noData">
-    <h2>Datos del Usuario</h2>
+    <br>
+    <br>
+
     <p><strong>Nombre de usuario:</strong> {{ userData.username }}</p>
+    <br>
+
     <p><strong>Email:</strong> {{ userData.email }}</p>
+    <br>
     <p><strong>Fecha de creación:</strong> {{ userData.creation_date }}</p>
+    <br>
     <p><strong>Saldo:</strong> {{ userData.balance }}</p>
   </div>
 

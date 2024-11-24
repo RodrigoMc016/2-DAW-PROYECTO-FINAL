@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'profile',
@@ -7,7 +7,8 @@ import { RouterOutlet } from '@angular/router';
   styleUrl:'profileNav-component.scss',
   standalone:true,
   imports:[
-    RouterOutlet
+    RouterOutlet,
+    RouterLink
 
   ]
 })

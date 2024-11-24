@@ -108,6 +108,10 @@ export class AuthService {
     return this.conexiones.post<any>(`${this.mysqlUrl}/getData.php`, {  email });
 
   }
+
+  getTransactions(email: string): Observable<any> {
+    return this.conexiones.post<any>(`${this.mysqlUrl}/getTransactions.php`, { email });
+  }
 }
 
 

@@ -1,8 +1,14 @@
 .container{
-
+  background-image: url(../../../../../../assets/images/home/take_away.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
   box-sizing: border-box;
   background-color: white;
   height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   h2 {
     color: green;
