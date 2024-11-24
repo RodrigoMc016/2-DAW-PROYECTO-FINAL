@@ -1,0 +1,14 @@
+<div class="container">
+  <h2>MIS DATOS</h2>
+  <div *ngIf="userData; else noData">
+    <h2>Datos del Usuario</h2>
+    <p><strong>Nombre de usuario:</strong> {{ userData.username }}</p>
+    <p><strong>Email:</strong> {{ userData.email }}</p>
+    <p><strong>Fecha de creación:</strong> {{ userData.creation_date }}</p>
+    <p><strong>Saldo:</strong> {{ userData.balance }}</p>
+  </div>
+
+  <ng-template #noData>
+    <p>No hay datos del usuario disponibles.</p>
+  </ng-template>
+</div>

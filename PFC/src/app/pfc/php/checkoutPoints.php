@@ -75,11 +75,13 @@ try {
   $updateStmt->bindParam(':email', $email, PDO::PARAM_STR);
   $updateStmt->execute();
   // Registrar la transacción en la tabla 'transactions'
-  $transactionQuery = "INSERT INTO transactions (email, points_used, address)
-                         VALUES (:email, :pointsUsed, :address)";
+  $transactionQuery = "INSERT INTO transactions (email, points_used,description, address)
+                         VALUES (:email, :pointsUsed,:description, :address)";
   $transactionStmt = $conexionBD->prepare($transactionQuery);
+  $description = "Compra realizada en el sitio web utilizando puntos del saldo actual.";
   $transactionStmt->bindParam(':email', $email, PDO::PARAM_STR);
   $transactionStmt->bindParam(':pointsUsed', $totalPoints, PDO::PARAM_INT);
+  $transactionStmt->bindParam(':description', $description, PDO::PARAM_STR);
   $transactionStmt->bindParam(':address', $address, PDO::PARAM_STR);
   $transactionStmt->execute();
 

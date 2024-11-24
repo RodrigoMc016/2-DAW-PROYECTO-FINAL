@@ -40,8 +40,8 @@ export class AuthService {
 
 
   // Método para crear una sesión de pago en el backend con dinero real
-  createCheckoutSession(cartItems: any[], totalPrice: number, address: string): Observable<any> {
-    return this.conexiones.post<any>(`${this.mysqlUrl}/checkout.php`, { cartItems, totalPrice, address });
+  createCheckoutSession(email:string, cartItems: any[], totalPrice: number, address: string): Observable<any> {
+    return this.conexiones.post<any>(`${this.mysqlUrl}/checkout.php`, {email, cartItems, totalPrice, address });
   }
   //Lo mismo pero para los puntos
   createCheckoutPoints(email:string, cartItems: any[], totalPoints: number, address: string): Observable<any> {
@@ -103,6 +103,11 @@ export class AuthService {
     return this.conexiones.post<any>(`${this.mysqlUrl}/getBalance.php`, { email });
   }
 
+
+  getUserSession(email:string): Observable<any> {
+    return this.conexiones.post<any>(`${this.mysqlUrl}/getData.php`, {  email });
+
+  }
 }
 
 

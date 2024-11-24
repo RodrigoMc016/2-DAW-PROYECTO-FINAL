@@ -3,13 +3,11 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS ");
 header("Content-Type: application/json; charset=UTF-8");
-
-// Si es una solicitud OPTIONS (preflight request), solo respondemos con un status 200
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
   http_response_code(200);
   exit;
 }
-
+require 'conexion.php';
 require_once('C:/xampp/htdocs/stripe-php-master/init.php');
 
 // Tu clave secreta de Stripe (obténla desde el Dashboard de Stripe)
@@ -20,9 +18,10 @@ $data = json_decode(file_get_contents('php://input'), true);
 error_log(print_r($data, true));
 
 // Verificar si la dirección está presente
+$email = $data['email'];// Email no nulo
 $cartItems = $data['cartItems']; // Detalles del carrito
 $totalPrice = $data['totalPrice']; // Total del precio
-$address = $data['address'] ?? '';
+$address = $data['address'] ?? '';//Dirección
 
 if (empty($address)) {
   echo json_encode(['error' => 'La dirección es obligatoria']);
@@ -53,14 +52,42 @@ try {
       'allowed_countries' => ['ES'], // Países permitidos (por ejemplo, solo España)
     ],
     'metadata' => [
-      'direccion' => $address // Agrega la dirección a los metadatos
+      'direccion' => $address, // Agrega la dirección a los metadatos
+      'email' => $email // Hace lo mismo con email
     ]
   ]);
-  // Comprobar si la sesión se creó correctamente
-  if ($checkoutSession) {
-    echo json_encode(['id' => $checkoutSession->id]); // Esta línea debería devolver el session_id
-  } else {
-    echo json_encode(['error' => 'No se pudo crear la sesión de pago']);
+  // // Comprobar si la sesión se creó correctamente
+  // if ($checkoutSession) {
+  //   echo json_encode(['id' => $checkoutSession->id]); // Esta línea debería devolver el session_id
+  // } else {
+  //   echo json_encode(['error' => 'No se pudo crear la sesión de pago']);
+  // }
+
+
+  try {
+    $conexionBD->beginTransaction(); // Iniciar una transacción SQL
+
+    $insertTransactionQuery = "
+      INSERT INTO transactions (email, euros_used , description, address)
+      VALUES (:email,  :euros_used,  :description, :address)";
+
+    $stmt = $conexionBD->prepare($insertTransactionQuery);
+
+    $description = "Compra realizada en el sitio web utilizando Stripe.";
+
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':euros_used', $totalPrice);
+    $stmt->bindParam(':description', $description);
+    $stmt->bindParam(':address', $address);
+    $stmt->execute();
+
+    $conexionBD->commit(); // Confirmar la transacción SQL
+    echo json_encode(['id' => $checkoutSession->id]); // Devolver el session_id
+
+  } catch (PDOException $e) {
+    $conexionBD->rollBack(); // Revertir cambios en caso de error
+    error_log("Error al registrar la transacción: " . $e->getMessage());
+    echo json_encode(['error' => 'Error al registrar la transacción en la base de datos']);
   }
 
 
@@ -69,4 +96,6 @@ try {
   echo json_encode(['error' => $e->getMessage()]);
 
 }
+
+
 ?>

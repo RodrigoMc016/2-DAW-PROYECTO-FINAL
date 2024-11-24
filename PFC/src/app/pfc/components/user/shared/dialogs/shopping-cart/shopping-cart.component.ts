@@ -109,7 +109,7 @@ export class shoppingCartComponent {
     // Verifica que tanto el email como la dirección estén presentes
     if (address.trim() !== '') {
       // Llamada al backend para crear la sesión de pago
-      this.authService.createCheckoutSession(cartItems, totalPrice, address).subscribe(
+      this.authService.createCheckoutSession(email,cartItems, totalPrice, address).subscribe(
         (response: any) => {
           if (response.id && this.stripe) {
             console.log('id', response.id);
@@ -155,19 +155,11 @@ export class shoppingCartComponent {
       address: address
     });
       // Verificar si el saldo es suficiente para la compra
-  if (saldo < totalPoints) {
-    alert('No tienes saldo suficiente para realizar esta compra.');
-    return; // Detener la ejecución
-  }
+     // Verificar si el saldo es suficiente para la compra
+
 
     // Asegúrate de que la llamada al backend se realice correctamente
-    this.authService.createCheckoutPoints(email, cartItems, totalPoints, address).pipe(
-      catchError((error) => {
-        console.error('Error al contactar con el servidor:', error);
-        alert('Ocurrió un error en la transacción');
-        return of(null);  // Esto evita que el error bloquee el flujo del código
-      })
-    ).subscribe(
+    this.authService.createCheckoutPoints(email, cartItems, totalPoints, address).subscribe(
       (response: any) => {
         console.log("Esta es", response);
         // Verifica que la respuesta esté en el formato esperado
@@ -183,7 +175,7 @@ export class shoppingCartComponent {
         } else {
           console.log('Respuesta del backend:', response);
           console.error('Error al procesar el pago con puntos:', response?.message || 'Respuesta indefinida');
-          alert('Ocurrió un error durante la compra');
+          alert('Ocurrió un error durante la compra, inténtalo de nuevo');
         }
       }
     );

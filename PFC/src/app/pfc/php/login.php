@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'conexion.php'; // Conexión a la base de datos
 
 header("Access-Control-Allow-Origin: *");
@@ -6,7 +7,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Content-Type: application/json; charset=UTF-8");
 
-session_start();
+
 
 $inputData = json_decode(file_get_contents('php://input'), true);
 $email = $inputData['email'] ?? null;
@@ -26,7 +27,7 @@ if ($user && password_verify($password, $user['password'])) {
 
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['email'] = $user['email'];
-    $_SESSION['balance'] = $user['balance']; 
+    $_SESSION['balance'] = $user['balance'];
     $_SESSION['role_id'] = $user['role_id'];
 
     // Incluir saldo en la respuesta JSON

@@ -9,12 +9,14 @@ import { homeUserComponent } from './pfc/components/user/shared/home-user-compon
 import { MenuComponent } from './pfc/components/user/shared/menu-component/menu-component';
 import { ContactComponent } from './pfc/components/user/shared/contact-component/contact-component';
 import {  ProfileNavComponent } from './pfc/components/user/shared/profileNav-component/profileNav-component';
-import { OrderComponent } from './pfc/components/user/shared/order-component/order-component';
+import {  userDataComponent } from './pfc/components/user/shared/userData-component/userData-component';
 import { mailComponent } from './pfc/components/admin/shared/mail-component/mail-component';
 import { promoComponent } from './pfc/components/admin/shared/promo-component/promo-component';
 import { adminProfileComponent } from './pfc/components/admin/shared/admin-profile-component/admin-profile-component';
 import { adminMenuComponent } from './pfc/components/admin/shared/admin-menu-component/admin-menu-component';
 import { paymentConfirmedComponent } from './pfc/components/user/shared/payment-confirmed/payment.component';
+import { historyComponent } from './pfc/components/user/shared/history-component/history-component';
+import { friendsComponent } from './pfc/components/user/shared/friends-list-component/friends-list-component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -37,6 +39,10 @@ const routes: Routes = [
 
     {path:'contacto', component:ContactComponent},
     {path:'mi-perfil', component:ProfileNavComponent, children:[
+      {path:'mis-datos', component:userDataComponent},
+      {path:'mis-movimientos', component:historyComponent},
+      {path:'amigos', component:friendsComponent},
+      {path:'mis-promociones', component:promoComponent},
 
     ]},
 
