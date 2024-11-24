@@ -31,35 +31,62 @@ $address = $data['address'] ?? null;
 // Validación de otros campos (por ejemplo, cartItems, totalPoints, address)
 $errors = [];
 if (!$cartItems || !is_array($cartItems) || empty($cartItems)) {
-    $errors[] = 'Faltan productos en el carrito';
+  $errors[] = 'Faltan productos en el carrito';
 }
 if ($totalPoints === null || $totalPoints <= 0) {
-    $errors[] = 'El total de puntos es inválido';
+  $errors[] = 'El total de puntos es inválido';
 }
 if (!$address) {
-    $errors[] = 'Falta la dirección';
+  $errors[] = 'Falta la dirección';
 }
 
 if (!empty($errors)) {
-    echo json_encode(['error' => implode(', ', $errors)]);
-    exit;
+  echo json_encode(['error' => implode(', ', $errors)]);
+  exit;
 }
 
 // Procesar la transacción si los datos son correctos
 try {
-    // Registrar la transacción en la tabla 'transactions'
-    $transactionQuery = "INSERT INTO transactions (email, points_used, address)
-                         VALUES (:email, :pointsUsed, :address)";
-    $transactionStmt = $conexionBD->prepare($transactionQuery);
-    $transactionStmt->bindParam(':email', $email, PDO::PARAM_STR);
-    $transactionStmt->bindParam(':pointsUsed', $totalPoints, PDO::PARAM_INT);
-    $transactionStmt->bindParam(':address', $address, PDO::PARAM_STR);
-    $transactionStmt->execute();
+  // Obtener el saldo actual del usuario
+  $query = "SELECT balance FROM users WHERE email = :email";
+  $stmt = $conexionBD->prepare($query);
+  $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+  $stmt->execute();
+  $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Respuesta de éxito
-    echo json_encode(['success' => true, 'message' => 'Compra realizada exitosamente.']);
+  if (!$user) {
+    echo json_encode(['error' => 'Usuario no encontrado']);
+    exit;
+  }
+
+  $currentBalance = (int) $user['balance'];
+
+  // Verificar si el saldo es suficiente
+  if ($currentBalance < $totalPoints) {
+    echo json_encode(['error' => 'Saldo insuficiente']);
+    exit;
+  }
+
+  // Restar los puntos del saldo y actualizar la base de datos
+  $newBalance = $currentBalance - $totalPoints;
+  $updateQuery = "UPDATE users SET balance = :newBalance WHERE email = :email";
+  $updateStmt = $conexionBD->prepare($updateQuery);
+  $updateStmt->bindParam(':newBalance', $newBalance, PDO::PARAM_INT);
+  $updateStmt->bindParam(':email', $email, PDO::PARAM_STR);
+  $updateStmt->execute();
+  // Registrar la transacción en la tabla 'transactions'
+  $transactionQuery = "INSERT INTO transactions (email, points_used, address)
+                         VALUES (:email, :pointsUsed, :address)";
+  $transactionStmt = $conexionBD->prepare($transactionQuery);
+  $transactionStmt->bindParam(':email', $email, PDO::PARAM_STR);
+  $transactionStmt->bindParam(':pointsUsed', $totalPoints, PDO::PARAM_INT);
+  $transactionStmt->bindParam(':address', $address, PDO::PARAM_STR);
+  $transactionStmt->execute();
+
+  // Respuesta de éxito
+  echo json_encode(['success' => true, 'message' => 'Compra realizada exitosamente.']);
 } catch (PDOException $e) {
-    echo json_encode(['error' => 'Error en la base de datos: ' . $e->getMessage()]);
+  echo json_encode(['error' => 'Error en la base de datos: ' . $e->getMessage()]);
 }
 
 

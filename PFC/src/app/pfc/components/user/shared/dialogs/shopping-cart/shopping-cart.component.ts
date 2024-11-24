@@ -146,13 +146,19 @@ export class shoppingCartComponent {
     const totalPoints = this.totalPoints;  // Total de puntos del carrito
     const address = this.address;  // Dirección ingresada por el usuario
     const email = userData?.email;
-
+    const saldo = this.saldo;
     console.log('Enviando datos al backend:', {
+      saldo:saldo,
       email: email,
       cartItems: cartItems,
       totalPoints: totalPoints,
       address: address
     });
+      // Verificar si el saldo es suficiente para la compra
+  if (saldo < totalPoints) {
+    alert('No tienes saldo suficiente para realizar esta compra.');
+    return; // Detener la ejecución
+  }
 
     // Asegúrate de que la llamada al backend se realice correctamente
     this.authService.createCheckoutPoints(email, cartItems, totalPoints, address).pipe(
@@ -166,10 +172,14 @@ export class shoppingCartComponent {
         console.log("Esta es", response);
         // Verifica que la respuesta esté en el formato esperado
         if (response && response.success) {
+
           console.log('Respuesta del backend:', response);
           alert('¡Compra realizada exitosamente usando puntos!');
+
           this.cartService.clearCart();
           this.updateCart();
+          window.location.reload();
+
         } else {
           console.log('Respuesta del backend:', response);
           console.error('Error al procesar el pago con puntos:', response?.message || 'Respuesta indefinida');
