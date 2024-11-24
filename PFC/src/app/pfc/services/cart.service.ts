@@ -94,7 +94,10 @@ export class CartService {
       console.log(`Punto de cocción actualizado para el producto ${productId}: ${cookingPoint}`);
     }
   }
+  clearCart(): void {
+    this.items = []; 
+    console.log('El carrito ha sido vaciado');
+  }
 
-  
 }
 

@@ -9,10 +9,12 @@ import { Observable } from "rxjs";
 
 })
 
+
 export class AuthService {
   private mysqlUrl = 'http://localhost/backend'; //enlace al backend en htdocs en php de xampp
 
   constructor(private conexiones: HttpClient) { }
+
 
   //Método para guardar los datos de un usuario al registrarse
   registro(username: string, email: string, password: string): Observable<any> {
@@ -37,9 +39,18 @@ export class AuthService {
   }
 
 
-  // Método para crear una sesión de pago en el backend
-  createCheckoutSession(cartItems: any[], totalPrice: number, address:string): Observable<any> {
+  // Método para crear una sesión de pago en el backend con dinero real
+  createCheckoutSession(cartItems: any[], totalPrice: number, address: string): Observable<any> {
     return this.conexiones.post<any>(`${this.mysqlUrl}/checkout.php`, { cartItems, totalPrice, address });
+  }
+  //Lo mismo pero para los puntos
+  createCheckoutPoints(email:string, cartItems: any[], totalPoints: number, address: string): Observable<any> {
+    console.log(email, cartItems, address, totalPoints);
+    return this.conexiones.post<any>(`${this.mysqlUrl}/checkoutPoints.php`, { email,cartItems, totalPoints, address }, {
+      headers: { 'Content-Type': 'application/json' }
+
+    });
+
   }
 
   // Método para almacenar los datos del usuario en sessionStorage
@@ -53,6 +64,8 @@ export class AuthService {
     return userData ? JSON.parse(userData) : null; // Si los datos existen, los parsea; si no, devuelve null
   }
 
+
+
   // Método para obtener el saldo del usuario desde los datos de la sesión
   getBalance(): number {
     const userData = this.getUserData();
@@ -64,10 +77,10 @@ export class AuthService {
 
 
   //Método para actualizar el saldo en la base de datos dependiendo del id de cada usuario logueado tras realizar una compra.
-  updateBalance(email:string, pointsEarned:number):Observable<any>{
-    const body= {email, pointsEarned};
+  updateBalance(email: string, pointsEarned: number): Observable<any> {
+    const body = { email, pointsEarned };
 
-    return this.conexiones.post<any>(`${this.mysqlUrl}/updateBalance.php`,body,{
+    return this.conexiones.post<any>(`${this.mysqlUrl}/updateBalance.php`, body, {
       headers: { 'Content-Type': 'application/json' }
     });
   }
@@ -84,6 +97,7 @@ export class AuthService {
       this.setUserData(userData);  // Guarda los nuevos datos del usuario
     }
   }
+
 
   getSaldo(email: string): Observable<any> {
     return this.conexiones.post<any>(`${this.mysqlUrl}/getBalance.php`, { email });

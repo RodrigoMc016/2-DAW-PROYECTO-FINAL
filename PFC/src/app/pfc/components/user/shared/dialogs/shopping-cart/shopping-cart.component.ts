@@ -8,6 +8,7 @@ import { loadStripe, Stripe } from '@stripe/stripe-js'
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { FormsModule, NgModel } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'carrito',
@@ -50,6 +51,7 @@ export class shoppingCartComponent {
     //Clave pública de stripe
     try {
       console.log('Cargando Stripe...');
+      //Clave pública de strippe
       this.stripe = await loadStripe('pk_test_51QO2bhLLsR8hkmPmACseaCCUAvHnlHhnTnQ0OxnhpnjUnsKpbK6QTHJdseTbyyRZQtltzm7ziuHDRYI8t33dr0n200x9wciWuf');
       console.log('Stripe cargado:', this.stripe);
 
@@ -96,7 +98,7 @@ export class shoppingCartComponent {
     const totalPrice = this.cartService.getTotalPrice();
     const totalPoints = this.cartService.getPointsEarned();
     const userData = this.authService.getUserData();  // Obtener los datos del usuario
-    const email = userData?.email;
+    const email = userData?.email; //sacar el email
     const address = this.address;
 
     console.log('User email:', email);
@@ -105,12 +107,12 @@ export class shoppingCartComponent {
     console.log('Dirección:', address);
 
     // Verifica que tanto el email como la dirección estén presentes
-    if (email && address.trim() !== '') {
+    if (address.trim() !== '') {
       // Llamada al backend para crear la sesión de pago
       this.authService.createCheckoutSession(cartItems, totalPrice, address).subscribe(
         (response: any) => {
           if (response.id && this.stripe) {
-            console.log('id' , response.id);
+            console.log('id', response.id);
             // Enviar el ID del usuario y los puntos ganados como parte de la sesión de pago
             this.authService.updateBalance(email, totalPoints).subscribe(
               (updateResponse: any) => {
@@ -138,8 +140,52 @@ export class shoppingCartComponent {
       console.error('El usuario no está logueado o la dirección está vacía');
     }
   }
+  checkoutPoints(): void {
+    const cartItems = this.cartService.getItems();
+    const userData = this.authService.getUserData();  // Obtener los datos del usuario
+    const totalPoints = this.totalPoints;  // Total de puntos del carrito
+    const address = this.address;  // Dirección ingresada por el usuario
+    const email = userData?.email;
 
+    console.log('Enviando datos al backend:', {
+      email: email,
+      cartItems: cartItems,
+      totalPoints: totalPoints,
+      address: address
+    });
 
+    // Asegúrate de que la llamada al backend se realice correctamente
+    this.authService.createCheckoutPoints(email, cartItems, totalPoints, address).pipe(
+      catchError((error) => {
+        console.error('Error al contactar con el servidor:', error);
+        alert('Ocurrió un error en la transacción');
+        return of(null);  // Esto evita que el error bloquee el flujo del código
+      })
+    ).subscribe(
+      (response: any) => {
+        console.log("Esta es", response);
+        // Verifica que la respuesta esté en el formato esperado
+        if (response && response.success) {
+          console.log('Respuesta del backend:', response);
+          alert('¡Compra realizada exitosamente usando puntos!');
+          this.cartService.clearCart();
+          this.updateCart();
+        } else {
+          console.log('Respuesta del backend:', response);
+          console.error('Error al procesar el pago con puntos:', response?.message || 'Respuesta indefinida');
+          alert('Ocurrió un error durante la compra');
+        }
+      }
+    );
+  }
 }
+
+
+
+
+
+
+
+
 
 

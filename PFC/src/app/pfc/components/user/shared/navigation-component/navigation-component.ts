@@ -74,7 +74,7 @@ export class navigationComponent {
     const newCartItems = this.cartService.getItemsNumber();
     if (newCartItems !== this.totalCartItems) {  // Solo actualizar si ha cambiado el número
       this.totalCartItems = newCartItems;
-      // console.log('Actualizando totalCartItems:', this.totalCartItems);
+      console.log('Actualizando totalCartItems:', this.totalCartItems);
     }
     // console.log('Actualizando totalCartItems:', this.totalCartItems);
   }

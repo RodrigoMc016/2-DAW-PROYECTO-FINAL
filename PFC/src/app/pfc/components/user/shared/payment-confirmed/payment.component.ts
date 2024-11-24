@@ -17,7 +17,7 @@ import { NgIf } from '@angular/common';
 })
 
 export class paymentConfirmedComponent {
-  paymentSuccess: boolean = true;//para dar dos mensajes dependiendo del estado del pago 
+  paymentSuccess: boolean = true;//para dar dos mensajes dependiendo del estado del pago
 ;
 
   constructor(
@@ -26,8 +26,4 @@ export class paymentConfirmedComponent {
     private cartService: CartService
   ) { }
 
-  ngOnInit(): void {
-
-
-  }
 }
