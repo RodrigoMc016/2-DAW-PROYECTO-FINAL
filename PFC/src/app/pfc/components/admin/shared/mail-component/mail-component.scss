@@ -1,0 +1,46 @@
+.container {
+  width: 59%;
+  margin: -42% 25%;
+  box-sizing: border-box;
+  background-color: white;
+  height: auto;
+
+  p {
+    text-align: center;
+    color: black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  h2 {
+    font-family: Hudson;
+    color: rgb(97, 31, 88);
+    background-color: rgb(246, 202, 235);
+    text-align: center;
+  }
+
+  .valoraciones {
+    display: flex;
+    justify-content: center;
+
+    table {
+
+      margin: 5% auto;
+
+      th {
+
+        width: 200px;
+        padding: 2%;
+        background-color: goldenrod;
+        text-align: center;
+
+      }
+
+      td {
+        border: 1px solid black;
+        text-align: center;
+
+      }
+    }
+
+  }
+}

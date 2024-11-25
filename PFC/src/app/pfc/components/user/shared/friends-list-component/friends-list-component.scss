@@ -10,7 +10,40 @@
   background-color: white;
   height: 120vh;
   text-align: center;
+
+  h2{
+    text-align: center;
+    font-family: Hudson;
+    font-size: 26px;
+    padding: 0.5%;
+    color: rgb(97, 31, 88);
+    background-color: rgb(246, 202, 235);
+  }
+
+  h3{
+    font-family: Hudson;
+  }
   p{
-    color:black;
+    color:rgb(97, 31, 88);
+
+  }
+  span{
+    color:rgb(97, 31, 88);
+    margin-right: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  ul{
+    list-style: none;
+  }
+  input{
+    margin-right:10px;
+  }
+  input#friend{
+    width: 200px;
+  }
+
+  button{
+    margin-right:5px;
   }
 }

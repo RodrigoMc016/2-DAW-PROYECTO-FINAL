@@ -5,12 +5,15 @@
     <div *ngFor="let item of cartItems">
       <p>{{ item.product.name }} <span *ngIf="item.product.sauce">y Salsa: {{ item.product.sauce }}></span><span
           *ngIf="item.product.cookingPoint">Punto: {{item.product.cookingPoint}}</span></p>
-      <p>Cantidad: {{ item.ammount }}</p>
-      <p>Precio total: {{ item.product.price_real * item.ammount }} €</p>
-      <p>Puntos: {{ item.product.price_points * item.ammount }}</p>
-      <button (click)="decrementQuantity(item.product.id)">-</button>
-      <button (click)="incrementQuantity(item.product.id)">+</button>
+          <p>Precio total: {{ item.product.price_real * item.ammount }} €</p>
+          <p>Puntos: {{ item.product.price_points * item.ammount }}</p>
+
+      <p><button id="minus" (click)="decrementQuantity(item.product.id)">-</button>Cantidad: {{ item.ammount }} <button id="plus" (click)="incrementQuantity(item.product.id)">+</button></p>
+
+
     </div>
+    <br>
+    <br>
 
     <div class="totals">
       <p>Total en €: {{ totalPrice }}</p>
@@ -19,7 +22,7 @@
     </div>
 
     <!-- Campo de dirección con validación -->
-    <mat-form-field appearance="fill">
+    <mat-form-field id="Botones" >
       <mat-label>Dirección de envío</mat-label>
       <input matInput placeholder="Ingresa tu dirección" [(ngModel)]="address" name="address" required>
       <mat-error *ngIf="!address ">La dirección es obligatoria.</mat-error>

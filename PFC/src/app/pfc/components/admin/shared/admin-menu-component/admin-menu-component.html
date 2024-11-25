@@ -1,7 +1,44 @@
 <div class="container">
   <div class="crud">
-    
+    <div class="addProduct">
+      <h2>Agregar Producto</h2>
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()" id="form">
+        <label for="name">Nombre del Producto</label>
+        <br>
+        <input id="name" formControlName="name" type="text" placeholder="Nombre del producto" />
+        <br>
+        <label for="price_real">Precio (€)</label>
+        <input id="price_real" formControlName="price_real" type="number" placeholder="Precio real en euros" />
+        <br>
+        <label for="price_points">Precio (Puntos)</label>
+        <br>
+        <input id="price_points" formControlName="price_points" type="number" placeholder="Precio en puntos" />
+        <br>
+        <label for="category_id">Categoría</label>
+        <br>
+        <select id="category_id" formControlName="category_id">
+          <option value="5">Bebidas</option>
+          <option value="1">Burgers</option>
+          <option value="2">Complementos</option>
+          <option value="4">Para Niños</option>
+          <option value="6">Postres</option>
+          <option value="3">Veganos</option>
+        </select>
+        <br>
+        <label for="description">Descripción</label>
+        <br>
+        <textarea id="description" formControlName="description" placeholder="Descripción del producto"></textarea>
+        <br>
+        <label for="image_url">URL de la Imagen (opcional)</label>
+        <br>
+        <input id="image_url" formControlName="image_url" type="text" placeholder="images/products/product1.jpeg" />
+        <br>
+        <button type="submit">Agregar Producto</button>
+      </form>
+      <p id="message" *ngIf="message" class="message">{{ message }}</p>
+    </div>
   </div>
+
   <nav id="submenu">
     <ul>
       <li>
@@ -25,6 +62,7 @@
     </ul>
   </nav>
   <section>
+
     <div class="cajas">
 
       <div *ngFor="let category of productsResult | keyvalue" class="categoria" [id]="category.key">
@@ -41,6 +79,8 @@
               <p>{{ product.description }}</p>
               <p id="price">{{ product.price_real }} €  <span> {{ product.price_points }} puntos</span>   </p>
 
+
+              <button (click)="deleteProduct(product.id)">Eliminar</button>
             </div>
 
 

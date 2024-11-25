@@ -1,4 +1,67 @@
-.cart-modal{
-background-color: white;
-color:black;
+.cart-modal {
+  h2 {
+    font-family: Hudson;
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  button#plus, button#minus {
+    margin-left: 2px;
+    margin-right: 2px;
+    background-color: #f4efea;
+
+    border-radius:50px;
+
+
+  }
+
+  button#plus{
+    color:green;
+    font-weight: bolder;
+  }
+
+  button#minus{
+    color:red;
+    font-weight: bolder;
+  }
+  button#plus:hover, button#minus:hover{
+    cursor: pointer;
+  }
+
+  mat-form-field {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    button {
+      margin:12px;
+      width: 80%;
+      position: relative;
+      padding: 10px;
+      background-color: rgb(97, 31, 88);
+      color: white;
+      border: 3px solid white;
+      outline: 3px solid rgb(97, 31, 88);
+      font-size: 16px;
+
+    }
+    button:hover{
+      cursor: pointer;
+      color:rgb(97, 31, 88);
+      background-color: rgb(246, 202, 235);
+      border:3px solid rgb(97, 31, 88);
+      outline: 3px solid rgb(246, 202, 235);
+    }
+  }
+
+  padding: 3%;
+  background-color: rgb(246, 245, 240);
+  color:black;
 }

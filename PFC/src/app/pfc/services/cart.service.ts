@@ -39,7 +39,6 @@ export class CartService {
 
   // Método para contar los productos del carrito
   getItemsNumber(): number {
-    console.log('Número de items en el carrito:', this.items.length);
 
     return this.items.reduce((total, item) => total + item.ammount, 0);
 
@@ -95,7 +94,7 @@ export class CartService {
     }
   }
   clearCart(): void {
-    this.items = []; 
+    this.items = [];
     console.log('El carrito ha sido vaciado');
   }
 

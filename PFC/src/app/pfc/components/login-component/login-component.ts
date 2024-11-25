@@ -61,9 +61,9 @@ export class LoginComponent {
       this.authService.login(email, contrasenia).subscribe(
         response => {
           if (response.status === 'success') {
-            console.log("logeado");
-            console.log('Respuesta del servidor:', response);
-            console.log('is_admin:', response.is_admin);
+            // console.log("logeado");
+            // console.log('Respuesta del servidor:', response);
+            // console.log('is_admin:', response.is_admin);
 
             // Almacenar los datos del usuario en sessionStorage
             const userData = {
@@ -84,11 +84,11 @@ export class LoginComponent {
           }
         },
         error => {
-          console.log('Error de autenticación:', error);
+          // console.log('Error de autenticación:', error);
         }
       );
     } else {
-      console.log('Formulario no válido');
+      // console.log('Formulario no válido');
     }
   }
 }

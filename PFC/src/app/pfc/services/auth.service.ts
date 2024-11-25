@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, ObservableLike } from "rxjs";
 import { Router } from "@angular/router";
 
 @Injectable({
@@ -13,7 +13,7 @@ import { Router } from "@angular/router";
 export class AuthService {
   private mysqlUrl = 'http://localhost/backend'; //enlace al backend en htdocs en php de xampp
 
-  constructor(private conexiones: HttpClient, private router:Router) { }
+  constructor(private conexiones: HttpClient, private router: Router) { }
 
 
   //USUARIO
@@ -42,13 +42,13 @@ export class AuthService {
 
 
   // Método para crear una sesión de pago en el backend con dinero real
-  createCheckoutSession(email:string, cartItems: any[], totalPrice: number, address: string): Observable<any> {
-    return this.conexiones.post<any>(`${this.mysqlUrl}/checkout.php`, {email, cartItems, totalPrice, address });
+  createCheckoutSession(email: string, cartItems: any[], totalPrice: number, address: string): Observable<any> {
+    return this.conexiones.post<any>(`${this.mysqlUrl}/checkout.php`, { email, cartItems, totalPrice, address });
   }
   //Lo mismo pero para los puntos
-  createCheckoutPoints(email:string, cartItems: any[], totalPoints: number, address: string): Observable<any> {
-    console.log(email, cartItems, address, totalPoints);
-    return this.conexiones.post<any>(`${this.mysqlUrl}/checkoutPoints.php`, { email,cartItems, totalPoints, address }, {
+  createCheckoutPoints(email: string, cartItems: any[], totalPoints: number, address: string): Observable<any> {
+
+    return this.conexiones.post<any>(`${this.mysqlUrl}/checkoutPoints.php`, { email, cartItems, totalPoints, address }, {
       headers: { 'Content-Type': 'application/json' }
 
     });
@@ -82,7 +82,7 @@ export class AuthService {
   updateBalance(email: string, pointsEarned: number): Observable<any> {
 
 
-    return this.conexiones.post<any>(`${this.mysqlUrl}/updateBalance.php`,  {email, pointsEarned}, {
+    return this.conexiones.post<any>(`${this.mysqlUrl}/updateBalance.php`, { email, pointsEarned }, {
       headers: { 'Content-Type': 'application/json' }
     });
   }
@@ -106,8 +106,8 @@ export class AuthService {
   }
 
 
-  getUserSession(email:string): Observable<any> {
-    return this.conexiones.post<any>(`${this.mysqlUrl}/getData.php`, {  email });
+  getUserSession(email: string): Observable<any> {
+    return this.conexiones.post<any>(`${this.mysqlUrl}/getData.php`, { email });
 
   }
 
@@ -126,26 +126,26 @@ export class AuthService {
   }
 
   // Eliminar un amigo usando el nombre de usuario
-  removeFriend(email: string, friendId:number): Observable<any> {
+  removeFriend(email: string, friendId: number): Observable<any> {
     return this.conexiones.post<any>(`${this.mysqlUrl}/removeFriend.php`, { email, friendId });
   }
 
   // Enviar saldo a un amigo con un objeto de 3 parámetros en vez de los 3 por separado
-  sendBalance( data : {senderEmail: string, receiverEmail: string, points: number} ): Observable<any> {
+  sendBalance(data: { senderEmail: string, receiverEmail: string, points: number }): Observable<any> {
 
-    return this.conexiones.post<any>(`${this.mysqlUrl}/sendBalance.php`,  data );
+    return this.conexiones.post<any>(`${this.mysqlUrl}/sendBalance.php`, data);
   }
 
 
 
 
-    logout(): void {
-      // Eliminar los datos de sesión (por ejemplo, localStorage o sessionStorage)
-      localStorage.removeItem('userData');  // O sessionStorage, según corresponda
+  logout(): void {
+    // Eliminar los datos de sesión (por ejemplo, localStorage o sessionStorage)
+    localStorage.removeItem('userData');  // O sessionStorage, según corresponda
 
-      // Redirigir a la página de inicio de sesión
-      this.router.navigate(['/login']);
-    }
+    // Redirigir a la página de inicio de sesión
+    this.router.navigate(['/login']);
+  }
 
 
 
@@ -153,23 +153,39 @@ export class AuthService {
 
   //Sacar los datos de los usuarios registrados
   getUsers(): Observable<any[]> {
-    return this.conexiones.get<any[]>(`${this.mysqlUrl}/usersRegistered.php`); // Solicitud GET al archivo PHP
+    return this.conexiones.get<any[]>(`${this.mysqlUrl}/usersRegistered.php`); //get para sacar valores sin pasar ninguno
+  }
+
+  //Insertar un nuevo producto
+  addProduct(product: any): Observable<any> {
+    return this.conexiones.post<any>(`${this.mysqlUrl}/addProduct.php`, product);
+  }
+
+  //Borrar un producto existente
+  deleteProduct(productId: number): Observable<any> {
+    return this.conexiones.delete<any>(`${this.mysqlUrl}/deleteProduct.php`, {
+      body: { id: productId },  // Pasar el ID como cuerpo de la solicitud
+      headers: ({
+        'Content-Type': 'application/json'
+      })
+    });
   }
 
 
+
+  //Sacar las valoraciones de los usuarios
+  getFeedback(): Observable<any[]> {
+    return this.conexiones.get<any[]>(`${this.mysqlUrl}/mail.php`);
+
+
+
+
+
+  }
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

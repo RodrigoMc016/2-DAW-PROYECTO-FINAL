@@ -3,25 +3,28 @@
 
 
   <!-- Formulario para agregar amigo -->
-  <div class="add-friend-form">
-    <input type="text" [(ngModel)]="newFriendUsername" placeholder="Introduce el nombre de usuario del amigo"
-      class="friend-input" />
+  <div class="friendForm">
+    <p>¡Agrega a tus amigos y envíales puntos de tu saldo!</p>
+    <input type="text" [(ngModel)]="newFriendUsername" placeholder="Introduce su nombre de usuario"
+      id="friend" />
     <button (click)="addFriend()">Agregar Amigo</button>
   </div>
 
   <!-- Lista de amigos -->
-  <div class="friends-list">
+  <div class="friendsList">
     <h3>Lista de Amigos</h3>
+
     <ul>
       <li *ngFor="let friend of friends">
+        <img src="../../../../../../assets/images/icons/user-solid.svg" alt="user_solid_icon"  width="20px" height="20px" >
         <span>{{ friend.username }}</span> <!-- Muestra el nombre de usuario del amigo -->
 
         <!-- Enviar saldo -->
-        <input type="number" [(ngModel)]="amounts[friend.id]" placeholder="Enviar saldo" class="send-amount-input" />
+        <input type="number" [(ngModel)]="amounts[friend.id]" placeholder="Enviar puntos" id="send" />
         <button (click)="sendBalance(friend.email, amounts[friend.id])">Enviar</button>
 
         <!-- Eliminar amigo -->
-        <button (click)="removeFriend(friend.id)">Eliminar</button>
+        <button (click)="removeFriend(friend.id)">X</button>
       </li>
     </ul>
   </div>

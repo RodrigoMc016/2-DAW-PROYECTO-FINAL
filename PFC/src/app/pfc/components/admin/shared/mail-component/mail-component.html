@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>BUZÓN DE VALORACIONES </h2>
+  <p>Valoraciones de los usuarios</p>
+
+  <div class="valoraciones">
+
+    <table >
+      <thead>
+        <tr>
+          <th>Correo del Usuario</th>
+          <th>Valoración</th>
+          <th>Comentario</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feedback of feedbacks">
+          <td>{{ feedback.user_email }}</td>
+          <td>{{ feedback.rating }}</td>
+          <td>{{ feedback.message }}</td>
+          <td>{{ feedback.feedback_date }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Mensaje si no hay feedbacks -->
+    <div *ngIf="feedbacks.length === 0">
+      <p>No hay feedbacks disponibles.</p>
+    </div>
+  </div>
+
+</div>
+
+
+

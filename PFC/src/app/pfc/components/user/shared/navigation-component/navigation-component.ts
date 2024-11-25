@@ -54,9 +54,9 @@ export class navigationComponent {
       this.saldo = userData.balance;  // Obtener saldo
       this.email = userData.email;  // Obtener email
       this.getSaldo();
-      console.log('Saldo:', this.saldo);
+
     }
-    console.log('ngOnInit ejecutado');
+  
     this.updateCartNumber();
 
 
@@ -74,7 +74,7 @@ export class navigationComponent {
     const newCartItems = this.cartService.getItemsNumber();
     if (newCartItems !== this.totalCartItems) {  // Solo actualizar si ha cambiado el número
       this.totalCartItems = newCartItems;
-      console.log('Actualizando totalCartItems:', this.totalCartItems);
+
     }
     // console.log('Actualizando totalCartItems:', this.totalCartItems);
   }
@@ -82,20 +82,20 @@ export class navigationComponent {
 
   //Incrementar el número de elementos en el carrito y por tanto, al lado del icono propio
   addToCart(product: Product): void {
-    console.log('Añadiendo producto al carrito:', product);
+
     this.cartService.addItem(product);
     this.updateCartNumber();
   }
 
   //Eliminar un elemento del carrito por medio de la id y por tanto disminuir el número anterior
   removeFromCart(productId: number): void {
-    console.log('Eliminando producto del carrito con ID:', productId);
+
     this.cartService.removeItem(productId);
     this.updateCartNumber();
   }
 
   getSaldo(): void {
-    console.log('Email del usuario:', this.email);
+
     // Aseguramos que el email no sea vacío o undefined
     if (!this.email) {
       console.error('Email no encontrado en los datos del usuario');

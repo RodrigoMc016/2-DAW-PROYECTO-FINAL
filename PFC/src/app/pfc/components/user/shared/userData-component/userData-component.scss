@@ -1,10 +1,32 @@
-.container{
+.container {
   width: 100%;
   padding: 0.5%;
   background-color: white;
-  height: 85vh;
-  text-align: center;
-  p{
-    color:black;
+  height: 91vh;
+
+
+
+  #datos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  h2 {
+
+    text-align: center;
+    font-family: Hudson;
+    font-size: 26px;
+    padding: 0.5%;
+    color: rgb(97, 31, 88);
+    background-color: rgb(246, 202, 235);
+  }
+
+  p {
+    font-family: Hudson;
+    font-size: 20px;
+    color:rgb(97, 31, 88);
+    font-weight: lighter;
   }
 }

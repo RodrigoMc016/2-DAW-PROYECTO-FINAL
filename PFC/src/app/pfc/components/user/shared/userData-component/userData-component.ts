@@ -34,11 +34,10 @@ export class userDataComponent implements OnInit {
     this.authService.getUserSession(email).subscribe(
       (response) => {
         this.userData = response;
-        console.log('Datos del usuario:', this.userData);
+
       },
-      (error) => {
-        console.error('Error al obtener los datos del usuario:', error);
-      }
+
+      
     );
   }
 
