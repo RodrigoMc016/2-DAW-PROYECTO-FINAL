@@ -16,6 +16,8 @@ export class AuthService {
   constructor(private conexiones: HttpClient, private router:Router) { }
 
 
+  //USUARIO
+
   //Método para guardar los datos de un usuario al registrarse
   registro(username: string, email: string, password: string): Observable<any> {
     return this.conexiones.post(`${this.mysqlUrl}/registro.php`, { username, email, password });
@@ -136,6 +138,7 @@ export class AuthService {
 
 
 
+
     logout(): void {
       // Eliminar los datos de sesión (por ejemplo, localStorage o sessionStorage)
       localStorage.removeItem('userData');  // O sessionStorage, según corresponda
@@ -143,6 +146,16 @@ export class AuthService {
       // Redirigir a la página de inicio de sesión
       this.router.navigate(['/login']);
     }
+
+
+
+  //ADMININISTRADOR
+
+  //Sacar los datos de los usuarios registrados
+  getUsers(): Observable<any[]> {
+    return this.conexiones.get<any[]>(`${this.mysqlUrl}/usersRegistered.php`); // Solicitud GET al archivo PHP
+  }
+
 
 }
 

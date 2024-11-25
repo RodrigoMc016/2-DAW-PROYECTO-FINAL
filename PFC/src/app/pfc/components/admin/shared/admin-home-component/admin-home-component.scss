@@ -1,0 +1,55 @@
+.container{
+  width: 59%;
+  margin:-42% 25%;
+  box-sizing: border-box;
+
+  .caja{
+    background-color: white;
+    height: 50vh;
+
+    h2, p{
+      text-align: center;
+    }
+    table{
+      margin: 5% auto;
+      th{
+        width: 100px;
+        padding: 2%;
+        background-color: red;
+        text-align: center;
+      }
+      td{
+        text-align: center;
+
+      }
+    }
+  }
+  footer{
+    color:white;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    h3{
+      font-family:Hudson;
+
+    }
+
+    #nets{
+      display: flex;
+      flex-direction: row;
+      margin-left:20%;
+    }
+    img {
+      margin-left:40%;
+    }
+    a{
+      color:rgb(208, 218, 14);
+    }
+  }
+
+
+
+
+}
+

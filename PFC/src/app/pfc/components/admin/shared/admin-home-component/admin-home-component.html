@@ -4,19 +4,46 @@
 
 
 
-  <section id="lista" class="text-center">
+  <section id="lista">
     <div class="caja">
 
       <div id="texto">
         <h2>LISTADO DE USUARIOS</h2>
         <p>Listado de usuarios registrados en esta página.</p>
+        <div *ngIf="users.length > 0; else noUsers">
+          <h2>Lista de Usuarios Registrados</h2>
+          <table id="listado">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Balance</th>
+                <th>Fecha de Creación</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.balance }}</td>
+                <td>{{ user.creation_date  }}</td> <!-- Formato de fecha -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <ng-template #noUsers>
+          <p>No hay usuarios registrados.</p>
+        </ng-template>
       </div>
 
     </div>
   </section>
   <br>
   <br>
-  
+
 
 
   <br>
@@ -24,6 +51,7 @@
   <br>
   <br>
   <footer>
+
     <h3>Timeless Flavour </h3>
     <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span
         property="dct:title">Timeless
@@ -41,4 +69,6 @@
     </div>
 
   </footer>
+
 </div>
+

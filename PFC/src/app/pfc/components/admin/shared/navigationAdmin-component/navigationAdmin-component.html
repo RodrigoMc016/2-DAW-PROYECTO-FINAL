@@ -20,8 +20,13 @@
         <a [routerLink]="['/TimelessFlavour-admin/promos']">PROMOCIONES</a>
       </li>
       <li id="usuario">
-        <a [routerLink]="['/TimelessFlavour-admin/mi-perfil-admin']"> <img src="../../../../../../assets/images/icons/user-solid.svg" width="20px" height="20px"  alt="user_solid_icon"></a>
-
+        <a [matMenuTriggerFor]="menu"> <img src="../../../../../../assets/images/icons/user-solid.svg" width="20px" height="20px"  alt="user_solid_icon"></a>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="adminlogout()">
+            <mat-icon>exit_to_app</mat-icon>
+            Cerrar sesión
+          </button>
+        </mat-menu>
       </li>
 
     </ul>
