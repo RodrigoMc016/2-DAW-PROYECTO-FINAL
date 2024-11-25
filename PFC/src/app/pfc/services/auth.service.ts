@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ import { Observable } from "rxjs";
 export class AuthService {
   private mysqlUrl = 'http://localhost/backend'; //enlace al backend en htdocs en php de xampp
 
-  constructor(private conexiones: HttpClient) { }
+  constructor(private conexiones: HttpClient, private router:Router) { }
 
 
   //Método para guardar los datos de un usuario al registrarse
@@ -78,9 +78,9 @@ export class AuthService {
 
   //Método para actualizar el saldo en la base de datos dependiendo del id de cada usuario logueado tras realizar una compra.
   updateBalance(email: string, pointsEarned: number): Observable<any> {
-    const body = { email, pointsEarned };
 
-    return this.conexiones.post<any>(`${this.mysqlUrl}/updateBalance.php`, body, {
+
+    return this.conexiones.post<any>(`${this.mysqlUrl}/updateBalance.php`,  {email, pointsEarned}, {
       headers: { 'Content-Type': 'application/json' }
     });
   }
@@ -112,7 +112,50 @@ export class AuthService {
   getTransactions(email: string): Observable<any> {
     return this.conexiones.post<any>(`${this.mysqlUrl}/getTransactions.php`, { email });
   }
+
+  //Obtener lista de amigos de un usuario
+  getFriends(email: string): Observable<any> {
+    return this.conexiones.post<any>(`${this.mysqlUrl}/getFriends.php`, { email });
+  }
+
+  // Agregar un nuevo amigo usando el nombre de usuario
+  addFriend(email: string, newFriendUsername: string): Observable<any> {
+    return this.conexiones.post<any>(`${this.mysqlUrl}/addFriend.php`, { email, newFriendUsername });
+  }
+
+  // Eliminar un amigo usando el nombre de usuario
+  removeFriend(email: string, friendId:number): Observable<any> {
+    return this.conexiones.post<any>(`${this.mysqlUrl}/removeFriend.php`, { email, friendId });
+  }
+
+  // Enviar saldo a un amigo con un objeto de 3 parámetros en vez de los 3 por separado
+  sendBalance( data : {senderEmail: string, receiverEmail: string, points: number} ): Observable<any> {
+
+    return this.conexiones.post<any>(`${this.mysqlUrl}/sendBalance.php`,  data );
+  }
+
+
+
+    logout(): void {
+      // Eliminar los datos de sesión (por ejemplo, localStorage o sessionStorage)
+      localStorage.removeItem('userData');  // O sessionStorage, según corresponda
+
+      // Redirigir a la página de inicio de sesión
+      this.router.navigate(['/login']);
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

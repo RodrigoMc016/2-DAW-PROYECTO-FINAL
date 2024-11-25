@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Mis Amigos</h2>
+
+
+  <!-- Formulario para agregar amigo -->
+  <div class="add-friend-form">
+    <input type="text" [(ngModel)]="newFriendUsername" placeholder="Introduce el nombre de usuario del amigo"
+      class="friend-input" />
+    <button (click)="addFriend()">Agregar Amigo</button>
+  </div>
+
+  <!-- Lista de amigos -->
+  <div class="friends-list">
+    <h3>Lista de Amigos</h3>
+    <ul>
+      <li *ngFor="let friend of friends">
+        <span>{{ friend.username }}</span> <!-- Muestra el nombre de usuario del amigo -->
+
+        <!-- Enviar saldo -->
+        <input type="number" [(ngModel)]="amounts[friend.id]" placeholder="Enviar saldo" class="send-amount-input" />
+        <button (click)="sendBalance(friend.email, amounts[friend.id])">Enviar</button>
+
+        <!-- Eliminar amigo -->
+        <button (click)="removeFriend(friend.id)">Eliminar</button>
+      </li>
+    </ul>
+  </div>
+</div>
