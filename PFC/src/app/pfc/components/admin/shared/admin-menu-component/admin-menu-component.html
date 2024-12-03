@@ -1,8 +1,8 @@
 <div class="container">
   <div class="crud">
     <div class="addProduct">
-      <h2>Agregar Producto</h2>
-      <form [formGroup]="productForm" (ngSubmit)="onSubmit()" id="form">
+      <h2>{{ editing ? 'Editar Producto' : 'Agregar Producto' }}</h2>
+      <form [formGroup]="productForm" (ngSubmit)="editing ? onUpdate() : onSubmit()" id="form" #form>
         <label for="name">Nombre del Producto</label>
         <br>
         <input id="name" formControlName="name" type="text" placeholder="Nombre del producto" />
@@ -33,7 +33,9 @@
         <br>
         <input id="image_url" formControlName="image_url" type="text" placeholder="images/products/product1.jpeg" />
         <br>
-        <button type="submit">Agregar Producto</button>
+        <button type="submit">{{ editing ? 'Actualizar Producto' : 'Agregar Producto' }}</button>
+        <br>
+        <button *ngIf="editing" type="button" (click)="cancelEdit()">Cancelar</button>
       </form>
       <p id="message" *ngIf="message" class="message">{{ message }}</p>
     </div>
@@ -79,8 +81,10 @@
               <p>{{ product.description }}</p>
               <p id="price">{{ product.price_real }} €  <span> {{ product.price_points }} puntos</span>   </p>
 
+              <button (click)="editProduct(product)">Editar</button>
 
               <button (click)="deleteProduct(product.id)">Eliminar</button>
+
             </div>
 
 

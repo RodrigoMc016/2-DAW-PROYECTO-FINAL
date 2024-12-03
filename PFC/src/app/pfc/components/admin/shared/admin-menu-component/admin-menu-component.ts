@@ -1,5 +1,5 @@
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { Product } from '../../../../interfaces/products.interface';
 import { AuthService } from '../../../../services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -22,7 +22,10 @@ import {  adminDialogComponent } from '../dialogs/adminDialog.component';
 export class adminMenuComponent  {
   productsResult: { [category: string]: Product[] } = {}; //array de productos por categoría con clave categoria, usando el modelo de la interfaz para guardar los datos
   productForm: FormGroup;
-  message:string = "";
+  editing: boolean = false; // Indica si está en modo edición
+  editingProductId: number | null = null; // ID del producto en edición
+  message: string = ""; // Mensajes para feedback del usuario
+
 
   constructor(private authService: AuthService, private dialog: MatDialog, private fb:FormBuilder) {
      // Inicializar el formulario
@@ -34,7 +37,8 @@ export class adminMenuComponent  {
       description: ['', Validators.required],
       image_url: [''], // Opcional
     });
-   }
+
+  }
 
 
 
@@ -77,14 +81,14 @@ export class adminMenuComponent  {
    openDialog(message: string): void {
     const dialogRef = this.dialog.open(adminDialogComponent, {
       data: {
-        title: 'Resultado de la eliminación',
+        title: 'Resultado de la operación',
         message: message,
       },
     });
 
     // Manejar la acción cuando se cierre el diálogo
     dialogRef.afterClosed().subscribe(() => {
-     
+
     });
   }
 
@@ -120,5 +124,52 @@ export class adminMenuComponent  {
       });
     }
   }
+
+  editProduct(product: any): void {
+    this.editing = true;
+    this.editingProductId = product.id;
+    this.productForm.patchValue({
+      name: product.name,
+      price_real: product.price_real,
+      price_points: product.price_points,
+      category_id: product.category_id,
+      description: product.description,
+      image_url: product.image_url,
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' }); //Scrollea hasta el inicio de la página para ver el formulario
+  }
+
+  //Cancelar edición
+  cancelEdit(): void {
+    this.editing = false; // Salir del modo de edición
+    this.editingProductId = null; // Limpiar el ID del producto que se estaba editando
+    this.productForm.reset(); // Restablecer el formulario
+    this.message = ''; // Limpiar cualquier mensaje
+  }
+
+
+ // Actualizar un producto
+ onUpdate(): void {
+  if (this.productForm.valid && this.editingProductId) {
+    const updatedProduct = {
+      ...this.productForm.value,
+      id: this.editingProductId,
+    };
+    this.authService.updateProduct(updatedProduct).subscribe({
+      next: (res) => {
+        this.message = 'Producto actualizado correctamente.';
+        this.editing = false;
+        this.editingProductId = null;
+        this.loadProducts(); // Recargar los productos
+        this.productForm.reset();
+      },
+      error: (err) => {
+        this.message = 'Error al actualizar el producto: ' + err.error?.error || 'Error desconocido';
+      },
+    });
+  } else {
+    this.message = 'Por favor, completa todos los campos obligatorios.';
+  }
+}
 
 }

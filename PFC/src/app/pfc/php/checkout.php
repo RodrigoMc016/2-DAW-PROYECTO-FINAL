@@ -1,16 +1,21 @@
 <?php
 
-
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS ");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT ");
 header("Content-Type: application/json; charset=UTF-8");
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
   http_response_code(200);
   exit;
 }
+
 require 'conexion.php';
-require_once('C:/xampp/htdocs/stripe-php-master/init.php');
+$path = __DIR__ . '/../stripe-php-master/init.php';
+if (file_exists($path)) {
+    require_once($path);
+} else {
+    die('El archivo init.php no se encuentra en: ' . $path);
+}
 
 // Tu clave secreta de Stripe (obténla desde el Dashboard de Stripe)
 \Stripe\Stripe::setApiKey('sk_test_51QO2bhLLsR8hkmPmFGnqAshKi1ti19gh4IgrsN3WKLnhQVkOzOA67FM6jBx7AsWVKanWSQZKbvABUNb17jqKNtNR00IpHpEqUC'); // Reemplaza con tu clave secreta
@@ -48,8 +53,8 @@ try {
       ];
     }, $cartItems),
     'mode' => 'payment', // Modo de pago: 'payment' o 'subscription'
-    'success_url' => 'http://localhost:4200/pago-realizado', // URL de éxito
-    'cancel_url' => 'http://localhost:4200/TimelessFlavour/home', // URL de cancelación
+    'success_url' => 'http://proyectotf.atwebpages.com/pago-realizado', // URL de éxito
+    'cancel_url' => 'http://proyectotf.atwebpages.com/pago-realizado', // URL de cancelación
     'shipping_address_collection' => [
       'allowed_countries' => ['ES'], // Países permitidos (por ejemplo, solo España)
     ],
@@ -58,7 +63,7 @@ try {
       'email' => $email // Hace lo mismo con email
     ]
   ]);
-  // // Comprobar si la sesión se creó correctamente
+  // Comprobar si la sesión se creó correctamente
   // if ($checkoutSession) {
   //   echo json_encode(['id' => $checkoutSession->id]); // Esta línea debería devolver el session_id
   // } else {
@@ -100,4 +105,4 @@ try {
 }
 
 
-?>
+

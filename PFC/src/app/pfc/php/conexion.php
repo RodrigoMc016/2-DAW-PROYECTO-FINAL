@@ -12,11 +12,17 @@ header("Access-Control-Allow-Methods: GET,POST");
 header("Content-Type: application/json; charset=UTF-8");
 
 
-//datos sobre la base de datos de mysql workbench
-$host = 'localhost';
-$dbname = 'timeless_flavour';
-$username = 'root';
-$password = 'admin1';
+//datos sobre la base de datos de mysql workbench para localhost
+ $host = 'localhost';
+ $dbname = 'timeless_flavour';
+ $username = 'root';
+ $password = 'admin1';
+
+
+// $host ='fdb1028.awardspace.net';
+// $dbname ='4555887_timelessflavour';
+// $username ='4555887_timelessflavour';
+// $password ='Admin1234_';
 
 //conexion con la base de datos mediante PDO
 try {

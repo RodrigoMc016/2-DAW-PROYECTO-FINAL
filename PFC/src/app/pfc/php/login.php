@@ -35,7 +35,7 @@ if ($user && password_verify($password, $user['password'])) {
         'status' => 'success',
         'message' => 'Login exitoso',
         'is_admin' => ($user['role_id'] === 1),
-        'balance' => $user['balance'], // Aquí se incluye el saldo
+        'balance' => $user['balance'],
         'role_id' => $user['role_id']
     ]);
 } else {
