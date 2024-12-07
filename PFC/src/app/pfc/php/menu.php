@@ -16,6 +16,7 @@ $sql = "
         p.description,
         p.price_real,
         p.price_points,
+        p.discounted_price,
         p.image_url
     FROM products as p
     JOIN categories as c ON p.category_id = c.id
@@ -48,6 +49,7 @@ try {
             'description' => $row['description'],
             'price_real' => (float)$row['price_real'],
             'price_points' => (int)$row['price_points'],
+            'discounted_price '=> (float)$row['price_real'],
             'image_url' => $row['image_url']
         ];
     }

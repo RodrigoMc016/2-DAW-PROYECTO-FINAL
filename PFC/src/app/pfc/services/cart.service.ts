@@ -47,7 +47,10 @@ export class CartService {
 
   // Métodos para calcular totales, el primero dinero real, el segundo puntos totales y el tercero puntos obtenidos si se comprara con dinero real
   getTotalPrice(): number {
-    return this.items.reduce((total, item) => total + item.product.price_real * item.ammount, 0);
+    return this.items.reduce((total, item) => {
+      const price = item.product.discounted_price ?? item.product.price_real; // Usar el precio con la rebaja aplicada si esta ya calculado
+      return total + price * item.ammount;
+    }, 0);
   }
 
   getTotalPoints(): number {
@@ -57,6 +60,7 @@ export class CartService {
   getPointsEarned(): number {
     return this.getTotalPoints() * 0.5; // El 50% del total de puntos de ganancia para el saldo
   }
+
 
   // Eliminar un producto o disminuir su cantidad, usando findIndex para buscar el primer elemento
   removeItem(productId: number): void {
@@ -75,6 +79,8 @@ export class CartService {
   getProductById(productId: number): { product: Product; ammount: number } | undefined {
     return this.items.find(item => item.product.id === productId);  // Busca el producto en el carrito por su ID
   }
+
+
 
   // Método para actualizar la salsa del producto en el carrito
   updateSauce(productId: number, sauce: string): void {
@@ -96,6 +102,41 @@ export class CartService {
   clearCart(): void {
     this.items = [];
     console.log('El carrito ha sido vaciado');
+  }
+
+
+  //
+  checkPromoStatus(productId: number): boolean {
+    const product = this.getProductById(productId)?.product;
+    if (!product) return false;
+
+    // Si no hay descuento o el precio descontado es nulo
+    return product.discounted_price !== null;
+  }
+
+  applyPromoCode(promoCode: { code: string; discount: number; product_id?: number; category_name?: string }): boolean {
+    let discountApplied = false;
+
+    this.items.forEach((item) => {
+      console.log('Verificando descuento para el producto:', item.product.name);
+      console.log('Precio real:', item.product.price_real);
+      console.log('Descuento aplicado:', promoCode.discount);
+      console.log('Precio con descuento anterior:', item.product.discounted_price);
+
+      if (promoCode.product_id && item.product.id === promoCode.product_id) {
+        item.product.discounted_price = item.product.price_real - (item.product.price_real * promoCode.discount) / 100;
+        discountApplied = true;
+      }
+
+      if (promoCode.category_name && item.product.category === promoCode.category_name) {
+        item.product.discounted_price = item.product.price_real - (item.product.price_real * promoCode.discount) / 100;
+        discountApplied = true;
+      }
+
+      console.log('Nuevo precio con descuento:', item.product.discounted_price);
+    });
+
+    return discountApplied;
   }
 
 }

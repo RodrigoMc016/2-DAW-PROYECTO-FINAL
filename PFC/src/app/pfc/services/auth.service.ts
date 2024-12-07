@@ -12,7 +12,7 @@ import { Router } from "@angular/router";
 
 export class AuthService {
   // private mysqlUrl="http://proyectotf.atwebpages.com/php";
-   private mysqlUrl = 'http://localhost/backend'; //enlace al backend en htdocs en php de xampp
+  private mysqlUrl = 'http://localhost/backend'; //enlace al backend en htdocs en php de xampp
 
   constructor(private conexiones: HttpClient, private router: Router) { }
 
@@ -186,6 +186,37 @@ export class AuthService {
 
 
   }
+
+
+  // Obtener todos los códigos promocionales
+  getPromos(): Observable<any> {
+    return this.conexiones.get(`${this.mysqlUrl}/getPromos.php`);
+  }
+
+  // Crear un nuevo código promocional
+  addPromos(promoCode: { code: string; discount: number; product_id?: number | null; category_name?: string | null; }): Observable<any> {
+    return this.conexiones.post(`${this.mysqlUrl}/addPromo.php`, promoCode);
+  }
+
+
+  //actualizar un código promocional
+  updatePromo(code: string): Observable<any> {
+    return this.conexiones.post(`${this.mysqlUrl}/updatePromo.php`, { code });
+  }
+
+
+  //borrar un código de promoción
+  deletePromo(code: string): Observable<any> {
+    return this.conexiones.post(`${this.mysqlUrl}/deletePromo.php`, { code });
+  }
+
+  //aplicar un descuento
+  applyPromo(code: string): Observable<any> {
+    return this.conexiones.post(`${this.mysqlUrl}/applyPromo.php`, { code })
+  }
+
+
+
 
 
 

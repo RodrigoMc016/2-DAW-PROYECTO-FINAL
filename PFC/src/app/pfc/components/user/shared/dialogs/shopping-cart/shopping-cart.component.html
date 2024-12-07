@@ -1,19 +1,36 @@
 <div class="cart-modal">
   <h2>Carrito</h2>
 
+  <!-- Campo para ingresar el código de promoción -->
+  <mat-form-field>
+    <mat-label>Código de promoción</mat-label>
+    <input matInput placeholder="Ingresa tu código de promoción" [(ngModel)]="code" name="promoCode">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="applyPromoCode()">Aplicar código</button>
+
   <div *ngIf="cartItems.length > 0; else emptyCart">
     <div *ngFor="let item of cartItems">
-      <p>{{ item.product.name }} <span *ngIf="item.product.sauce">y Salsa: {{ item.product.sauce }}></span><span
-          *ngIf="item.product.cookingPoint">Punto: {{item.product.cookingPoint}}</span></p>
-          <p>Precio total: {{ item.product.price_real * item.ammount }} €</p>
-          <p>Puntos: {{ item.product.price_points * item.ammount }}</p>
+      <p>{{ item.product.name }}
+        <span *ngIf="item.product.sauce">y Salsa: {{ item.product.sauce }}</span>
+        <span *ngIf="item.product.cookingPoint">Punto: {{ item.product.cookingPoint }}</span>
+      </p>
+      <span *ngIf="item.product.discounted_price">
+        <span class="price-info">
+          Precio real: {{ item.product.price_real  }}€ -> Precio rebajado: {{ item.product.discounted_price  }}€
+        </span>
+      </span>
+      <span *ngIf="!item.product.discounted_price">
+        Precio: {{ item.product.price_real  }}€
+      </span>
+      <p>Puntos: {{ item.product.price_points * item.ammount }}</p>
 
-      <p><button id="minus" (click)="decrementQuantity(item.product.id)">-</button>Cantidad: {{ item.ammount }} <button id="plus" (click)="incrementQuantity(item.product.id)">+</button></p>
-
-
+      <p>
+        <button id="minus" (click)="decrementQuantity(item.product.id)">-</button>
+        Cantidad: {{ item.ammount }}
+        <button id="plus" (click)="incrementQuantity(item.product.id)">+</button>
+      </p>
     </div>
-    <br>
-    <br>
+    <br><br>
 
     <div class="totals">
       <p>Total en €: {{ totalPrice }}</p>
@@ -22,21 +39,16 @@
     </div>
 
     <!-- Campo de dirección con validación -->
-    <mat-form-field id="Botones" >
+    <mat-form-field id="Botones">
       <mat-label>Dirección de envío</mat-label>
       <input matInput placeholder="Ingresa tu dirección" [(ngModel)]="address" name="address" required>
-      <mat-error *ngIf="!address ">La dirección es obligatoria.</mat-error>
+      <mat-error *ngIf="!address">La dirección es obligatoria.</mat-error>
     </mat-form-field>
-
-
 
     <div class="buttons">
       <button mat-raised-button color="primary" (click)="checkout()">Pagar con Dinero</button>
       <button mat-raised-button color="accent" (click)="checkoutPoints()">Pagar con Puntos</button>
     </div>
-
-
-
   </div>
 
   <ng-template #emptyCart>

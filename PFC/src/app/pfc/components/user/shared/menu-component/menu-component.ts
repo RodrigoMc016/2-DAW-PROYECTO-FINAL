@@ -28,6 +28,8 @@ export class MenuComponent {
 
   productsResult: { [category: string]: Product[] } = {}; //array de productos por categoría con clave categoria, usando el modelo de la interfaz para guardar los datos
   cartItemsTotal:number = 0;
+  
+
 
   constructor(private authService: AuthService, private dialog: MatDialog, private cartService:CartService) { }
 
@@ -131,6 +133,8 @@ export class MenuComponent {
     this.cartItemsTotal = this.cartService.getItemsNumber();
     console.log('Número de productos en el carrito:', this.cartItemsTotal);
   }
+
+
 
 
 }

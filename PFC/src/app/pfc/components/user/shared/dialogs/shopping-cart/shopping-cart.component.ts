@@ -41,6 +41,10 @@ export class shoppingCartComponent {
   totalPoints: number = 0;
   pointsEarned: number = 0;
   address: string = "";
+  code: string = "";
+  message: string = "";
+  errorMessage: string = "";
+
 
   constructor(private cartService: CartService, private authService: AuthService, private cdr: ChangeDetectorRef) { }
 
@@ -109,7 +113,7 @@ export class shoppingCartComponent {
     // Verifica que tanto el email como la dirección estén presentes
     if (address.trim() !== '') {
       // Llamada al backend para crear la sesión de pago
-      this.authService.createCheckoutSession(email,cartItems, totalPrice, address).subscribe(
+      this.authService.createCheckoutSession(email, cartItems, totalPrice, address).subscribe(
         (response: any) => {
           if (response.id && this.stripe) {
             console.log('id', response.id);
@@ -148,14 +152,14 @@ export class shoppingCartComponent {
     const email = userData?.email;
     const saldo = this.saldo;
     console.log('Enviando datos al backend:', {
-      saldo:saldo,
+      saldo: saldo,
       email: email,
       cartItems: cartItems,
       totalPoints: totalPoints,
       address: address
     });
-      // Verificar si el saldo es suficiente para la compra
-     // Verificar si el saldo es suficiente para la compra
+    // Verificar si el saldo es suficiente para la compra
+    // Verificar si el saldo es suficiente para la compra
 
 
     // Asegúrate de que la llamada al backend se realice correctamente
@@ -180,8 +184,38 @@ export class shoppingCartComponent {
       }
     );
   }
-}
 
+
+  applyPromoCode(): void {
+    this.authService.applyPromo(this.code).subscribe({
+      next: (res) => {
+        console.log('Respuesta del backend:', res);
+
+        if (res.success) {
+          // Actualizar precios de los productos afectados
+          res.updated_products.forEach((updatedProduct: { id: number; discounted_price: number | undefined; }) => {
+            const product = this.cartItems.find(item => item.product.id === updatedProduct.id);
+            if (product) {
+              product.product.discounted_price = updatedProduct.discounted_price;
+            }
+          });
+
+          // Actualizar el carrito y recalcular totales
+          this.updateCart();
+          console.log('Descuento aplicado correctamente');
+        } else {
+          this.errorMessage = res.error || 'Error desconocido';
+          console.error('Error al aplicar el código promocional:', res.error);
+        }
+      },
+      error: () => {
+        this.errorMessage = 'Error al aplicar el código promocional.';
+        console.error('Error al aplicar el código promocional');
+      }
+    });
+  }
+
+}
 
 
 
