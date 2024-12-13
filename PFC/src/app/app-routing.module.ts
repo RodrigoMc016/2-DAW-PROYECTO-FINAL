@@ -17,6 +17,7 @@ import { adminMenuComponent } from './pfc/components/admin/shared/admin-menu-com
 import { paymentConfirmedComponent } from './pfc/components/user/shared/payment-confirmed/payment.component';
 import { historyComponent } from './pfc/components/user/shared/history-component/history-component';
 import { friendsComponent } from './pfc/components/user/shared/friends-list-component/friends-list-component';
+import { promoUserComponent } from './pfc/components/user/shared/promotions-component/promotions-component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -42,7 +43,7 @@ const routes: Routes = [
       {path:'mis-datos', component:userDataComponent},
       {path:'mis-movimientos', component:historyComponent},
       {path:'amigos', component:friendsComponent},
-      {path:'mis-promociones', component:promoComponent},
+      {path:'mis-promociones', component:promoUserComponent},
 
     ]},
 
