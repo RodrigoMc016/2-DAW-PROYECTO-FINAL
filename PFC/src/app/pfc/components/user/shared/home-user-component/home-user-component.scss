@@ -145,3 +145,193 @@
   }
 
 }
+
+
+@media(max-width:1309px){
+    .container{
+      margin-top:-700px;
+
+      section#carta{
+        width: 100%;
+      }
+      section{
+        width: 650PX;
+        .caja{
+          #imagen{
+            img{
+              height: 100%;
+            }
+          }
+          #texto{
+            p{
+              height: 70%;
+            }
+          }
+        }
+      }
+
+
+      #trio{
+        grid-template-columns: 1fr 1fr;
+      }
+      footer{
+        h3{
+          font-size: 25px;
+        }
+        #nets{
+          img{
+            margin-left:80%;
+          }
+        }
+      }
+    }
+}
+
+
+@media(max-width:800px){
+  .container{
+    margin-top:-500px;
+
+
+
+    section#carta{
+      width: 100%;
+    }
+    section{
+      margin-left:-10px;
+      width: 500PX;
+      .caja{
+
+        #imagen{
+          img{
+            height: 100%;
+            width: 100%;
+          }
+        }
+        #texto{
+          p{
+            height: 55%;
+          }
+        }
+      }
+    }
+
+
+    #trio{
+      margin-left:-10px;
+      grid-template-columns: 1fr;
+    }
+    footer{
+      p{
+        margin-left:80px;
+      }
+      h3{
+        font-size: 25px;
+      }
+      #nets{
+        img{
+          margin-left:100%;
+        }
+      }
+    }
+  }
+}
+
+
+@media(max-width:450px){
+  .container{
+    margin-top:-500px;
+    margin-left:300px;
+
+
+    section#carta{
+      width: 270%;
+    }
+    section{
+      margin-left:-10px;
+      width: 700PX;
+      .caja{
+
+        #imagen{
+          img{
+            height: 100%;
+            width: 100%;
+          }
+        }
+        #texto{
+          p{
+            height: 55%;
+          }
+        }
+      }
+    }
+
+
+    #trio{
+      margin-left:-10px;
+      grid-template-columns: 1fr;
+    }
+    footer{
+      p{
+        margin-left:80px;
+      }
+      h3{
+        font-size: 40px;
+      }
+      #nets{
+        img{
+          margin-left:250%;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width:330px){
+  .container{
+    margin-top:-400px;
+    margin-left:150px;
+
+
+    section#carta{
+      width: 870px;
+    }
+    section{
+      margin-left:-10px;
+      width: 900PX;
+      .caja{
+
+        #imagen{
+          img{
+            height: 100%;
+            width: 100%;
+          }
+        }
+        #texto{
+          p{
+            height: 55%;
+          }
+        }
+      }
+    }
+
+
+    #trio{
+      margin-left:-10px;
+      grid-template-columns: 1fr;
+    }
+    footer{
+      p{
+        margin-left:80px;
+      }
+      h3{
+        font-size: 40px;
+      }
+      #nets{
+        img{
+          margin-left:400%;
+        }
+      }
+    }
+  }
+}
