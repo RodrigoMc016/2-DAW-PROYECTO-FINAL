@@ -104,7 +104,7 @@
       left: -10px;
     }
 
-  
+
   }
 }
 
@@ -155,6 +155,9 @@
 
 @media(max-width:870px) {
   .container {
+    #titulo{
+      left:-170px;
+    }
     nav ul {
       margin: 5.5%;
 
@@ -188,7 +191,7 @@
     }
 
     #titulo {
-      left: -100px;
+      left: -150px;
       bottom: 335px;
     }
 

@@ -218,3 +218,454 @@
 
 
 }
+
+
+@media(max-width:1320px) {
+  .container {
+    width: 59%;
+    margin: -60% 20%;
+    box-sizing: border-box;
+
+
+    #submenu {
+
+      ul {
+        margin-top: -200px;
+
+        li a {
+          padding: 5%;
+        }
+
+      }
+
+
+
+    }
+
+    section {
+      margin-left: -30px;
+
+      .cajas {
+        h2 {
+          width: 910px;
+        }
+      }
+
+      .caja {
+        padding: 0.5%;
+
+        display: grid;
+        gap: 40px;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        #boton {
+          padding: 2.5%;
+        }
+
+        #boton:hover {
+          cursor: pointer;
+
+        }
+      }
+
+      #producto {
+        background-color: white;
+        width: 290px;
+        padding: 3.5%;
+
+        p {
+          font-size: 14px;
+        }
+
+        p#price {
+          font-size: 20px;
+
+          span {
+            margin-left: 25px;
+          }
+
+        }
+
+        img {
+          width: 290px;
+          height: 290px;
+        }
+
+
+      }
+    }
+  }
+}
+
+
+@media(max-width:1025px) {
+  .container {
+    width: 59%;
+    margin: -75% 20%;
+    box-sizing: border-box;
+
+    .addProduct{
+      margin-top:250px;
+    }
+
+    #submenu {
+
+      ul {
+        padding: 25px 305px;
+        gap: 30px;
+        margin-top: 100px;
+
+        li a {
+          padding: 5%;
+        }
+
+      }
+
+
+
+    }
+
+    section {
+      margin-left: -60px;
+
+      .cajas {
+        h2 {
+          width: 700px;
+          margin-left: 50px;
+        }
+      }
+
+      .caja {
+        padding: 0.5%;
+
+        display: grid;
+        gap: 40px;
+        grid-template-columns: 1fr 1fr;
+
+        #boton {
+          padding: 2.5%;
+        }
+
+        #boton:hover {
+          cursor: pointer;
+
+        }
+      }
+
+      #producto {
+        background-color: white;
+        width: 290px;
+        padding: 3.5%;
+        margin-left: 30%;
+
+        p {
+          font-size: 14px;
+        }
+
+        p#price {
+          font-size: 20px;
+
+          span {
+            margin-left: 25px;
+          }
+
+        }
+
+        img {
+          width: 290px;
+          height: 290px;
+        }
+
+
+      }
+    }
+
+    footer{
+      p{
+        margin-left:80px;
+      }
+      h3{
+        font-size: 40px;
+      }
+      #nets{
+        img{
+          margin-left:80%;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width:800px) {
+  .container {
+    width: 59%;
+    margin: -75% 20%;
+    box-sizing: border-box;
+    .addProduct{
+      margin-top:50px;
+      margin-left:50px;
+    }
+
+    #submenu {
+
+      ul {
+        padding: 25px 305px;
+        gap: 30px;
+        margin-top: 100px;
+        margin-left:-40px;
+
+        li a {
+          padding: 5%;
+        }
+
+      }
+
+
+
+    }
+
+    section {
+      margin-left: -100px;
+
+      .cajas {
+        h2 {
+          width: 570px;
+          margin-left: 50px;
+        }
+      }
+
+      .caja {
+        padding: 0.5%;
+
+        display: grid;
+        gap: 40px;
+        grid-template-columns: 1fr 1fr;
+
+        #boton {
+          padding: 2.5%;
+        }
+
+        #boton:hover {
+          cursor: pointer;
+
+        }
+      }
+
+      #producto {
+        background-color: white;
+        width: 290px;
+        padding: 3.5%;
+        margin-left: 15%;
+
+        p {
+          font-size: 14px;
+        }
+
+        p#price {
+          font-size: 20px;
+
+          span {
+            margin-left: 25px;
+          }
+
+        }
+
+        img {
+          width: 290px;
+          height: 290px;
+        }
+
+
+      }
+    }
+  }
+}
+
+@media(max-width:479px){
+
+  .container {
+    width: 59%;
+    margin: -125% 20%;
+    box-sizing: border-box;
+    .addProduct{
+      margin-left:320px;
+    }
+
+    #submenu {
+
+      ul {
+        padding: 25px 305px;
+        gap: 30px;
+        margin-top: 50px;
+        margin-left:-10px;
+
+        li a {
+          padding: 5%;
+        }
+
+      }
+
+
+
+    }
+
+    section {
+      margin-left: -60px;
+
+      .cajas {
+        h2 {
+          width: 500px;
+          margin-left: 70px;
+        }
+      }
+
+      .caja {
+        padding: 0.5%;
+
+        display: grid;
+        gap: 40px;
+        grid-template-columns: 1fr ;
+
+        #boton {
+          padding: 2.5%;
+        }
+
+        #boton:hover {
+          cursor: pointer;
+
+        }
+      }
+
+      #producto {
+        background-color: white;
+        width: 290px;
+        padding: 3.5%;
+        margin-left: 50%;
+
+        p {
+          font-size: 14px;
+        }
+
+        p#price {
+          font-size: 20px;
+
+          span {
+            margin-left: 25px;
+          }
+
+        }
+
+        img {
+          width: 290px;
+          height: 290px;
+        }
+
+
+      }
+    }
+    footer{
+      margin-left:200px;
+      p{
+        margin-left:80px;
+      }
+      h3{
+        font-size: 40px;
+      }
+      #nets{
+        img{
+          margin-left:200%;
+        }
+      }
+    }
+  }
+}
+
+
+@media(max-width:430px){
+  .container {
+    width: 59%;
+    margin: -125% 20%;
+    box-sizing: border-box;
+
+    .addProduct{
+      width: 600px;
+      margin-left:200px;
+
+    }
+
+    #submenu {
+
+      ul {
+        width: 600px;
+        padding: 25px 305px;
+        gap: 30px;
+        margin-top: 100px;
+        margin-left:90%;
+
+        li a {
+          padding: 5%;
+        }
+
+      }
+
+
+
+    }
+
+    section {
+      margin-left:40%;
+
+      .cajas {
+        h2 {
+          width: 900px;
+          margin-left: -10px;
+        }
+      }
+
+      .caja {
+        padding: 0.5%;
+
+        display: grid;
+        gap: 40px;
+        grid-template-columns: 1fr;
+
+        #boton {
+          padding: 2.5%;
+        }
+
+        #boton:hover {
+          cursor: pointer;
+
+        }
+      }
+
+      #producto {
+        background-color: white;
+        width: 290px;
+        padding: 3.5%;
+        margin-left: 90%;
+
+        p {
+          font-size: 14px;
+        }
+
+        p#price {
+          font-size: 20px;
+
+          span {
+            margin-left: 25px;
+          }
+
+        }
+
+        img {
+          width: 290px;
+          height: 290px;
+        }
+
+
+      }
+    }
+  }
+}
+

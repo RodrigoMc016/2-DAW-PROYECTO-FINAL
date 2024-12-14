@@ -14,7 +14,7 @@
         <span *ngIf="item.product.sauce">y Salsa: {{ item.product.sauce }}</span>
         <span *ngIf="item.product.cookingPoint">Punto: {{ item.product.cookingPoint }}</span>
       </p>
-      <span *ngIf="item.product.discounted_price">
+      <span *ngIf="item.product.discounted_price" id="precio">
         <span class="price-info">
           Precio real: {{ item.product.price_real  }}€ -> Precio rebajado: {{ item.product.discounted_price  }}€
         </span>
