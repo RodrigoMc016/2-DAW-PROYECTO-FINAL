@@ -161,6 +161,7 @@
     }
 
     nav ul {
+      gap: 10px;
       #carrito {
         margin-left: -7.5%;
       }
@@ -209,6 +210,7 @@
 
 @media(max-width:769px) {
   .container {
+
     nav ul {
       margin-top: 10.5%;
 
@@ -231,7 +233,7 @@
 
     #titulo {
       left: -100px;
-      bottom: 455px;
+      bottom: 335px;
     }
 
 
@@ -271,6 +273,7 @@
 
       position: absolute;
       transform: none !important;
+      top:-5%;
       left: 50%;
 
       h1 {
@@ -284,7 +287,7 @@
 
     nav {
       margin-top:20%;
-      margin-left: -1%;
+      margin-left: 10%;
       width: 150vh;
 
       ul {

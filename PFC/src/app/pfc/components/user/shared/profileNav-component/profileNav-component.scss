@@ -8,6 +8,7 @@
     display: grid;
     grid-template-columns: 0.5fr 1.5fr;
 
+
     section{
       border:1px black solid;
       background-color: white;
@@ -26,12 +27,13 @@
     }
     li {
       margin-bottom: 40px;
+      margin-right:20px;
     }
     a {
       color:#8a1538;
       text-decoration: none;
       display: inline-block;
-      margin:2.5%;
+
     }
 
     a:hover{
@@ -47,6 +49,11 @@
       margin: 20px auto;
       font-weight: bold;
 
+    }
+    button:hover{
+      background-color:#8a1538;
+      color:rgb(240, 240, 169);
+      cursor: pointer;
     }
 
 
@@ -78,4 +85,54 @@
 
 
 
+
+
+
+}
+
+@media(max-width:1300px){
+  .container{
+    margin-top:-700px;
+
+    .cajas{
+      margin-left:-90px;
+    }
+  }
+}
+
+@media(max-width:950px){
+  .container{
+    margin-top:-550px;
+    margin-left:29%;
+
+  }
+}
+
+@media(max-width:500px){
+  .container{
+    margin-top:-500px;
+    margin-left:60%;
+
+  }
+  .cajas{
+    width: 900px;
+    grid-template-columns: 2fr 4fr;
+  }
+  footer {
+    margin-left:50%;
+    p {
+      margin-left: 80px;
+    }
+
+    h3 {
+      font-size: 40px;
+    }
+
+    #nets {
+      img {
+        margin-top:90%;
+        margin-left: 200%;
+      }
+    }
+  }
 }

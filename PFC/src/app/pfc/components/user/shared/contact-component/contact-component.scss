@@ -1,7 +1,7 @@
 .container {
 
   width: 59%;
-  margin:-42% 25%;
+  margin: -42% 25%;
   box-sizing: border-box;
 
 
@@ -163,10 +163,11 @@
 
     form {
       margin-left: 20%;
-      #respuesta{
+
+      #respuesta {
         font-family: Hudson;
-        color:green;
-        margin-top:10px;
+        color: green;
+        margin-top: 10px;
 
       }
 
@@ -206,19 +207,154 @@
         font-size: 13px;
         padding: 1%;
         border: 3px solid rgb(183, 34, 34);
-        font-family:"Gotham", sans-serif;
+        font-family: "Gotham", sans-serif;
         color: black;
         font-weight: bolder;
       }
 
-      button:hover{
+      button:hover {
         cursor: pointer;
         background-color: rgb(183, 34, 34);
-        color:white;
-        border:3px solid white;
+        color: white;
+        border: 3px solid white;
       }
     }
 
   }
 
+}
+
+
+@media(max-width:1200px) {
+  .container {
+    margin-top: -700px;
+
+    #localizacion {
+      .caja2 {
+        figure iframe {
+          width: 500px;
+          height: 500px;
+        }
+      }
+    }
+  }
+
+
+
+}
+
+
+@media(max-width:800px) {
+  .container {
+    margin-top: -500px;
+
+
+    section {
+      width: 120%;
+
+
+    }
+
+    #localizacion {
+      .caja2 {
+        figure iframe {
+          width: 400px;
+          height: 400px;
+        }
+      }
+    }
+
+    footer {
+      p {
+        margin-left: 80px;
+      }
+
+      h3 {
+        font-size: 25px;
+      }
+
+      #nets {
+        img {
+          margin-left: 100%;
+        }
+      }
+    }
+  }
+}
+
+
+@media(max-width:480px) {
+  .container {
+    margin-top: -450px;
+
+    section {
+      margin-left: 80%;
+      width: 300%;
+      height: auto;
+    }
+
+    footer {
+      margin-left:50%;
+      p {
+        margin-left: 80px;
+      }
+
+      h3 {
+        font-size: 40px;
+      }
+
+      #nets {
+        img {
+          margin-top:90%;
+          margin-left: 400%;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width:376px){
+  .container{
+    margin-top: -400px;
+
+    footer{
+      margin-left:85%;
+      p {
+        margin-left: 80px;
+      }
+
+      h3 {
+        font-size: 40px;
+      }
+
+      #nets {
+        img {
+          margin-top:90%;
+          margin-left: 250%;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width:326px){
+  .container{
+    footer{
+      margin-left:85%;
+      p {
+        margin-left: 80px;
+      }
+
+      h3 {
+        font-size: 40px;
+      }
+
+      #nets {
+        img {
+          margin-top:90%;
+          margin-left: 130%;
+        }
+      }
+    }
+  }
 }
