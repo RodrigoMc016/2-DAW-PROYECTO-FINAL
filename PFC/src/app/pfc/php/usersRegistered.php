@@ -16,13 +16,18 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                 users.username,
                 users.email,
                 users.creation_date,
-                users.balance
+                users.balance,
+                COUNT(transactions.id) AS purchase_count -- Contar compras por usuario
             FROM
                 users
             JOIN
                 roles ON users.role_id = roles.id
+            LEFT JOIN
+                transactions ON users.email = transactions.email -- Relacionar con las transacciones
             WHERE
                 users.role_id = 2  -- Filtra solo los usuarios con role_id = 2
+            GROUP BY
+                users.id, users.username, users.email, users.creation_date, users.balance -- Agrupación necesaria
             ORDER BY
                 users.creation_date DESC;
         ";

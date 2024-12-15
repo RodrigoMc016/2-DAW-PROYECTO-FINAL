@@ -100,7 +100,7 @@
   }
 }
 
-@media(max-width:950px){
+@media(max-width:1050px){
   .container{
     margin-top:-550px;
     margin-left:29%;
@@ -111,7 +111,7 @@
 @media(max-width:500px){
   .container{
     margin-top:-500px;
-    margin-left:60%;
+    margin-left:90%;
 
   }
   .cajas{
@@ -119,7 +119,7 @@
     grid-template-columns: 2fr 4fr;
   }
   footer {
-    margin-left:50%;
+    margin-left:-15%;
     p {
       margin-left: 80px;
     }
@@ -131,7 +131,7 @@
     #nets {
       img {
         margin-top:90%;
-        margin-left: 200%;
+        margin-left: 140%;
       }
     }
   }

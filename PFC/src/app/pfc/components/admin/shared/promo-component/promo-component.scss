@@ -1,7 +1,100 @@
-.container{
+.container {
   width: 59%;
-  margin:-42% 25%;
+  margin: -42% 25%;
   box-sizing: border-box;
+  padding: 2%;
   background-color: white;
   height: auto;
+  text-align: center;
+
+  h2 {
+    padding: 0.3%;
+    color: rgb(97, 31, 88);
+    text-align: center;
+    font-family: Hudson;
+    background-color: rgb(246, 202, 235);
+  }
+
+  label {
+    color: rgb(183, 34, 34);
+    font-weight: 500;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  p {
+    color: green;
+    text-align: center;
+    margin-top: 1px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+
+      text-align: center;
+    }
+
+    th {
+      background-color: rgb(246, 202, 235);
+      color: rgb(97, 31, 88);
+    }
+
+    button {
+      margin: 2.5%;
+    }
+
+    button#borrar {
+      background-color: rgb(164, 39, 39);
+      color: white;
+    }
+
+    button#desactivar {
+      background-color: orange;
+      color: white;
+      border-color: rgb(147, 31, 31);
+    }
+
+  }
+
+}
+
+@media(max-width:1025px) {
+  .container {
+    margin-left:120px;
+    width: 600px;
+    margin-top: -550px;
+  }
+}
+
+@media(max-width:600px){
+  .container{
+    margin-left:350px;
+  }
+}
+
+@media(max-width:390px){
+  .container{
+    width: 700px;
+    margin-top:-300px;
+    margin-left:250px;
+  }
+}
+
+@media(max-width:325px){
+  .container{
+    width: 800px;
+    margin-top:-300px;
+    margin-left:200px;
+  }
 }

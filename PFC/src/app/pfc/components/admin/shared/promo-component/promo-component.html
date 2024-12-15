@@ -3,48 +3,28 @@
 
   <!-- Formulario para Crear un Código Promocional -->
   <div class="promo-form">
-    <h3>Crear Código Promocional</h3>
+
     <form (submit)="createPromoCode()">
       <label for="code">Código:</label>
-      <input
-        type="text"
-        id="code"
-        [(ngModel)]="newPromoCode.code"
-        name="code"
-        required
-        placeholder="Ingresa el código"
-      />
+
+      <input type="text" id="code" [(ngModel)]="newPromoCode.code" name="code" required
+        placeholder="Ingresa el código" />
+      <br>
 
       <label for="discount">Descuento (%):</label>
-      <input
-        type="number"
-        id="discount"
-        [(ngModel)]="newPromoCode.discount"
-        name="discount"
-        required
-        min="1"
-        max="100"
-        placeholder="Descuento en porcentaje"
-      />
 
+      <input type="number" id="discount" [(ngModel)]="newPromoCode.discount" name="discount" required min="1" max="100"
+        placeholder="Descuento en porcentaje" />
+      <br>
       <label for="product_id">ID del Producto (opcional):</label>
-      <input
-        type="number"
-        id="product_id"
-        [(ngModel)]="newPromoCode.product_id"
-        name="product_id"
-        placeholder="ID del Producto"
-      />
-
+      <input type="number" id="product_id" [(ngModel)]="newPromoCode.product_id" name="product_id"  min="1"
+        placeholder="ID del Producto" />
+      <br>
       <label for="category_id">Nombre de la Categoría (opcional):</label>
-      <input
-        type="text"
-        id="category_name"
-        [(ngModel)]="newPromoCode.category_name"
-        name="category_name"
-        placeholder="Nombre de la Categoría"
-      />
+      <input type="text" id="category_name" [(ngModel)]="newPromoCode.category_name" name="category_name"
+        placeholder="Nombre de la Categoría" />
 
+        <br>
       <button type="submit" [disabled]="!newPromoCode.code || !newPromoCode.discount">
         Crear Código
       </button>
@@ -59,25 +39,31 @@
       <thead>
         <tr>
           <th>Código</th>
+
           <th>Descuento (%)</th>
+
           <th>Producto</th>
+
           <th>Categoría</th>
+
           <th>Activo</th>
+
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let promo of promoCodes">
+
           <td>{{ promo.code }}</td>
           <td>{{ promo.discount }}%</td>
-          <td>{{ promo.product_id  }}</td>
-          <td>{{ promo.category_name  }}</td>
+          <td>{{ promo.product_id }}</td>
+          <td>{{ promo.category_name }}</td>
           <td>{{ promo.is_active ? 'Sí' : 'No' }}</td>
           <td>
-            <button (click)="updatePromoCode(promo.code)" [disabled]="!promo.is_active">
+            <button (click)="updatePromoCode(promo.code)" [disabled]="!promo.is_active" id="desactivar">
               Desactivar
             </button>
-            <button (click)="deletePromoCode(promo.code)">Borrar</button>
+            <button (click)="deletePromoCode(promo.code)" id="borrar">Borrar</button>
           </td>
         </tr>
       </tbody>

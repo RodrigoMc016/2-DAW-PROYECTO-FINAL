@@ -1,1 +1,29 @@
-<h2>HOLA</h2>
+<div class="container">
+  <h2>PROMOCIONES ACTIVAS</h2>
+  <table *ngIf="promoCodes.length > 0" border="1">
+    <thead>
+      <tr>
+        <th>Código</th>
+
+        <th>Descuento (%)</th>
+
+        <th>Producto</th>
+
+        <th>Categoría</th>
+
+        <th>Activo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let promo of promoCodes">
+
+        <td>{{ promo.code }}</td>
+        <td>{{ promo.discount }}%</td>
+        <td>{{ promo.product_id }}</td>
+        <td>{{ promo.category_name }}</td>
+        <td>{{ promo.is_active ? 'Sí' : 'No' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

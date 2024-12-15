@@ -15,10 +15,11 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Username</th>
+                <th>Usuario</th>
                 <th>Email</th>
                 <th>Balance</th>
                 <th>Fecha de Creación</th>
+                <th>Compras realizadas</th>
               </tr>
             </thead>
             <tbody>
@@ -27,7 +28,8 @@
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.balance }}</td>
-                <td>{{ user.creation_date  }}</td> <!-- Formato de fecha -->
+                <td>{{ user.creation_date  }}</td>
+                <td>{{user.purchase_count}}</td>
               </tr>
             </tbody>
           </table>
