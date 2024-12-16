@@ -51,6 +51,9 @@
       border-radius: .3rem;
       outline: 0;
       box-sizing: border-box;
+      .modal-body{
+        padding: 2%;
+      }
 
       .modal-header {
         display: flex;

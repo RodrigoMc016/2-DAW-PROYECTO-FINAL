@@ -35,7 +35,7 @@
         <br>
         <button type="submit">{{ editing ? 'Actualizar Producto' : 'Agregar Producto' }}</button>
         <br>
-        <button *ngIf="editing" type="button" (click)="cancelEdit()">Cancelar</button>
+        <button *ngIf="editing" type="button" (click)="cancelEdit()" id="boton">Cancelar</button>
       </form>
       <p id="message" *ngIf="message" class="message">{{ message }}</p>
     </div>
@@ -91,9 +91,9 @@
           </div>
         </div>
       </div>
-      <div id="inicio">
+      <!-- <div id="inicio">
         <button>^</button>
-      </div>
+      </div> -->
 
     </div>
   </section>
@@ -110,10 +110,11 @@
           style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
           src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""></a></p>
 
-    <div id="nets">
-      <img src="../../../../../../assets/images/icons/instagram.png" width="34px" height="34px" alt="instagram_png">
-      <img src="../../../../../../assets/images/icons/github.png" width="31px" height="32px"  alt="github_png">
-    </div>
+          <div id="nets">
+            <a href="https://www.instagram.com/rodrigomonterrubiocastro/?hl=es"> <img src="../../../../../../assets/images/icons/instagram.png" width="34px" height="34px" alt="instagram_png" ></a>
+            <a href="https://github.com/RodrigoMc016/2-DAW-PROYECTO-FINAL"> <img  src="../../../../../../assets/images/icons/github.png" width="31px" height="32px" alt="github_png" ></a>
+
+          </div>
 
   </footer>
 

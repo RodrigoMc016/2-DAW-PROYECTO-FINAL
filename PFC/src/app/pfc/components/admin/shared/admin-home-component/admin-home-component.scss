@@ -7,18 +7,27 @@
     background-color: white;
     height: 50vh;
 
+    h2{
+      font-family: Hudson;
+      color: rgb(97, 31, 88);
+      background-color: rgb(246, 202, 235);
+      text-align: center;
+    }
+
     h2, p{
       text-align: center;
     }
     table{
       margin: 5% auto;
       th{
+
         width: 100px;
         padding: 2%;
-        background-color: red;
+        background-color: rgb(243, 79, 79);
         text-align: center;
       }
       td{
+        background-color: aliceblue;
         text-align: center;
 
       }
@@ -40,7 +49,7 @@
       flex-direction: row;
       margin-left:20%;
     }
-    img {
+    a {
       margin-left:40%;
     }
     a{
@@ -77,7 +86,7 @@
         font-size: 40px;
       }
       #nets{
-        img{
+        a{
           margin-left:80%;
         }
       }
@@ -110,7 +119,7 @@
           font-size: 40px;
         }
         #nets{
-          img{
+          a{
             margin-left:250%;
           }
         }
@@ -134,7 +143,7 @@
           font-size: 40px;
         }
         #nets{
-          img{
+          a{
             margin-left:250%;
           }
         }

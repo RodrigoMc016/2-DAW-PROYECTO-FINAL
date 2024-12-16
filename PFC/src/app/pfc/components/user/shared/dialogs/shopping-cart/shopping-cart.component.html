@@ -1,14 +1,14 @@
 <div class="cart-modal">
-  <h2>Carrito</h2>
+  <h2>TU PEDIDO</h2>
 
   <!-- Campo para ingresar el código de promoción -->
   <mat-form-field>
     <mat-label>Código de promoción</mat-label>
     <input matInput placeholder="Ingresa tu código de promoción" [(ngModel)]="code" name="promoCode">
   </mat-form-field>
-  <button mat-raised-button color="primary" (click)="applyPromoCode()">Aplicar código</button>
+  <button id="promoButton" (click)="applyPromoCode()">Aplicar código</button>
 
-  <div *ngIf="cartItems.length > 0; else emptyCart">
+  <div *ngIf="cartItems.length > 0; else emptyCart" >
     <div *ngFor="let item of cartItems">
       <p>{{ item.product.name }}
         <span *ngIf="item.product.sauce">y Salsa: {{ item.product.sauce }}</span>

@@ -160,6 +160,16 @@
     background-color: white;
     padding: 2%;
 
+    button{
+      padding: 1.5%;
+      background-color: #8a1538;
+      color:white;
+    }
+    button:hover{
+      background-color: black;
+      cursor: pointer;
+    }
+
     h2 {
       padding: 0.3%;
       color: rgb(97, 31, 88);
@@ -180,6 +190,7 @@
     }
 
     p {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
       color: green;
       text-align: center;
       margin-top: 1px;
@@ -207,7 +218,7 @@
       margin-left: 20%;
     }
 
-    img {
+    a {
       margin-left: 40%;
     }
 
@@ -388,7 +399,7 @@
         font-size: 40px;
       }
       #nets{
-        img{
+        a{
           margin-left:80%;
         }
       }
@@ -572,7 +583,7 @@
         font-size: 40px;
       }
       #nets{
-        img{
+        a{
           margin-left:200%;
         }
       }

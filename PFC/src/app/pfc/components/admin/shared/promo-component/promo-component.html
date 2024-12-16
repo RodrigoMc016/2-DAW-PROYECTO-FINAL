@@ -1,6 +1,8 @@
 <div class="container">
   <h2>Gestión de Códigos Promocionales</h2>
-
+  <span>Cree sus códigos de descuento para determinados productos de una categoría o id específico. Pulse en eliminar para borrarlo definitivamente o desactivar para desactivarlo.</span>
+  <br>
+  <br>
   <!-- Formulario para Crear un Código Promocional -->
   <div class="promo-form">
 
@@ -34,6 +36,7 @@
   <!-- Lista de Códigos Promocionales -->
   <div class="promo-list">
     <h3>Códigos Promocionales Actuales</h3>
+
     <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
     <table *ngIf="promoCodes.length > 0" border="1">
       <thead>

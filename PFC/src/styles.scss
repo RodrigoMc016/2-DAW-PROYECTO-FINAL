@@ -11,11 +11,13 @@ html {
 .mat-mdc-checkbox .mat-internal-form-field {
 --mat-checkbox-label-text-color: black;
 }
-
+.mat-mdc-radio-button .mat-internal-form-field{
+  --mat-radio-label-text-color:black;
+}
 ::ng-deep .mat-dialog-content {
   width: 100%; /* Asegura que el contenido ocupe todo el ancho disponible */
   overflow: hidden; /* Evita el scroll horizontal */
-  padding: 20px; /* Ajusta el padding según necesites */
+  padding: 20px;
 }
 
 

@@ -6,6 +6,9 @@
   background-color: white;
   height: auto;
   text-align: center;
+  span{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
 
   h2 {
     padding: 0.3%;
@@ -59,10 +62,20 @@
       color: white;
     }
 
+    button#borrar:hover{
+      cursor: pointer;
+      background-color: red;
+    }
+
     button#desactivar {
       background-color: orange;
       color: white;
       border-color: rgb(147, 31, 31);
+    }
+
+    button#desactivar:hover{
+      cursor: pointer;
+      background-color: black;
     }
 
   }
