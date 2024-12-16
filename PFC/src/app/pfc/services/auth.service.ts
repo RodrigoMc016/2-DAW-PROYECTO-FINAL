@@ -11,8 +11,8 @@ import { Router } from "@angular/router";
 
 
 export class AuthService {
-  // private mysqlUrl="http://proyectotf.atwebpages.com/php";
-  private mysqlUrl = 'http://localhost/backend'; //enlace al backend en htdocs en php de xampp
+   private mysqlUrl="http://proyectotf.atwebpages.com/php";
+  // private mysqlUrl = 'http://localhost/backend'; //enlace al backend en htdocs en php de xampp
 
   constructor(private conexiones: HttpClient, private router: Router) { }
 
