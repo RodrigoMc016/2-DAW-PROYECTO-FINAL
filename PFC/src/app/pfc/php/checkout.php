@@ -57,8 +57,8 @@ try {
       ];
     }, $cartItems),
     'mode' => 'payment', // Modo de pago: 'payment' o 'subscription'
-    'success_url' => 'http://localhost:4200/pago-realizado', // URL de éxito
-    'cancel_url' => 'http://proyectotf.atwebpages.com/pago-realizado', // URL de cancelación (en este caso del hosting)
+    'success_url' => 'http://proyectotf.atwebpages.com/pago-realizado', // URL de éxito
+    'cancel_url' => 'http://localhost:4200/pago-realizado', // URL de cancelación (en este caso del hosting)
     'shipping_address_collection' => [
       'allowed_countries' => ['ES'], // Países permitidos (por ejemplo, solo España)
     ],
