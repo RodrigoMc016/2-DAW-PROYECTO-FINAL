@@ -1,15 +1,15 @@
 <?php
 
 //control de errores
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ ini_set('display_errors', 1);
+ ini_set('display_startup_errors', 1);
+ error_reporting(E_ALL);
 
 //para que acepte cosas del CORS
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
-header("Access-Control-Allow-Methods: GET,POST");
-header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: GET,POST, OPTIONS");
+header("Content-Type: application/json; charset=UTF-8, Authorization");
 
 
 //datos sobre la base de datos de mysql workbench para localhost
