@@ -199,11 +199,17 @@ export class AuthService {
   }
 
 
-  //actualizar un código promocional
+  //actualizar un código promocional para desactivarlo
   updatePromo(code: string): Observable<any> {
     return this.conexiones.post(`${this.mysqlUrl}/updatePromo.php`, { code });
   }
 
+
+  //lo mismo pero para activarlo
+
+  activatePromo(code: string): Observable<any> {
+    return this.conexiones.post(`${this.mysqlUrl}/update2Promo.php`, { code });
+  }
 
   //borrar un código de promoción
   deletePromo(code: string): Observable<any> {
