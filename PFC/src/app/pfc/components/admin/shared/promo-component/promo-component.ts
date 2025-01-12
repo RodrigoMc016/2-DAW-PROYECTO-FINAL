@@ -89,26 +89,26 @@ export class promoComponent {
     );
   }
 
-  //Activación de codigos de promoción
-  activatePromoCode(code: string): void {
-    this.authService.activatePromo(code).subscribe(
-      () => {
-        this.dialog.open(confirmationDialogComponent, {
-          data: {
-            message: 'Código promocional reactivado exitosamente.'
-          }
-        });
-        this.loadPromoCodes(); 
-      },
-      () => {
-        this.dialog.open(confirmationDialogComponent, {
-          data: {
-            message: 'Error al reactivar el código promocional.'
-          }
-        });
-      }
-    );
-  }
+   //Activación de codigos de promoción
+  // activatePromoCode(code: string): void {
+  //   this.authService.activatePromo(code).subscribe(
+  //     () => {
+  //       this.dialog.open(confirmationDialogComponent, {
+  //         data: {
+  //           message: 'Código promocional reactivado exitosamente.'
+  //         }
+  //       });
+  //       this.loadPromoCodes();
+  //     },
+  //     () => {
+  //       this.dialog.open(confirmationDialogComponent, {
+  //         data: {
+  //           message: 'Error al reactivar el código promocional.'
+  //         }
+  //       });
+  //     }
+  //   );
+  // }
 
   //Borrado de códigos de promocion
   deletePromoCode(code: string): void {
