@@ -24,6 +24,8 @@ export class homeAdminComponent  {
 
   users: any[] = [];  //ARRAY PARA USUARIOS OBTENIDOS
   constructor(private authService:AuthService) { }
+
+  //Carga de datos al iniciar la página
   ngOnInit(): void {
     this.authService.getUsers().subscribe(
       (data) => {

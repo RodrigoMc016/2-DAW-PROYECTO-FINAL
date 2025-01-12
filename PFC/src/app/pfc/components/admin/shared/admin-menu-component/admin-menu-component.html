@@ -68,7 +68,7 @@
     <div class="cajas">
 
       <div *ngFor="let category of productsResult | keyvalue" class="categoria" [id]="category.key">
-        <!--Uso del pipe keyvalue para iterar sobre un objeto y convertirlo en un array "asociativo"-->
+        <!--Uso del pipe keyvalue para iterar sobre un objeto y convertirlo en un array "asociativo", es decir, como un diccionario y usa el id con la clave del par actual -->
         <h2>{{ category.key}}</h2> <!-- Nombre de la categoría usando el .key que es la clave-->
         <div class="caja">
 
@@ -91,9 +91,6 @@
           </div>
         </div>
       </div>
-      <!-- <div id="inicio">
-        <button>^</button>
-      </div> -->
 
     </div>
   </section>

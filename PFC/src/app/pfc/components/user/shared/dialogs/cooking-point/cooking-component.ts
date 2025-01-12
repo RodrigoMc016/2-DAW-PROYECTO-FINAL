@@ -52,7 +52,7 @@ export class cookingPointComponent  {
     }
   }
 
-  // Método para cancelar
+  // Método para cancelar y cerrar el modal
   cancel(): void {
     this.dialogRef.close();
   }
