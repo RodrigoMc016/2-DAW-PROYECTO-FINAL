@@ -34,7 +34,8 @@
             <img [src]="'../../../../../../assets/' + product.image_url" alt="{{ product.name }}"
               class="product-image" />
             <div class="text">
-              <h3>{{ product.name }}</h3>
+
+              <h3>{{product.id}}. {{ product.name }}</h3>
               <p>{{ product.description }}</p>
               <p id="price">{{ product.price_real }} €  <span> {{ product.price_points }} puntos</span>   </p>
 

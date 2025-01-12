@@ -8,8 +8,8 @@ import { homeAdminComponent } from './pfc/components/admin/shared/admin-home-com
 import { homeUserComponent } from './pfc/components/user/shared/home-user-component/home-user-component';
 import { MenuComponent } from './pfc/components/user/shared/menu-component/menu-component';
 import { ContactComponent } from './pfc/components/user/shared/contact-component/contact-component';
-import {  ProfileNavComponent } from './pfc/components/user/shared/profileNav-component/profileNav-component';
-import {  userDataComponent } from './pfc/components/user/shared/userData-component/userData-component';
+import { ProfileNavComponent } from './pfc/components/user/shared/profileNav-component/profileNav-component';
+import { userDataComponent } from './pfc/components/user/shared/userData-component/userData-component';
 import { mailComponent } from './pfc/components/admin/shared/mail-component/mail-component';
 import { promoComponent } from './pfc/components/admin/shared/promo-component/promo-component';
 import { adminProfileComponent } from './pfc/components/admin/shared/admin-profile-component/admin-profile-component';
@@ -18,6 +18,7 @@ import { paymentConfirmedComponent } from './pfc/components/user/shared/payment-
 import { historyComponent } from './pfc/components/user/shared/history-component/history-component';
 import { friendsComponent } from './pfc/components/user/shared/friends-list-component/friends-list-component';
 import { promoUserComponent } from './pfc/components/user/shared/promotions-component/promotions-component';
+import { paymentCancelledComponent } from './pfc/components/user/shared/payment-cancelled/payment-cancelled';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -25,36 +26,43 @@ const routes: Routes = [
   { path: 'crea-tu-cuenta', component: AccountComponent },
 
 
-  {path:'TimelessFlavour-admin', component: adminComponent, children:[
-    {path:'home-admin', component: homeAdminComponent},
-    {path:'menu-admin', component:adminMenuComponent},
-    {path:'mail', component: mailComponent},
-    {path:'promos', component:promoComponent},
-    {path:'mi-perfil-admin', component:adminProfileComponent},
+  {
+    path: 'TimelessFlavour-admin', component: adminComponent, children: [
+      { path: 'home-admin', component: homeAdminComponent },
+      { path: 'menu-admin', component: adminMenuComponent },
+      { path: 'mail', component: mailComponent },
+      { path: 'promos', component: promoComponent },
+      { path: 'mi-perfil-admin', component: adminProfileComponent },
 
-  ]},
+    ]
+  },
 
-  {path:'TimelessFlavour', component:UserComponent, children:[
-    {path:'home', component:homeUserComponent},
-    {path:'menu', component:MenuComponent },
+  {
+    path: 'TimelessFlavour', component: UserComponent, children: [
+      { path: 'home', component: homeUserComponent },
+      { path: 'menu', component: MenuComponent },
 
-    {path:'contacto', component:ContactComponent},
-    {path:'mi-perfil', component:ProfileNavComponent, children:[
-      {path:'mis-datos', component:userDataComponent},
-      {path:'mis-movimientos', component:historyComponent},
-      {path:'amigos', component:friendsComponent},
-      {path:'mis-promociones', component:promoUserComponent},
+      { path: 'contacto', component: ContactComponent },
+      {
+        path: 'mi-perfil', component: ProfileNavComponent, children: [
+          { path: 'mis-datos', component: userDataComponent },
+          { path: 'mis-movimientos', component: historyComponent },
+          { path: 'amigos', component: friendsComponent },
+          { path: 'mis-promociones', component: promoUserComponent },
 
-    ]},
+        ]
+      },
 
 
-  ]},
-  {path:'pago-realizado', component:paymentConfirmedComponent},
+    ]
+  },
+  { path: 'pago-realizado', component: paymentConfirmedComponent },
+  { path: 'pago-cancelado', component: paymentCancelledComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
 

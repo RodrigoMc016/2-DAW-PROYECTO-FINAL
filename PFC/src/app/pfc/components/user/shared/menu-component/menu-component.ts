@@ -28,7 +28,7 @@ export class MenuComponent {
 
   productsResult: { [category: string]: Product[] } = {}; //array de productos por categoría con clave categoria, usando el modelo de la interfaz para guardar los datos
   cartItemsTotal:number = 0;
-  
+
 
 
   constructor(private authService: AuthService, private dialog: MatDialog, private cartService:CartService) { }
@@ -40,12 +40,10 @@ export class MenuComponent {
   loadProducts(): void {
     this.authService.mostrarMenu().subscribe(
       (data) => {
-        console.log(data);
+
         this.productsResult = data; //asigna lo que de el json a productsResult
-      },
-      (error) => {
-        console.log("Error");
       }
+
     )
   }
 
@@ -67,10 +65,11 @@ export class MenuComponent {
     // Si el elemento existe, desplazarse suavemente a esa sección
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      console.log(`No se encontró la categoría ${categoryId}`);
     }
   }
+
+
+  //MODALES PARA EL MENU
 
   openCookingPointDialog(product: Product): void {
     const dialogRef = this.dialog.open(cookingPointComponent, {
@@ -78,15 +77,6 @@ export class MenuComponent {
       data: { product }
 
     });
-
-
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log(`Producto: ${product.name}, Punto de cocción: ${result}`);
-      }
-    })
-
 
 
 
@@ -100,11 +90,7 @@ export class MenuComponent {
     });
 
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log(`Producto: ${product.name}, Salsa a elegir: ${result}`);
-      }
-    })
+
 
 
 
@@ -113,6 +99,7 @@ export class MenuComponent {
 
   }
 
+  //Este al ser el más básico actualiza una vez cerrado con el boton de añadir, el numero del carrito
   openNormalDialog(product:Product): void{
     const dialogRef = this.dialog.open(normalDialogComponent, {
       width: '300px',
@@ -121,7 +108,6 @@ export class MenuComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log(`Producto: ${product.name}`);
         this.updateCartCount();
       }
     })
@@ -131,7 +117,7 @@ export class MenuComponent {
   updateCartCount(): void {
 
     this.cartItemsTotal = this.cartService.getItemsNumber();
-    console.log('Número de productos en el carrito:', this.cartItemsTotal);
+    
   }
 
 

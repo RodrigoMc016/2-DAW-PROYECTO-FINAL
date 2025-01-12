@@ -23,11 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             JOIN
                 roles ON users.role_id = roles.id
             LEFT JOIN
-                transactions ON users.email = transactions.email -- Relacionar con las transacciones
+                transactions ON users.email = transactions.email -- Relacionar con las transacciones por la izquierda
             WHERE
-                users.role_id = 2  -- Filtra solo los usuarios con role_id = 2
+                users.role_id = 2  --  solo los usuarios con role_id = 2
             GROUP BY
-                users.id, users.username, users.email, users.creation_date, users.balance -- Agrupación necesaria
+                users.id, users.username, users.email, users.creation_date, users.balance 
             ORDER BY
                 users.creation_date DESC;
         ";

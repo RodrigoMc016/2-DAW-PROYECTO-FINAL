@@ -11,8 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 require 'conexion.php';
-$path = __DIR__ . '/../stripe-php-master/init.php';
+$path = __DIR__ . '/../stripe-php-master/init.php'; //DIR devuele la ruta del directorio actual y se concatena con el otro trozo para buscar ese archivo de esa carpeta
+//Si el archivo existe hace el require, es decir lo usa aqui, si no manda un mensaje de error
 if (file_exists($path)) {
+
     require_once($path);
 } else {
     die('El archivo init.php no se encuentra en: ' . $path);
@@ -57,8 +59,8 @@ try {
       ];
     }, $cartItems),
     'mode' => 'payment', // Modo de pago: 'payment' o 'subscription'
-    'success_url' => 'http://proyectotf.atwebpages.com/pago-realizado', // URL de éxito
-    'cancel_url' => 'http://localhost:4200/pago-realizado', // URL de cancelación (en este caso del hosting)
+    'success_url' => 'http://proyectotf.atwebpages.com/pago-realizado', // URL de éxitom, en caso de localhost: http://localhost:4200/pago-realizado
+    'cancel_url' => 'http://proyectotf.atwebpages.com/pago-cancelado', // URL de cancelación o error de pago http://localhost:4200/pago-cancelado'
     'shipping_address_collection' => [
       'allowed_countries' => ['ES'], // Países permitidos (por ejemplo, solo España)
     ],
@@ -70,7 +72,7 @@ try {
 
   // Realizar la transacción y registrar la compra
   try {
-    $conexionBD->beginTransaction(); // Iniciar una transacción SQL
+    $conexionBD->beginTransaction(); // Iniciar una transacción SQL, es decir, detecta que va a tener propiedades especiales como el commit y el rollback
 
     $insertTransactionQuery = "
       INSERT INTO transactions (email, euros_used , description, address)
@@ -86,17 +88,17 @@ try {
     $stmt->bindParam(':address', $address);
     $stmt->execute();
 
-    $conexionBD->commit(); // Confirmar la transacción SQL
+    $conexionBD->commit(); // Confirmar la transacción SQL, es decir la compra
     echo json_encode(['id' => $checkoutSession->id]); // Devolver el session_id
 
   } catch (PDOException $e) {
-    $conexionBD->rollBack(); // Revertir cambios en caso de error
+    $conexionBD->rollBack(); // Revertir cambios en caso de error, y devolverte por tanto el dinero
     error_log("Error al registrar la transacción: " . $e->getMessage());
     echo json_encode(['error' => 'Error al registrar la transacción en la base de datos']);
   }
 
 } catch (\Stripe\Exception\ApiErrorException $e) {
-  // Si ocurre un error, lo mostramos
+  // Si ocurre un error se muestra
   echo json_encode(['error' => $e->getMessage()]);
 }
 

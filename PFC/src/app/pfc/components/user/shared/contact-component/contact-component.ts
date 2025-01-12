@@ -35,14 +35,14 @@ export class ContactComponent {
 
   envioFeedback() {
     if (this.formularioFeedback.valid) {
-      console.log(this.formularioFeedback.value);
+
       this.feedbackService.sendFeedBack(this.formularioFeedback.value).subscribe(response => {
-        console.log("Enviado", response);
+
         this.mensaje = response.resultado ||  "Feedback enviado con éxito."; //asignar una respuesta al mensaje que devuelve
         this.formularioFeedback.reset(); /*todos los campos se vuelven a resetear una vez enviado*/
 
       }, error => {
-        console.log("Error", error);
+    
         this.mensaje="Ha ocurrido un error, por favor inténtelo de nuevo."
       });
     }else{

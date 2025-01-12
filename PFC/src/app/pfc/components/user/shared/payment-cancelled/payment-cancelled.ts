@@ -5,9 +5,9 @@ import { CartService } from '../../../../services/cart.service';
 
 
 @Component({
-  selector: 'payment-success',
-  templateUrl: 'payment.component.html',
-  styleUrl: 'payment.component.scss',
+  selector: 'payment-error',
+  templateUrl: 'payment-cancelled.html',
+  styleUrl: 'payment-cancelled.scss',
   standalone: true,
   imports: [
     RouterLink,
@@ -16,9 +16,9 @@ import { CartService } from '../../../../services/cart.service';
 
 })
 
-export class paymentConfirmedComponent {
+export class paymentCancelledComponent {
 
-
+;
 
   constructor(
     private route: ActivatedRoute,

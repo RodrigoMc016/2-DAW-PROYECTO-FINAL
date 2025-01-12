@@ -49,10 +49,8 @@ export class adminMenuComponent  {
       (data) => {
 
         this.productsResult = data; //asigna lo que de el json a productsResult
-      },
-      (error) => {
-        console.log("Error");
       }
+
     )
   }
 

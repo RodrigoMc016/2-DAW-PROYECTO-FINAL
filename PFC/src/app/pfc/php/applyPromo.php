@@ -37,7 +37,7 @@ try {
 
     // Aplicar descuento a productos o categorías
     if ($promo['product_id']) {
-        // Actualizar precio descontado para un producto específico
+        // Actualizar precio descontado para un producto específico de una categoria 
         $sql = "UPDATE products SET discounted_price = price_real - (price_real * :discount / 100) WHERE id = :product_id";
         $stmt = $conexionBD->prepare($sql);
         $stmt->bindParam(':discount', $promo['discount']);
@@ -52,7 +52,7 @@ try {
         $updatedProducts[] = $stmt->fetch(PDO::FETCH_ASSOC);
 
     } elseif ($promo['category_name']) {
-        // Actualizar precio descontado para una categoría completa
+        // Actualizar precio ya rebajado para los items de una categoria
         $sql = "UPDATE products p
                 JOIN categories c ON p.category_id = c.id
                 SET p.discounted_price = p.price_real - (p.price_real * :discount / 100)

@@ -17,5 +17,12 @@ export class confirmationDialogComponent {
     close(): void {
       this.dialogRef.close();
     }
+    onConfirm(): void {
+      this.dialogRef.close(true); // Devuelve true al confirmar
+    }
+
+    onCancel():void{
+      this.dialogRef.close(false);
+    }
 
 }

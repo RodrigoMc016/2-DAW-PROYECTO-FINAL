@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json; charset=UTF-8");
-// Si es una solicitud OPTIONS (preflight request), solo respondemos con un status 200
+// Si es una solicitud OPTIONS (preflight request), que salga con codigo 200 la respuesta
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
   http_response_code(200);
   exit;
@@ -45,7 +45,7 @@ try {
 
     $friend_id = $friend['id'];
 
-    // Insertar la relación de amistad
+    // Insertar la relación de amistad y agregarle a tu lista 
     $insertQuery = "INSERT INTO user_friends (user_id, friend_id) VALUES (:user_id, :friend_id)";
     $insertStmt = $conexionBD->prepare($insertQuery);
     $insertStmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);

@@ -47,7 +47,6 @@ export class AccountComponent {
   }
   registroDatos(): void {
     if (this.cuenta.valid) {
-      console.log('Enviando datos:', this.cuenta.value);  // Verifica los datos que se envían
       this.authService.registro(this.cuenta.value.usuario, this.cuenta.value.correo, this.cuenta.value.contrasenia).subscribe(
         (response) => {
 
@@ -56,7 +55,7 @@ export class AccountComponent {
 
       );
     } else {
-      console.log('Error: El formulario no es válido');
+  
     }
   }
   irLogin(): void {

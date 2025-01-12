@@ -45,5 +45,18 @@
 
   button{
     margin-right:5px;
+
+    background-color: #f4dec7;
+    font-family: Hudson;
+    border-color: rgb(97, 31, 88);
+    color: rgb(97, 31, 88);
+    padding: 1.5%;
+  }
+  button:hover{
+    cursor: pointer;
+    background-color: black;
+    border-color:#8a1538;
+    color:white;
+
   }
 }

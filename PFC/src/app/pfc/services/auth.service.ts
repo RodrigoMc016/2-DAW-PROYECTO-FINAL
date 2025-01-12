@@ -11,7 +11,8 @@ import { Router } from "@angular/router";
 
 
 export class AuthService {
-   private mysqlUrl="http://proyectotf.atwebpages.com/php";
+  private mysqlUrl="http://localhost/backend/"; //url para local
+  //  private mysqlUrl="http://proyectotf.atwebpages.com/php"; //url para hosting
 
   constructor(private conexiones: HttpClient, private router: Router) { }
 
@@ -62,8 +63,8 @@ export class AuthService {
 
   // Método para obtener los datos del usuario desde sessionStorage
   getUserData(): any {
-    const userData = sessionStorage.getItem('user'); // Recupera los datos de sessionStorage
-    return userData ? JSON.parse(userData) : null; // Si los datos existen, los parsea; si no, devuelve null
+    const userData = sessionStorage.getItem('user'); // Coge los datos de sessionStorage
+    return userData ? JSON.parse(userData) : null; // Si los datos existen, los parsea o formatea a JSON; si no, devuelve null
   }
 
 
@@ -156,7 +157,7 @@ export class AuthService {
     return this.conexiones.get<any[]>(`${this.mysqlUrl}/usersRegistered.php`); //get para sacar valores sin pasar ninguno
   }
 
-  //Insertar un nuevo producto
+  //Insertar un nuevo producto con post pasando un argumento : el producto.
   addProduct(product: any): Observable<any> {
     return this.conexiones.post<any>(`${this.mysqlUrl}/addProduct.php`, product);
   }

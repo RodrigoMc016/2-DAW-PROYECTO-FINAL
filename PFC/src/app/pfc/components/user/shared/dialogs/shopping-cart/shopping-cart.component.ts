@@ -1,5 +1,5 @@
-import { RedirectToCheckoutOptions } from './../../../../../../../../node_modules/@stripe/stripe-js/dist/stripe-js/hosted-checkout.d';
-import { ChangeDetectorRef, Component, NgModule } from '@angular/core';
+
+import { Component, NgModule } from '@angular/core';
 import { CartService } from '../../../../../services/cart.service';
 import { Product } from '../../../../../interfaces/products.interface';
 import { NgFor, NgIf } from '@angular/common';
@@ -9,6 +9,9 @@ import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { FormsModule, NgModel } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { catchError, of } from 'rxjs';
+import { DialogRef } from '@angular/cdk/dialog';
+import { confirmationDialogComponent } from '../confirmation/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'carrito',
@@ -22,7 +25,8 @@ import { catchError, of } from 'rxjs';
     MatLabel,
     MatError,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    confirmationDialogComponent
 
 
   ]
@@ -46,30 +50,27 @@ export class shoppingCartComponent {
   errorMessage: string = "";
 
 
-  constructor(private cartService: CartService, private authService: AuthService, private cdr: ChangeDetectorRef) { }
+  constructor(private cartService: CartService, private authService: AuthService, public dialog: MatDialog) { }
 
   async ngOnInit(): Promise<void> {
     //Load stripe devuelve una promesa, y para ello hay que
     // cargar Stripe de forma asincrónica ya que al no estar lista stripe:Stripe, no estará disponible inmediatamente
     //por lo que se espera a que primero se resuelva para luego usar este objeto.
-    //Clave pública de stripe
-    try {
-      console.log('Cargando Stripe...');
-      //Clave pública de strippe
-      this.stripe = await loadStripe('pk_test_51QO2bhLLsR8hkmPmACseaCCUAvHnlHhnTnQ0OxnhpnjUnsKpbK6QTHJdseTbyyRZQtltzm7ziuHDRYI8t33dr0n200x9wciWuf');
-      console.log('Stripe cargado:', this.stripe);
 
-      this.updateCart();
-      console.log('Puntos totales:', this.totalPoints);
 
-      this.saldo = this.authService.getBalance();
-      const saldoPuntos = this.pointsEarned;
-      this.saldo += saldoPuntos;
 
-      console.log('Saldo calculado:', this.saldo);
-    } catch (error) {
-      console.error('Error cargando Stripe:', error);
-    }
+    //Clave pública de strippe
+    this.stripe = await loadStripe('pk_test_51QO2bhLLsR8hkmPmACseaCCUAvHnlHhnTnQ0OxnhpnjUnsKpbK6QTHJdseTbyyRZQtltzm7ziuHDRYI8t33dr0n200x9wciWuf');
+
+
+    this.updateCart();
+
+
+    this.saldo = this.authService.getBalance();
+    const saldoPuntos = this.pointsEarned;
+    this.saldo += saldoPuntos;
+
+
   }
 
   // Actualizar el carrito con información de los totales
@@ -78,8 +79,7 @@ export class shoppingCartComponent {
     this.totalPrice = this.cartService.getTotalPrice();
     this.totalPoints = this.cartService.getTotalPoints();
     this.pointsEarned = this.cartService.getPointsEarned();
-    // console.log('Carrito actualizado:', this.cartItems);
-    // console.log('Puntos totales:', this.totalPoints);
+
   }
 
   // Método para incrementar cantidad de un producto
@@ -105,10 +105,7 @@ export class shoppingCartComponent {
     const email = userData?.email; //sacar el email
     const address = this.address;
 
-    console.log('User email:', email);
-    console.log('Total Points:', totalPoints);
-    console.log('Total Price:', totalPrice);
-    console.log('Dirección:', address);
+
 
     // Verifica que tanto el email como la dirección estén presentes
     if (address.trim() !== '') {
@@ -116,11 +113,11 @@ export class shoppingCartComponent {
       this.authService.createCheckoutSession(email, cartItems, totalPrice, address).subscribe(
         (response: any) => {
           if (response.id && this.stripe) {
-            console.log('id', response.id);
+
             // Enviar el ID del usuario y los puntos ganados como parte de la sesión de pago
             this.authService.updateBalance(email, totalPoints).subscribe(
-              (updateResponse: any) => {
-                console.log('Balance actualizado:', updateResponse);
+              (result: any) => {
+
                 // Redirigir a Stripe Checkout con el sessionId devuelto desde el backend
                 this.stripe?.redirectToCheckout({ sessionId: response.id }).then((result: any) => {
                   if (result.error) {
@@ -151,50 +148,48 @@ export class shoppingCartComponent {
     const address = this.address;  // Dirección ingresada por el usuario
     const email = userData?.email;
     const saldo = this.saldo;
-    console.log('Enviando datos al backend:', {
-      saldo: saldo,
-      email: email,
-      cartItems: cartItems,
-      totalPoints: totalPoints,
-      address: address
-    });
-    // Verificar si el saldo es suficiente para la compra
-    // Verificar si el saldo es suficiente para la compra
 
 
-    // Asegúrate de que la llamada al backend se realice correctamente
+
+
+
     this.authService.createCheckoutPoints(email, cartItems, totalPoints, address).subscribe(
       (response: any) => {
-        console.log("Esta es", response);
+
         // Verifica que la respuesta esté en el formato esperado
         if (response && response.success) {
 
-          console.log('Respuesta del backend:', response);
-          alert('¡Compra realizada exitosamente usando puntos!');
 
-          this.cartService.clearCart();
-          this.updateCart();
-          window.location.reload();
+          this.dialog.open(confirmationDialogComponent, {
+            data: {
+              message: 'Compra realizada exitosamente.'
+            }
+          }).afterClosed().subscribe(() => {
+            this.cartService.clearCart();
+            this.updateCart();
+            window.location.reload();
+          });
 
         } else {
-          console.log('Respuesta del backend:', response);
-          console.error('Error al procesar el pago con puntos:', response?.message || 'Respuesta indefinida');
-          alert('Ocurrió un error durante la compra, inténtalo de nuevo');
+          this.dialog.open(confirmationDialogComponent, {
+            data: {
+              message: 'Ha ocurrido un error durante la compra, vuelva a intentarlo.'
+            }
+          });
         }
       }
     );
   }
 
-
+  //Método para aplicar el descuento calculado al item/s seleccionados
   applyPromoCode(): void {
     this.authService.applyPromo(this.code).subscribe({
       next: (res) => {
-        console.log('Respuesta del backend:', res);
-
         if (res.success) {
-          // Actualizar precios de los productos afectados
+          // Actualizar precios de los productos escogidos
           res.updated_products.forEach((updatedProduct: { id: number; discounted_price: number | undefined; }) => {
             const product = this.cartItems.find(item => item.product.id === updatedProduct.id);
+            //Si existe el producto se le aplica el descuento añadiendole el valor
             if (product) {
               product.product.discounted_price = updatedProduct.discounted_price;
             }
@@ -202,7 +197,6 @@ export class shoppingCartComponent {
 
           // Actualizar el carrito y recalcular totales
           this.updateCart();
-          console.log('Descuento aplicado correctamente');
         } else {
           this.errorMessage = res.error || 'Error desconocido';
           console.error('Error al aplicar el código promocional:', res.error);

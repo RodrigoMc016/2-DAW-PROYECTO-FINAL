@@ -57,13 +57,11 @@ export class LoginComponent {
   enviar() {
     if (this.login.valid) {
       const { email, contrasenia } = this.login.value; //validacion de parametros
-      console.log("hola", email, contrasenia);
+
       this.authService.login(email, contrasenia).subscribe(
         response => {
           if (response.status === 'success') {
-            // console.log("logeado");
-            // console.log('Respuesta del servidor:', response);
-            // console.log('is_admin:', response.is_admin);
+
 
             // Almacenar los datos del usuario en sessionStorage
             const userData = {
@@ -82,13 +80,11 @@ export class LoginComponent {
           } else {
             console.log(response.message);
           }
-        },
-        error => {
-          // console.log('Error de autenticación:', error);
         }
+
       );
-    } else {
-      // console.log('Formulario no válido');
+
+   
     }
   }
 }

@@ -92,13 +92,23 @@
       grid-template-columns: 1fr 1fr 1fr;
 
       #boton {
+
+        background-color: #f4dec7;
+        font-family: Hudson;
+        border-color: rgb(97, 31, 88);
+        color: rgb(97, 31, 88);
         padding: 2.5%;
       }
 
       #boton:hover {
         cursor: pointer;
+        border-color:#8a1538;
+        color:#8a1538;
 
       }
+
+
+
     }
 
     #producto {
@@ -263,6 +273,8 @@
         grid-template-columns: 1fr 1fr;
 
         #boton {
+
+
           padding: 2.5%;
         }
 
@@ -321,6 +333,11 @@
           padding: 5%;
         }
 
+      }
+      #nets{
+        a{
+          margin-left:100%;
+        }
       }
 
 

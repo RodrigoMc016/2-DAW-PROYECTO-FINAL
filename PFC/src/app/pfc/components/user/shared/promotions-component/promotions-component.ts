@@ -24,7 +24,7 @@ export class promoUserComponent  {
     this.authService.getPromos().subscribe({
       next: (data) => {
         this.promoCodes = data;
-        console.log('Códigos promocionales obtenidos:', this.promoCodes);
+
       },
       error: (err) => {
         this.errorMessage = 'Error al obtener los códigos promocionales';

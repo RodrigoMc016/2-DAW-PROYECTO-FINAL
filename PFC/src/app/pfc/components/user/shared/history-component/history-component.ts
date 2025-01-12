@@ -19,6 +19,7 @@ export class historyComponent  {
 
   constructor(private authService: AuthService) {}
 
+  //Carga de datos al iniciar la página, en este caso con los el email guardado en la sesión.
   ngOnInit(): void {
     const userData = this.authService.getUserData();
     this.email = userData?.email;
@@ -28,12 +29,14 @@ export class historyComponent  {
     }
   }
 
+  //Carga en pantalla de los movimientos
   loadTransactions(): void {
     this.authService.getTransactions(this.email).subscribe(
       (response) => {
         if (response.message) {
-          console.log(response.message); // Mensaje si no hay transacciones
+          console.error(response.message); // Mensaje si no hay transacciones
         } else {
+          //Si las hay las muestra
           this.transactions = response;
         }
       },

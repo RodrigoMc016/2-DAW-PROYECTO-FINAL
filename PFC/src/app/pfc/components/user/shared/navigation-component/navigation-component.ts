@@ -49,14 +49,14 @@ export class navigationComponent {
   //Obtener los datos del usuario logueado en la sesión
   ngOnInit(): void {
     const userData = this.authService.getUserData();
-    // console.log('Datos del usuario en el componente:', userData);
+
     if (userData) {
       this.saldo = userData.balance;  // Obtener saldo
       this.email = userData.email;  // Obtener email
       this.getSaldo();
 
     }
-  
+
     this.updateCartNumber();
 
 
@@ -76,7 +76,7 @@ export class navigationComponent {
       this.totalCartItems = newCartItems;
 
     }
-    // console.log('Actualizando totalCartItems:', this.totalCartItems);
+   
   }
 
 

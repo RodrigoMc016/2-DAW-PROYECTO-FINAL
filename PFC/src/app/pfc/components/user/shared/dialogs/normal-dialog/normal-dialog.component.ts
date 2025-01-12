@@ -31,10 +31,10 @@ export class normalDialogComponent  {
    }
 
    send():void{
-    console.log("hola");
+
 
     const selectedProduct = this.data.product;
-    console.log(selectedProduct);
+
     this.cartService.addItem(selectedProduct); // Añadir al carrito
     this.dialogRef.close(selectedProduct);
    }

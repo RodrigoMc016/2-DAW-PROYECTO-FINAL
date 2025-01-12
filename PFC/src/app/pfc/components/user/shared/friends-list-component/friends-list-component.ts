@@ -51,16 +51,23 @@ export class friendsComponent {
     this.authService.addFriend(this.email, this.newFriendUsername).subscribe(
       (response: any) => {
         if (response.success) {
-          alert(`Se ha agregado a ${response.friend_username}`);
+
+            this.dialog.open(confirmationDialogComponent, {
+            data: {
+              message: `Se ha agregado a ${response.friend_username}`,
+            },
+            });
           this.newFriendUsername = ''; // Limpia el campo de entrada
           this.loadFriends();
         } else {
-          alert(response.error);
+          this.dialog.open(confirmationDialogComponent, {
+            data: {
+              message: 'Ha habido un error, inténtelo de nuevo'
+            },
+          });
         }
-      },
-      (error) => {
-        console.error('Error al agregar amigo:', error);
       }
+
     );
   }
   sendBalance(receiverEmail: string, points: number): void {
@@ -74,11 +81,6 @@ export class friendsComponent {
       return;
     }
 
-    console.log("Datos enviados al backend:", {
-      senderEmail: this.email,
-      receiverEmail: receiverEmail,
-      points: points
-    });
 
     this.authService.sendBalance({
       senderEmail: this.email,
@@ -86,7 +88,6 @@ export class friendsComponent {
       points: points
     }).subscribe(
       (response: any) => {
-        console.log("Respuesta del backend:", response);
 
         if (response.error) {  // Verifica si hubo un error
           this.dialog.open(confirmationDialogComponent, {
@@ -106,7 +107,7 @@ export class friendsComponent {
           });
         }
       },
-      (error) => {
+      () => {
         this.dialog.open(confirmationDialogComponent, {
           data: {
             title: 'Error de conexión',
@@ -122,15 +123,22 @@ export class friendsComponent {
     this.authService.removeFriend(this.email, friendId).subscribe(
       (response: any) => {
         if (response.success) {
-          alert('Amigo eliminado exitosamente');
+          this.dialog.open(confirmationDialogComponent, {
+            data: {
+              message: 'Amigo eliminado exitosamente.'
+            },
+          });
           this.loadFriends(); // Recarga la lista de amigos
         } else {
-          alert(response.error);
+          this.dialog.open(confirmationDialogComponent, {
+            data: {
+              message: 'Ha habido un error, inténtelo de nuevo'
+            },
+          });
         }
       },
-      (error) => {
-        console.error('Error al eliminar amigo:', error);
-      }
+
+
     );
   }
 }
