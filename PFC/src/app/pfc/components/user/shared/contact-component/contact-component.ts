@@ -42,7 +42,7 @@ export class ContactComponent {
         this.formularioFeedback.reset(); /*todos los campos se vuelven a resetear una vez enviado*/
 
       }, error => {
-    
+
         this.mensaje="Ha ocurrido un error, por favor inténtelo de nuevo."
       });
     }else{

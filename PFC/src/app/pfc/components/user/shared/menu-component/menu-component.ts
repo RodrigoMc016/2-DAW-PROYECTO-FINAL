@@ -56,13 +56,13 @@ export class MenuComponent {
   }
 
   goToCategory(category: string): void {
-    // Asegúrate de que el id de la categoría esté en mayúsculas
+   //Checkeo por si está en mayusculas
     const categoryId = category.toUpperCase();
 
-    // Buscar el elemento correspondiente al id de la categoría en la página
+    // Busca el elemento correspondiente al id de la categoría en la página
     const element = document.getElementById(categoryId);
 
-    // Si el elemento existe, desplazarse suavemente a esa sección
+    // Si el elemento existe, se desplaza suavemente a esa sección
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -117,7 +117,7 @@ export class MenuComponent {
   updateCartCount(): void {
 
     this.cartItemsTotal = this.cartService.getItemsNumber();
-    
+
   }
 
 

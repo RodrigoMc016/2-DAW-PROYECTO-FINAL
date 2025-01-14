@@ -93,7 +93,7 @@ export class adminMenuComponent  {
   onSubmit(): void {
     if (this.productForm.valid) {
       this.authService.addProduct(this.productForm.value).subscribe({
-        next: (res) => {
+        next: () => {
           this.message = 'Producto agregado exitosamente';
           this.productForm.reset(); // Limpiar el formulario tras el envío exitoso
         },
@@ -110,7 +110,7 @@ export class adminMenuComponent  {
   deleteProduct(productId: number): void {
     if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
       this.authService.deleteProduct(productId).subscribe({
-        next: (res) => {
+        next: () => {
           // Mostrar el mensaje en el diálogo si la eliminación es exitosa
           this.openDialog('Producto eliminado correctamente');
           this.loadProducts(); // Recargar productos después de la eliminación
@@ -154,7 +154,7 @@ export class adminMenuComponent  {
       id: this.editingProductId,
     };
     this.authService.updateProduct(updatedProduct).subscribe({
-      next: (res) => {
+      next: () => {
         this.message = 'Producto actualizado correctamente.';
         this.editing = false;
         this.editingProductId = null;

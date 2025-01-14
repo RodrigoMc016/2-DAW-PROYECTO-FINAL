@@ -72,7 +72,7 @@
         <h2>{{ category.key}}</h2> <!-- Nombre de la categoría usando el .key que es la clave-->
         <div class="caja">
 
-          <div *ngFor="let product of category.value" id="producto"> <!--sacar el valor con .value-->
+          <div *ngFor="let product of category.value" id="producto"> <!--sacar el valor y asociarlo con .value-->
 
             <img [src]="'../../../../../../assets/' + product.image_url" alt="{{ product.name }}"
               class="product-image" />
