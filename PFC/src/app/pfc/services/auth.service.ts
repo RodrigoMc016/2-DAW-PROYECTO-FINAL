@@ -11,8 +11,8 @@ import { Router } from "@angular/router";
 
 
 export class AuthService {
-  // private mysqlUrl="http://localhost/backend/"; //url para local
-    private mysqlUrl="http://proyectotf.atwebpages.com/php"; //url para hosting
+   private mysqlUrl="http://localhost/backend"; //url para local
+    // private mysqlUrl="http://proyectotf.atwebpages.com/php"; //url para hosting
 
   constructor(private conexiones: HttpClient, private router: Router) { }
 

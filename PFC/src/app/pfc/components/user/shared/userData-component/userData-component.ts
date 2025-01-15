@@ -30,6 +30,7 @@ export class userDataComponent implements OnInit {
     }
   }
 
+  //Carga los datos del usuario
   loadUserData(email: string): void {
     this.authService.getUserSession(email).subscribe(
       (response) => {
@@ -37,7 +38,7 @@ export class userDataComponent implements OnInit {
 
       },
 
-      
+
     );
   }
 
